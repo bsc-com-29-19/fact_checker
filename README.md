@@ -131,12 +131,12 @@ The core of this project is an **AI-powered fact-checking system** that combats 
 
 1. **Clone the repository:**
    ```sh
-   git clone git@github.com:your-username/ai-powered-fact-checker.git
+   git clone git@github.com:bsc-com-29-19/fact_checker.git
    ```
 2. **Navigate into the project directory:**
 
    ```sh
-   cd ai-powered-fact-checker
+   cd fact_checker
    ```
 
 3. **Install Frontend Dependencies:**
