@@ -142,7 +142,6 @@ The core of this project is an **AI-powered fact-checking system** that combats 
 3. **Install Frontend Dependencies:**
 
    ```sh
-   cd frontend
    npm install
    ```
 
