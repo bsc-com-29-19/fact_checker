@@ -1,0 +1,13 @@
+langgraph
+langchain
+langchain_anthropic
+tavily-python
+langchain_community
+langchain_openai
+langchain_ollama
+langchain_deepseek
+uvicorn["standard"]
+fastapi
+python-dotenv
+copilotkit
+

@@ -1,0 +1,7 @@
+{
+    "dependencies": ["./fact_checker_agent"],
+    "graphs":{
+        "agent":"./fact_checker_agent/agent.py:graph"
+    },
+    "env":".env"
+}

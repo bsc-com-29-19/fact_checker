@@ -1,0 +1,10 @@
+[
+    {
+        "label": "FactCheckerAgent",
+        "importPath": "fact_checker_agent.agent",
+        "description": "fact_checker_agent.agent",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent",
+        "documentation": {}
+    }
+]
