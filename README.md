@@ -40,8 +40,23 @@ This project follows a streamlined Git workflow to ensure efficient collaboratio
 
 - **Main Repository:** [fact_checker](git@github.com:bsc-com-29-19/fact_checker.git)
 - **Branching Strategy:**
-  - The **`backend`** branch contains the latest stable backend code.
-  - Feature branches should be created off the `backend` branch and merged back via pull requests after review.
+
+  - **Production & Active Development:**
+    - **`backend`**: Contains the production-ready code.
+    - **`dev`**: Used for active development and integration of new features before they are merged into production.
+
+- **Regional Feature Development:**
+
+  - **`reg_branch`**: Dedicated to regional feature development.
+
+- **Feature-Specific Merging:**
+
+  - **Backend:** Uses a separate branch called **`backend_development`** for feature integration.
+
+- **Regional Branches:**
+
+  - **`[reg]_backend`**: Branches for backend regional development managed by Tony & Dan.
+
 - **Best Practices:**
   - Keep commits small and focused.
   - Write clear commit messages.
