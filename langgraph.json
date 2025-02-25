@@ -1,5 +1,5 @@
 {
-    "dependencies": ["./"],
+    "dependencies": ["."],
     "graphs":{
         "agent":"./fact_checker_agent/agent.py:graph"
     },
