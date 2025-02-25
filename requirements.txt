@@ -1,11 +1,15 @@
 langgraph
+langgraph-cli
+langgraph-sdk
 langchain
-langchain_anthropic
-tavily-python
 langchain_community
+langchain_core
+langchain_anthropic
 langchain_openai
 langchain_ollama
 langchain_deepseek
+tavily-python
+wikipedia
 uvicorn[standard]
 fastapi
 python-dotenv

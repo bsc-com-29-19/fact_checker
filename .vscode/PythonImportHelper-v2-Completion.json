@@ -1,10 +1,58 @@
 [
     {
-        "label": "FactCheckerAgent",
-        "importPath": "fact_checker_agent.agent",
-        "description": "fact_checker_agent.agent",
+        "label": "MessagesState",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
         "isExtraImport": true,
-        "detail": "fact_checker_agent.agent",
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "StateGraph",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "END",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TypedDict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "agent_states.state",
+        "description": "agent_states.state",
+        "isExtraImport": true,
+        "detail": "agent_states.state",
         "documentation": {}
     },
     {
@@ -14,6 +62,15 @@
         "importPath": "os",
         "description": "os",
         "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
         "documentation": {}
     },
     {
@@ -39,6 +96,101 @@
         "importPath": "uvicorn",
         "description": "uvicorn",
         "detail": "uvicorn",
+        "documentation": {}
+    },
+    {
+        "label": "add_fastapi_endpoint",
+        "importPath": "copilotkit.integrations.fastapi",
+        "description": "copilotkit.integrations.fastapi",
+        "isExtraImport": true,
+        "detail": "copilotkit.integrations.fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "LangGraphAgent",
+        "importPath": "copilotkit",
+        "description": "copilotkit",
+        "isExtraImport": true,
+        "detail": "copilotkit",
+        "documentation": {}
+    },
+    {
+        "label": "CopilotKitRemoteEndpoint",
+        "importPath": "copilotkit",
+        "description": "copilotkit",
+        "isExtraImport": true,
+        "detail": "copilotkit",
+        "documentation": {}
+    },
+    {
+        "label": "graph",
+        "importPath": "fact_checker_agent.agent",
+        "description": "fact_checker_agent.agent",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "kind": 6,
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "peekOfCode": "class AgentState(MessagesState):\n     \"\"\"\n    This is the state of the agent.\n    It is a subclass of the MessagesState class from langgraph.\n    \"\"\"\n     answer:Optional[str]",
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "node_1",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent",
+        "description": "fact_checker_agent.agent",
+        "peekOfCode": "def node_1():\n    pass\nworkflow.add_node(\"fact_checker_agent\",node_1)\nworkflow.set_entry_point(\"fact_checker_agent\")\nworkflow.add_edge(\"fact_checker_agent\",END)\ngraph = workflow.compile()",
+        "detail": "fact_checker_agent.agent",
+        "documentation": {}
+    },
+    {
+        "label": "workflow",
+        "kind": 5,
+        "importPath": "fact_checker_agent.agent",
+        "description": "fact_checker_agent.agent",
+        "peekOfCode": "workflow = StateGraph(AgentState)\ndef node_1():\n    pass\nworkflow.add_node(\"fact_checker_agent\",node_1)\nworkflow.set_entry_point(\"fact_checker_agent\")\nworkflow.add_edge(\"fact_checker_agent\",END)\ngraph = workflow.compile()",
+        "detail": "fact_checker_agent.agent",
+        "documentation": {}
+    },
+    {
+        "label": "graph",
+        "kind": 5,
+        "importPath": "fact_checker_agent.agent",
+        "description": "fact_checker_agent.agent",
+        "peekOfCode": "graph = workflow.compile()",
+        "detail": "fact_checker_agent.agent",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "fact_checker_agent.api",
+        "description": "fact_checker_agent.api",
+        "peekOfCode": "def main():\n    port = int(os.environ.get(\"PORT\", \"8000\"))\n    uvicorn.run(\"fact_checker_agent.api:app\", host=\"0.0.0.0\", port=port,reload=True,\n        )\nif __name__ == '__main__':\n    main()",
+        "detail": "fact_checker_agent.api",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "fact_checker_agent.api",
+        "description": "fact_checker_agent.api",
+        "peekOfCode": "app = FastAPI()\nsdk = CopilotKitRemoteEndpoint(\n    agents = [\n        LangGraphAgent(\n            name=\"fact_checker_agent\",\n            description=\"A LangGraph AI agent that provides fact checking capabilities using the CoPilotKit packages.\",\n            graph=graph\n        )\n    ]\n)",
+        "detail": "fact_checker_agent.api",
+        "documentation": {}
+    },
+    {
+        "label": "sdk",
+        "kind": 5,
+        "importPath": "fact_checker_agent.api",
+        "description": "fact_checker_agent.api",
+        "peekOfCode": "sdk = CopilotKitRemoteEndpoint(\n    agents = [\n        LangGraphAgent(\n            name=\"fact_checker_agent\",\n            description=\"A LangGraph AI agent that provides fact checking capabilities using the CoPilotKit packages.\",\n            graph=graph\n        )\n    ]\n)\nadd_fastapi_endpoint(app, sdk,\"/copilotkit\")",
+        "detail": "fact_checker_agent.api",
         "documentation": {}
     }
 ]
