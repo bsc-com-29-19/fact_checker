@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { Moon, Sun, Plus, Send, RefreshCcw } from 'lucide-react';
+import { MenuSquareIcon, Moon, Sun, Plus, Send, RefreshCcw } from 'lucide-react';
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [showSources, setShowSources] = useState(true);
@@ -11,8 +11,11 @@ export default function Home() {
       {/* Navbar */}
       <nav className="flex justify-between items-center p-4 bg-gray-300 dark:bg-gray-800">
         <div className="flex items-center gap-4">
+        <button className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700">
+            <MenuSquareIcon size={25} />
+          </button>
           <button className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700">
-            <Plus size={20} />
+            <Plus size={25} />
           </button>
           <h1 className="text-xl font-bold">Fact Checker</h1>
         </div>
