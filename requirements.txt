@@ -10,6 +10,7 @@ langchain_ollama
 langchain_deepseek
 tavily-python
 wikipedia
+youtube_search
 uvicorn[standard]
 fastapi
 python-dotenv
