@@ -8,3 +8,4 @@ class AgentState(MessagesState):
     It is a subclass of the MessagesState class from langgraph.
     """
      answer:Optional[str]
+     query: Optional[str]
