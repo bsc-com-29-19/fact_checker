@@ -35,8 +35,7 @@ def web_search(query: str):
     
     
     search_data = tavily_search.invoke(query)
-    
-    
+
     return format_results(search_data)
 
 def format_results(search_data):
