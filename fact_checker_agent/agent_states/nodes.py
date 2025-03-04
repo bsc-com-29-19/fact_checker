@@ -1,34 +1,20 @@
-from fact_checker_agent.agent_states.search import web_search
-from fact_checker_agent.agent_states.summarizer import summarizer
-from fact_checker_agent.agent_states.planner import planner
+# from fact_checker_agent.agent_states.search import web_search
+# from fact_checker_agent.agent_states.summarizer import summarizer
+# from fact_checker_agent.agent_states.planner import planner
 from fact_checker_agent.agent_states import steps
 from fact_checker_agent.agent_states.state import AgentState
 # from fact_checker_agent.agent_states.nodes import search_node
-
-#node to invoke web search
-# def search_node(state):
-#     """Invoke the web search workflow"""
-#     return search_graph.invoke(state)
-
-def planner_node(state:AgentState):
-    """Invoke the planner node in the workflow"""
-    return planner(state)
-
-def steps_node(state:AgentState):
-    """Invoke the steps node in the workflow"""
-    return steps(state)
-def search_node(state:AgentState):
-    """Invoke the search node in the workflow"""
-    return web_search(state)
+from langgraph.graph import StateGraph,END
 
 
-def summarize_node(state:AgentState):
-    """Invoke the summarizer node in the workflow"""
-    return summarizer(state)
 
 # Define the function that determines whether to continue or not
 def should_continue(state):
     messages = state["context"]
+    # if not messages:
+    #     # Handle the case when messages is empty
+    #     return "continue"
+    
     last_message = messages[-1]
     # If there are no tool calls, then we finish
     if not last_message.tool_calls:
@@ -36,6 +22,22 @@ def should_continue(state):
     # Otherwise if there is, we continue
     else:
         return "continue"
+    
+
+def route(state):
+    """Route to research nodes."""
+    if not state.get("steps", None):
+        return END
+
+    current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
+
+    if not current_step:
+        return "summarizer_node"
+
+    if current_step["type"] == "search":
+        return "search_node"
+
+    raise ValueError(f"Unknown step type: {current_step['type']}")
 
 
 

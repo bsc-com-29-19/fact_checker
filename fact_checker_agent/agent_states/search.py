@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 
 from fact_checker_agent.utils.models import get_model
 
+from datetime import datetime
+
 load_dotenv()
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 print(f"TAVILY_API_KEY: {TAVILY_API_KEY}")
@@ -20,27 +22,27 @@ print(f"TAVILY_API_KEY: {TAVILY_API_KEY}")
 tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
 
 #the search method
-# def web_search(query: str):
-#     """Search the web using Tavily API."""
-#     tavily_search = TavilySearchResults(
-#         max_results = 5,
-#         search_depth="advanced",
-#         inculde_raw_content=True,
-#         include_images=True,
-#         include_image_descriptions=True,
+def web_search(query: str):
+    """Search the web using Tavily API."""
+    tavily_search = TavilySearchResults(
+        max_results = 5,
+        search_depth="advanced",
+        inculde_raw_content=True,
+        include_images=True,
+        include_image_descriptions=True,
         
-#         )
+        )
     
     
-#     search_data = tavily_search.invoke(query)
+    search_data = tavily_search.invoke(query)
     
     
 #     #return :
-#     return format_results(search_data)
+    return format_results(search_data)
 async def web_search(state: AgentState,config:RunnableConfig):
     """Search the web using Tavily API."""
     tavily_search = TavilySearchResults(
-        max_results = 1,
+        max_results = 5,
         search_depth="advanced",
         inculde_raw_content=True,
         include_images=True,
@@ -53,8 +55,8 @@ async def web_search(state: AgentState,config:RunnableConfig):
     
     
     #return :
-    # return format_results(search_data)
-    return {"context":search_data}
+    return format_results(search_data)
+    # return {"context":search_data}
     # model_name = config.get("model_name","gpt-3.5-turbo")
     # model = get_model(model_name).bind_tools(
     #     [tavily_search],
@@ -90,6 +92,9 @@ def format_results(search_data):
     #     "Answers": formatted_response
     # }
     
-    return {"context":formatted_response}
+    return {"context":[{"role":"system","content":formatted_response}]}
         
         
+
+# tavily_tool_node = [TavilySearchResults(max_results=5)]
+

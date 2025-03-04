@@ -17,13 +17,14 @@ class Step(TypedDict):
     result: Optional[str]
     updates: Optional[List[str]]
 
-class AgentState(TypedDict):
+class AgentState(MessagesState):
      """
     This is the state of the agent.
     It is a subclass of the MessagesState class from langgraph.
     """
-     question: Optional[str]
+     model:str = "gpt-3.5-turbo"
+    #  question: Optional[str]
      steps: List[Step]
-     context:Annotated[Sequence[BaseMessage],add_messages]
+    #  context:Annotated[Sequence[BaseMessage],add_messages]
      answer:Optional[str]
-     query: Optional[str]
+    #  query: Optional[str]
