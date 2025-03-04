@@ -57,4 +57,3 @@ def format_results(search_data):
     
     return {"context":[{"role":"system","content":formatted_response}]}
         
-        
