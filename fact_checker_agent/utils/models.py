@@ -8,7 +8,7 @@ from fact_checker_agent.agent_states.state import AgentState
 # from fact_checker_agent.agent_states.search import tavily_tools
 # from langgraph.prebuilt import ToolNode
 
-# @lru_cache(maxsize=4)
+@lru_cache(maxsize=4)
 def get_model(state:AgentState):
 
     model_name:str = state.get("model")

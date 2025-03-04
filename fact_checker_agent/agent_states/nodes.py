@@ -11,9 +11,6 @@ from langgraph.graph import StateGraph,END
 # Define the function that determines whether to continue or not
 def should_continue(state):
     messages = state["context"]
-    # if not messages:
-    #     # Handle the case when messages is empty
-    #     return "continue"
     
     last_message = messages[-1]
     # If there are no tool calls, then we finish

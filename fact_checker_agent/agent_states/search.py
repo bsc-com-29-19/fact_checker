@@ -37,43 +37,7 @@ def web_search(query: str):
     search_data = tavily_search.invoke(query)
     
     
-#     #return :
     return format_results(search_data)
-async def web_search(state: AgentState,config:RunnableConfig):
-    """Search the web using Tavily API."""
-    tavily_search = TavilySearchResults(
-        max_results = 5,
-        search_depth="advanced",
-        inculde_raw_content=True,
-        include_images=True,
-        include_image_descriptions=True,
-        
-        )
-    
-    
-    search_data = tavily_search.invoke(state["question"])
-    
-    
-    #return :
-    return format_results(search_data)
-    # return {"context":search_data}
-    # model_name = config.get("model_name","gpt-3.5-turbo")
-    # model = get_model(model_name).bind_tools(
-    #     [tavily_search],
-    #     tool_choice= tavily_search.name
-    # )
-
-    # response = await model.ainvoke([
-    #     HumanMessage(
-    #             content=state["question"],
-    #         )
-    #     ],
-    #     config
-    # )
-
-    # tool_msg = tavily_search.invoke(response.tool_calls[0])
-
-    # return {"context":json.loads(tool_msg.content)}
 
 def format_results(search_data):
     # Extract query results
@@ -95,6 +59,3 @@ def format_results(search_data):
     return {"context":[{"role":"system","content":formatted_response}]}
         
         
-
-# tavily_tool_node = [TavilySearchResults(max_results=5)]
-

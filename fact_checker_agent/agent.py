@@ -14,11 +14,6 @@ from fact_checker_agent.agent_states.summarizer import summarize_node
 
 
 
-#Define the model config
-# class GraphConfig(TypedDict):
-#     model_name: Literal["gpt-3.5-turbo","llama3.5","claude-3-sonnet-20240229","deepseek-r1:latest"]
-
-# workflow = StateGraph(AgentState,GraphConfig)
 workflow = StateGraph(AgentState)
 # 
 

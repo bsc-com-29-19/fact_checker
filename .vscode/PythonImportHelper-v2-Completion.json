@@ -610,7 +610,7 @@
         "kind": 2,
         "importPath": "fact_checker_agent.agent_states.nodes",
         "description": "fact_checker_agent.agent_states.nodes",
-        "peekOfCode": "def should_continue(state):\n    messages = state[\"context\"]\n    # if not messages:\n    #     # Handle the case when messages is empty\n    #     return \"continue\"\n    last_message = messages[-1]\n    # If there are no tool calls, then we finish\n    if not last_message.tool_calls:\n        return \"end\"\n    # Otherwise if there is, we continue",
+        "peekOfCode": "def should_continue(state):\n    messages = state[\"context\"]\n    last_message = messages[-1]\n    # If there are no tool calls, then we finish\n    if not last_message.tool_calls:\n        return \"end\"\n    # Otherwise if there is, we continue\n    else:\n        return \"continue\"\ndef route(state):",
         "detail": "fact_checker_agent.agent_states.nodes",
         "documentation": {}
     },
