@@ -1,5 +1,214 @@
 [
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "RunnableConfig",
+        "importPath": "langchain_core.runnables",
+        "description": "langchain_core.runnables",
+        "isExtraImport": true,
+        "detail": "langchain_core.runnables",
+        "documentation": {}
+    },
+    {
+        "label": "RunnableConfig",
+        "importPath": "langchain_core.runnables",
+        "description": "langchain_core.runnables",
+        "isExtraImport": true,
+        "detail": "langchain_core.runnables",
+        "documentation": {}
+    },
+    {
+        "label": "RunnableConfig",
+        "importPath": "langchain_core.runnables",
+        "description": "langchain_core.runnables",
+        "isExtraImport": true,
+        "detail": "langchain_core.runnables",
+        "documentation": {}
+    },
+    {
+        "label": "RunnableConfig",
+        "importPath": "langchain_core.runnables",
+        "description": "langchain_core.runnables",
+        "isExtraImport": true,
+        "detail": "langchain_core.runnables",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "BaseMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "get_model",
+        "importPath": "fact_checker_agent.utils.models",
+        "description": "fact_checker_agent.utils.models",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.models",
+        "documentation": {}
+    },
+    {
+        "label": "get_model",
+        "importPath": "fact_checker_agent.utils.models",
+        "description": "fact_checker_agent.utils.models",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.models",
+        "documentation": {}
+    },
+    {
+        "label": "get_model",
+        "importPath": "fact_checker_agent.utils.models",
+        "description": "fact_checker_agent.utils.models",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.models",
+        "documentation": {}
+    },
+    {
+        "label": "get_model",
+        "importPath": "fact_checker_agent.utils.models",
+        "description": "fact_checker_agent.utils.models",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.models",
+        "documentation": {}
+    },
+    {
+        "label": "steps",
+        "importPath": "fact_checker_agent.agent_states",
+        "description": "fact_checker_agent.agent_states",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states",
+        "documentation": {}
+    },
+    {
+        "label": "StateGraph",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "END",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
         "label": "MessagesState",
         "importPath": "langgraph.graph",
         "description": "langgraph.graph",
@@ -24,7 +233,121 @@
         "documentation": {}
     },
     {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "textwrap",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "textwrap",
+        "description": "textwrap",
+        "detail": "textwrap",
+        "documentation": {}
+    },
+    {
+        "label": "TavilyClient",
+        "importPath": "tavily",
+        "description": "tavily",
+        "isExtraImport": true,
+        "detail": "tavily",
+        "documentation": {}
+    },
+    {
+        "label": "TavilySearchResults",
+        "importPath": "langchain_community.tools.tavily_search",
+        "description": "langchain_community.tools.tavily_search",
+        "isExtraImport": true,
+        "detail": "langchain_community.tools.tavily_search",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "add_messages",
+        "importPath": "langgraph.graph.message",
+        "description": "langgraph.graph.message",
+        "isExtraImport": true,
+        "detail": "langgraph.graph.message",
+        "documentation": {}
+    },
+    {
+        "label": "TypedDict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Annotated",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -48,20 +371,164 @@
         "documentation": {}
     },
     {
-        "label": "AgentState",
-        "importPath": "agent_states.state",
-        "description": "agent_states.state",
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
         "isExtraImport": true,
-        "detail": "agent_states.state",
+        "detail": "pydantic",
         "documentation": {}
     },
     {
-        "label": "os",
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain.tools",
+        "description": "langchain.tools",
+        "isExtraImport": true,
+        "detail": "langchain.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain.tools",
+        "description": "langchain.tools",
+        "isExtraImport": true,
+        "detail": "langchain.tools",
+        "documentation": {}
+    },
+    {
+        "label": "copilotkit_customize_config",
+        "importPath": "copilotkit.langgraph",
+        "description": "copilotkit.langgraph",
+        "isExtraImport": true,
+        "detail": "copilotkit.langgraph",
+        "documentation": {}
+    },
+    {
+        "label": "copilotkit_customize_config",
+        "importPath": "copilotkit.langgraph",
+        "description": "copilotkit.langgraph",
+        "isExtraImport": true,
+        "detail": "copilotkit.langgraph",
+        "documentation": {}
+    },
+    {
+        "label": "lru_cache",
+        "importPath": "functools",
+        "description": "functools",
+        "isExtraImport": true,
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "ChatOpenAI",
+        "importPath": "langchain_openai",
+        "description": "langchain_openai",
+        "isExtraImport": true,
+        "detail": "langchain_openai",
+        "documentation": {}
+    },
+    {
+        "label": "ChatAnthropic",
+        "importPath": "langchain_anthropic",
+        "description": "langchain_anthropic",
+        "isExtraImport": true,
+        "detail": "langchain_anthropic",
+        "documentation": {}
+    },
+    {
+        "label": "ChatDeepSeek",
+        "importPath": "langchain_deepseek",
+        "description": "langchain_deepseek",
+        "isExtraImport": true,
+        "detail": "langchain_deepseek",
+        "documentation": {}
+    },
+    {
+        "label": "ChatOllama",
+        "importPath": "langchain_ollama",
+        "description": "langchain_ollama",
+        "isExtraImport": true,
+        "detail": "langchain_ollama",
+        "documentation": {}
+    },
+    {
+        "label": "fact_checker_agent.utils.prompts",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
+        "importPath": "fact_checker_agent.utils.prompts",
+        "description": "fact_checker_agent.utils.prompts",
+        "detail": "fact_checker_agent.utils.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "download_node",
+        "importPath": "fact_checker_agent.agent_states.download",
+        "description": "fact_checker_agent.agent_states.download",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.download",
+        "documentation": {}
+    },
+    {
+        "label": "route",
+        "importPath": "fact_checker_agent.agent_states.nodes",
+        "description": "fact_checker_agent.agent_states.nodes",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.nodes",
+        "documentation": {}
+    },
+    {
+        "label": "search_node",
+        "importPath": "fact_checker_agent.agent_states.search",
+        "description": "fact_checker_agent.agent_states.search",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.search",
+        "documentation": {}
+    },
+    {
+        "label": "web_search",
+        "importPath": "fact_checker_agent.agent_states.search",
+        "description": "fact_checker_agent.agent_states.search",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.search",
+        "documentation": {}
+    },
+    {
+        "label": "steps_node",
+        "importPath": "fact_checker_agent.agent_states.steps",
+        "description": "fact_checker_agent.agent_states.steps",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.steps",
+        "documentation": {}
+    },
+    {
+        "label": "summarize_node",
+        "importPath": "fact_checker_agent.agent_states.summarizer",
+        "description": "fact_checker_agent.agent_states.summarizer",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.summarizer",
         "documentation": {}
     },
     {
@@ -74,15 +541,15 @@
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
         "isExtraImport": true,
-        "detail": "dotenv",
+        "detail": "fastapi",
         "documentation": {}
     },
     {
-        "label": "FastAPI",
+        "label": "Query",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -123,6 +590,14 @@
         "documentation": {}
     },
     {
+        "label": "fack_check",
+        "importPath": "fact_checker_agent.agent",
+        "description": "fact_checker_agent.agent",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent",
+        "documentation": {}
+    },
+    {
         "label": "graph",
         "importPath": "fact_checker_agent.agent",
         "description": "fact_checker_agent.agent",
@@ -131,21 +606,174 @@
         "documentation": {}
     },
     {
-        "label": "AgentState",
+        "label": "should_continue",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.nodes",
+        "description": "fact_checker_agent.agent_states.nodes",
+        "peekOfCode": "def should_continue(state):\n    messages = state[\"context\"]\n    last_message = messages[-1]\n    # If there are no tool calls, then we finish\n    if not last_message.tool_calls:\n        return \"end\"\n    # Otherwise if there is, we continue\n    else:\n        return \"continue\"\ndef route(state):",
+        "detail": "fact_checker_agent.agent_states.nodes",
+        "documentation": {}
+    },
+    {
+        "label": "route",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.nodes",
+        "description": "fact_checker_agent.agent_states.nodes",
+        "peekOfCode": "def route(state):\n    \"\"\"Route to research nodes.\"\"\"\n    if not state.get(\"steps\", None):\n        return END\n    current_step = next((step for step in state[\"steps\"] if step[\"status\"] == \"pending\"), None)\n    if not current_step:\n        return \"summarizer_node\"\n    if current_step[\"type\"] == \"search\":\n        return \"search_node\"\n    raise ValueError(f\"Unknown step type: {current_step['type']}\")",
+        "detail": "fact_checker_agent.agent_states.nodes",
+        "documentation": {}
+    },
+    {
+        "label": "planner",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.planner",
+        "description": "fact_checker_agent.agent_states.planner",
+        "peekOfCode": "def planner():\n    pass",
+        "detail": "fact_checker_agent.agent_states.planner",
+        "documentation": {}
+    },
+    {
+        "label": "web_search",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.search",
+        "description": "fact_checker_agent.agent_states.search",
+        "peekOfCode": "def web_search(query: str):\n    \"\"\"Search the web using Tavily API.\"\"\"\n    tavily_search = TavilySearchResults(\n        max_results = 5,\n        search_depth=\"advanced\",\n        inculde_raw_content=True,\n        include_images=True,\n        include_image_descriptions=True,\n        )\n    search_data = tavily_search.invoke(query)",
+        "detail": "fact_checker_agent.agent_states.search",
+        "documentation": {}
+    },
+    {
+        "label": "format_results",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.search",
+        "description": "fact_checker_agent.agent_states.search",
+        "peekOfCode": "def format_results(search_data):\n    # Extract query results\n    formatted_response = []\n    for result in search_data:\n        formatted_content = textwrap.fill(result.get(\"content\", \"N/A\"), width=80)\n        formatted_result = {\n            \"URL\": result.get(\"url\", \"N/A\"),\n            \"Content\": formatted_content\n        }\n        formatted_response.append(formatted_result)",
+        "detail": "fact_checker_agent.agent_states.search",
+        "documentation": {}
+    },
+    {
+        "label": "TAVILY_API_KEY",
+        "kind": 5,
+        "importPath": "fact_checker_agent.agent_states.search",
+        "description": "fact_checker_agent.agent_states.search",
+        "peekOfCode": "TAVILY_API_KEY = os.getenv(\"TAVILY_API_KEY\")\nprint(f\"TAVILY_API_KEY: {TAVILY_API_KEY}\")\n#start tavily\ntavily_client = TavilyClient(api_key=TAVILY_API_KEY)\n#the search method\ndef web_search(query: str):\n    \"\"\"Search the web using Tavily API.\"\"\"\n    tavily_search = TavilySearchResults(\n        max_results = 5,\n        search_depth=\"advanced\",",
+        "detail": "fact_checker_agent.agent_states.search",
+        "documentation": {}
+    },
+    {
+        "label": "tavily_client",
+        "kind": 5,
+        "importPath": "fact_checker_agent.agent_states.search",
+        "description": "fact_checker_agent.agent_states.search",
+        "peekOfCode": "tavily_client = TavilyClient(api_key=TAVILY_API_KEY)\n#the search method\ndef web_search(query: str):\n    \"\"\"Search the web using Tavily API.\"\"\"\n    tavily_search = TavilySearchResults(\n        max_results = 5,\n        search_depth=\"advanced\",\n        inculde_raw_content=True,\n        include_images=True,\n        include_image_descriptions=True,",
+        "detail": "fact_checker_agent.agent_states.search",
+        "documentation": {}
+    },
+    {
+        "label": "Step",
         "kind": 6,
         "importPath": "fact_checker_agent.agent_states.state",
         "description": "fact_checker_agent.agent_states.state",
-        "peekOfCode": "class AgentState(MessagesState):\n     \"\"\"\n    This is the state of the agent.\n    It is a subclass of the MessagesState class from langgraph.\n    \"\"\"\n     answer:Optional[str]",
+        "peekOfCode": "class Step(TypedDict):\n    \"\"\"\n    Represents a step taken in the research process.\n    \"\"\"\n    id: str\n    description: str\n    status: str\n    type: str\n    description: str\n    search_result: Optional[str]",
         "detail": "fact_checker_agent.agent_states.state",
         "documentation": {}
     },
     {
-        "label": "node_1",
+        "label": "AgentState",
+        "kind": 6,
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "peekOfCode": "class AgentState(MessagesState):\n     \"\"\"\n    This is the state of the agent.\n    It is a subclass of the MessagesState class from langgraph.\n    \"\"\"\n     model:str = \"gpt-3.5-turbo\"\n    #  question: Optional[str]\n     steps: List[Step]\n    #  context:Annotated[Sequence[BaseMessage],add_messages]\n     answer:Optional[str]",
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "SearchStep",
+        "kind": 6,
+        "importPath": "fact_checker_agent.agent_states.steps",
+        "description": "fact_checker_agent.agent_states.steps",
+        "peekOfCode": "class SearchStep(BaseModel):\n    \"\"\"Model for a search step\"\"\"\n    id: str = Field(description=\"The id of the step. This is used to identify the step in the state. Just make sure it is unique.\")\n    description: str = Field(description='The description of the step, i.e. \"search for information about the latest AI news\"')\n    status: str = Field(description='The status of the step. Always \"pending\".', enum=['pending'])\n    type: str = Field(description='The type of step.', enum=['search'])\n@tool\ndef SearchTool(steps:List[SearchStep]):\n    \"\"\"\n     Break the user's query into smaller steps.",
+        "detail": "fact_checker_agent.agent_states.steps",
+        "documentation": {}
+    },
+    {
+        "label": "SearchTool",
         "kind": 2,
-        "importPath": "fact_checker_agent.agent",
-        "description": "fact_checker_agent.agent",
-        "peekOfCode": "def node_1():\n    pass\nworkflow.add_node(\"fact_checker_agent\",node_1)\nworkflow.set_entry_point(\"fact_checker_agent\")\nworkflow.add_edge(\"fact_checker_agent\",END)\ngraph = workflow.compile()",
-        "detail": "fact_checker_agent.agent",
+        "importPath": "fact_checker_agent.agent_states.steps",
+        "description": "fact_checker_agent.agent_states.steps",
+        "peekOfCode": "def SearchTool(steps:List[SearchStep]):\n    \"\"\"\n     Break the user's query into smaller steps.\n    Use step type \"search\" to search the web for information.\n    Make sure to add all the steps needed to answer the user's query.\n    \"\"\"\nasync def steps_node(state: AgentState, config: RunnableConfig):\n    \"\"\"\n    The steps node is responsible for building the steps in the research process.\n    \"\"\"",
+        "detail": "fact_checker_agent.agent_states.steps",
+        "documentation": {}
+    },
+    {
+        "label": "Source",
+        "kind": 6,
+        "importPath": "fact_checker_agent.agent_states.summarizer",
+        "description": "fact_checker_agent.agent_states.summarizer",
+        "peekOfCode": "class Source(BaseModel):\n    \"\"\"Model for a source\"\"\"\n    title:str =Field(description=\"The title of the source\")\n    url:str =Field(description=\"The url of the source\")\nclass SummarizerInput(BaseModel):\n    \"\"\"Input for the summalizer tool\"\"\"\n    markdown: str = Field(description=\"\"\"\n                          The markdown formatted summary of the final result.\n                          If you add any headings, make sure to start at the top level (#).\n                          \"\"\")",
+        "detail": "fact_checker_agent.agent_states.summarizer",
+        "documentation": {}
+    },
+    {
+        "label": "SummarizerInput",
+        "kind": 6,
+        "importPath": "fact_checker_agent.agent_states.summarizer",
+        "description": "fact_checker_agent.agent_states.summarizer",
+        "peekOfCode": "class SummarizerInput(BaseModel):\n    \"\"\"Input for the summalizer tool\"\"\"\n    markdown: str = Field(description=\"\"\"\n                          The markdown formatted summary of the final result.\n                          If you add any headings, make sure to start at the top level (#).\n                          \"\"\")\n    sources: list[Source] = Field(description=\"A list of references.\")\n@tool(args_schema=SummarizerInput)\ndef SummarizeTool(summary:str,sources:list[Source]):\n    \"\"\"",
+        "detail": "fact_checker_agent.agent_states.summarizer",
+        "documentation": {}
+    },
+    {
+        "label": "SummarizeTool",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.summarizer",
+        "description": "fact_checker_agent.agent_states.summarizer",
+        "peekOfCode": "def SummarizeTool(summary:str,sources:list[Source]):\n    \"\"\"\n    Summarize the final result. Ensure that the summary is complete and\n    includes all relevant information and source links.\n    \"\"\"\nasync def summarize_node(state: AgentState, config: RunnableConfig):\n    \"\"\"\n    The summarize node is responsible for summarizing the information.\n    \"\"\"\n    config = copilotkit_customize_config(",
+        "detail": "fact_checker_agent.agent_states.summarizer",
+        "documentation": {}
+    },
+    {
+        "label": "summarizer",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.summarizer",
+        "description": "fact_checker_agent.agent_states.summarizer",
+        "peekOfCode": "def summarizer():\n    pass",
+        "detail": "fact_checker_agent.agent_states.summarizer",
+        "documentation": {}
+    },
+    {
+        "label": "get_model",
+        "kind": 2,
+        "importPath": "fact_checker_agent.utils.models",
+        "description": "fact_checker_agent.utils.models",
+        "peekOfCode": "def get_model(state:AgentState):\n    model_name:str = state.get(\"model\")\n    # model_name = \n    print(f\"model_name: {model_name}\")\n    if model_name == \"gpt-3.5-turbo\":\n        model = ChatOpenAI(temperature=0.1,model_name=model_name)\n    elif model_name == \"llama3.5\":\n        model = ChatOllama(temperature=0.1,model_name=model_name)\n    elif model_name == \"claude-3-sonnet-20240229\":\n        model = ChatAnthropic(temperature=0.1,model_name=model_name)",
+        "detail": "fact_checker_agent.utils.models",
+        "documentation": {}
+    },
+    {
+        "label": "call_model",
+        "kind": 2,
+        "importPath": "fact_checker_agent.utils.models",
+        "description": "fact_checker_agent.utils.models",
+        "peekOfCode": "def call_model(state,config):\n    messages =state[\"question\"]\n    # user_message = {\"role\": \"user\", \"content\": state[\"question\"]}\n    # system_message = {\"role\":\"system\",\"content\":fact_checker_summarizer.format(question=state[\"question\"],context=state[\"context\"])}\n    # messages = [system_message, user_message]\n    messages = [{\"role\":\"system\",\"content\":system_prompt}] + messages\n    model_name = config.get(\"model_name\",\"gpt-3.5-turbo\")\n    model = get_model(model_name)\n    response = model.invoke(messages)\n    return {\"context\":[response]}",
+        "detail": "fact_checker_agent.utils.models",
+        "documentation": {}
+    },
+    {
+        "label": "system_prompt",
+        "kind": 5,
+        "importPath": "fact_checker_agent.utils.models",
+        "description": "fact_checker_agent.utils.models",
+        "peekOfCode": "system_prompt = \"you are a fact checker\"\ndef call_model(state,config):\n    messages =state[\"question\"]\n    # user_message = {\"role\": \"user\", \"content\": state[\"question\"]}\n    # system_message = {\"role\":\"system\",\"content\":fact_checker_summarizer.format(question=state[\"question\"],context=state[\"context\"])}\n    # messages = [system_message, user_message]\n    messages = [{\"role\":\"system\",\"content\":system_prompt}] + messages\n    model_name = config.get(\"model_name\",\"gpt-3.5-turbo\")\n    model = get_model(model_name)\n    response = model.invoke(messages)",
+        "detail": "fact_checker_agent.utils.models",
+        "documentation": {}
+    },
+    {
+        "label": "planner_prompt",
+        "kind": 5,
+        "importPath": "fact_checker_agent.utils.prompts",
+        "description": "fact_checker_agent.utils.prompts",
+        "peekOfCode": "planner_prompt = \"\"\"\nYou are an AI fact-checking assistant. Your task is to analyze the following claim and decompose it into specific, researchable queries that will aid in verifying its accuracy.\n**Claim:** \"[Insert the claim here]\"\n**Instructions:**\n1. **Identify Key Components:** Break the claim into its fundamental elements or sub-claims.\n2. **Formulate Research Questions:** For each component, create clear and concise questions that can be used to search for information online.\n3. **Ensure Clarity:** Make sure each question is specific and unambiguous to facilitate effective information retrieval.\n**Output Format:**\n- **Sub-Claim 1:** [Detailed description]\n  - **Research Question 1:** [Question targeting specific information]",
+        "detail": "fact_checker_agent.utils.prompts",
         "documentation": {}
     },
     {
@@ -153,7 +781,7 @@
         "kind": 5,
         "importPath": "fact_checker_agent.agent",
         "description": "fact_checker_agent.agent",
-        "peekOfCode": "workflow = StateGraph(AgentState)\ndef node_1():\n    pass\nworkflow.add_node(\"fact_checker_agent\",node_1)\nworkflow.set_entry_point(\"fact_checker_agent\")\nworkflow.add_edge(\"fact_checker_agent\",END)\ngraph = workflow.compile()",
+        "peekOfCode": "workflow = StateGraph(AgentState)\n# \n# def fack_check(state: dict):  # Assuming state is a dictionary\n#     \"\"\"Placeholder fact-checking function.\"\"\"\n#     if 'query' in state:  # Check if the 'query' key exists in state\n#         print(f\"Received query: {state['query']}\")\n#         return {\"fact_checked\": True, \"query\": state['query']}\n#     else:\n#         # Handle the case where 'query' is missing\n#         print(\"Error: 'query' not found in state.\")",
         "detail": "fact_checker_agent.agent",
         "documentation": {}
     },
@@ -171,7 +799,7 @@
         "kind": 2,
         "importPath": "fact_checker_agent.api",
         "description": "fact_checker_agent.api",
-        "peekOfCode": "def main():\n    port = int(os.environ.get(\"PORT\", \"8000\"))\n    uvicorn.run(\"fact_checker_agent.api:app\", host=\"0.0.0.0\", port=port,reload=True,\n        )\nif __name__ == '__main__':\n    main()",
+        "peekOfCode": "def main():\n    port = int(os.environ.get(\"PORT\", \"8000\"))\n    uvicorn.run(\"fact_checker_agent.api:app\", host=\"127.0.0.1\", port=port,reload=True,\n        )\nif __name__ == '__main__':\n    main()",
         "detail": "fact_checker_agent.api",
         "documentation": {}
     },
