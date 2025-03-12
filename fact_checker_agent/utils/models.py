@@ -5,6 +5,7 @@ from langchain_ollama import ChatOllama
 
 
 def get_model(model_name):
+    
     if model_name == "gpt-3.5-turbo":
         model = ChatOpenAI(temperature=0.1,model_name=model_name)
     elif model_name == "llama3.5":
