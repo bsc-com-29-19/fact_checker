@@ -28,8 +28,10 @@ def route(state):
 
     current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
 
+    # if not current_step:
+    #     return "summarizer_node"
     if not current_step:
-        return "summarizer_node"
+        return "decomposing_node"
 
     if current_step["type"] == "search":
         return "search_node"

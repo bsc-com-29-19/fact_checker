@@ -41,11 +41,11 @@
         "documentation": {}
     },
     {
-        "label": "AgentState",
-        "importPath": "fact_checker_agent.agent_states.state",
-        "description": "fact_checker_agent.agent_states.state",
+        "label": "RunnableConfig",
+        "importPath": "langchain_core.runnables",
+        "description": "langchain_core.runnables",
         "isExtraImport": true,
-        "detail": "fact_checker_agent.agent_states.state",
+        "detail": "langchain_core.runnables",
         "documentation": {}
     },
     {
@@ -110,6 +110,22 @@
         "description": "fact_checker_agent.agent_states.state",
         "isExtraImport": true,
         "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "fact_checker_agent.agent_states.state",
+        "description": "fact_checker_agent.agent_states.state",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
         "documentation": {}
     },
     {
@@ -150,6 +166,14 @@
         "description": "langchain_core.messages",
         "isExtraImport": true,
         "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "get_model",
+        "importPath": "fact_checker_agent.utils.models",
+        "description": "fact_checker_agent.utils.models",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.models",
         "documentation": {}
     },
     {
@@ -484,6 +508,14 @@
         "documentation": {}
     },
     {
+        "label": "decomposing_node",
+        "importPath": "fact_checker_agent.agent_states.decomposer",
+        "description": "fact_checker_agent.agent_states.decomposer",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.decomposer",
+        "documentation": {}
+    },
+    {
         "label": "download_node",
         "importPath": "fact_checker_agent.agent_states.download",
         "description": "fact_checker_agent.agent_states.download",
@@ -501,14 +533,6 @@
     },
     {
         "label": "search_node",
-        "importPath": "fact_checker_agent.agent_states.search",
-        "description": "fact_checker_agent.agent_states.search",
-        "isExtraImport": true,
-        "detail": "fact_checker_agent.agent_states.search",
-        "documentation": {}
-    },
-    {
-        "label": "web_search",
         "importPath": "fact_checker_agent.agent_states.search",
         "description": "fact_checker_agent.agent_states.search",
         "isExtraImport": true,
@@ -590,14 +614,6 @@
         "documentation": {}
     },
     {
-        "label": "fack_check",
-        "importPath": "fact_checker_agent.agent",
-        "description": "fact_checker_agent.agent",
-        "isExtraImport": true,
-        "detail": "fact_checker_agent.agent",
-        "documentation": {}
-    },
-    {
         "label": "graph",
         "importPath": "fact_checker_agent.agent",
         "description": "fact_checker_agent.agent",
@@ -619,7 +635,7 @@
         "kind": 2,
         "importPath": "fact_checker_agent.agent_states.nodes",
         "description": "fact_checker_agent.agent_states.nodes",
-        "peekOfCode": "def route(state):\n    \"\"\"Route to research nodes.\"\"\"\n    if not state.get(\"steps\", None):\n        return END\n    current_step = next((step for step in state[\"steps\"] if step[\"status\"] == \"pending\"), None)\n    if not current_step:\n        return \"summarizer_node\"\n    if current_step[\"type\"] == \"search\":\n        return \"search_node\"\n    raise ValueError(f\"Unknown step type: {current_step['type']}\")",
+        "peekOfCode": "def route(state):\n    \"\"\"Route to research nodes.\"\"\"\n    if not state.get(\"steps\", None):\n        return END\n    current_step = next((step for step in state[\"steps\"] if step[\"status\"] == \"pending\"), None)\n    # if not current_step:\n    #     return \"summarizer_node\"\n    if not current_step:\n        return \"decomposing_node\"\n    if current_step[\"type\"] == \"search\":",
         "detail": "fact_checker_agent.agent_states.nodes",
         "documentation": {}
     },
@@ -718,7 +734,7 @@
         "kind": 6,
         "importPath": "fact_checker_agent.agent_states.summarizer",
         "description": "fact_checker_agent.agent_states.summarizer",
-        "peekOfCode": "class SummarizerInput(BaseModel):\n    \"\"\"Input for the summalizer tool\"\"\"\n    markdown: str = Field(description=\"\"\"\n                          The markdown formatted summary of the final result.\n                          If you add any headings, make sure to start at the top level (#).\n                          \"\"\")\n    sources: list[Source] = Field(description=\"A list of references.\")\n@tool(args_schema=SummarizerInput)\ndef SummarizeTool(summary:str,sources:list[Source]):\n    \"\"\"",
+        "peekOfCode": "class SummarizerInput(BaseModel):\n    \"\"\"Input for the summalizer tool\"\"\"\n    markdown: str = Field(description=\"\"\"\n                          The markdown formatted summary of the final result.\n                          If you add any headings, make sure to start at the top level (#).\n                          \"\"\")\n    sources: list[Source] = Field(description=\"A list of sources.\")\n@tool(args_schema=SummarizerInput)\ndef SummarizeTool(summary:str,sources:list[Source]):\n    \"\"\"",
         "detail": "fact_checker_agent.agent_states.summarizer",
         "documentation": {}
     },
@@ -728,15 +744,6 @@
         "importPath": "fact_checker_agent.agent_states.summarizer",
         "description": "fact_checker_agent.agent_states.summarizer",
         "peekOfCode": "def SummarizeTool(summary:str,sources:list[Source]):\n    \"\"\"\n    Summarize the final result. Ensure that the summary is complete and\n    includes all relevant information and source links.\n    \"\"\"\nasync def summarize_node(state: AgentState, config: RunnableConfig):\n    \"\"\"\n    The summarize node is responsible for summarizing the information.\n    \"\"\"\n    config = copilotkit_customize_config(",
-        "detail": "fact_checker_agent.agent_states.summarizer",
-        "documentation": {}
-    },
-    {
-        "label": "summarizer",
-        "kind": 2,
-        "importPath": "fact_checker_agent.agent_states.summarizer",
-        "description": "fact_checker_agent.agent_states.summarizer",
-        "peekOfCode": "def summarizer():\n    pass",
         "detail": "fact_checker_agent.agent_states.summarizer",
         "documentation": {}
     },

@@ -7,8 +7,11 @@ from fact_checker_agent.utils.models import get_model
 
 
 async def download_node(state: AgentState, config: RunnableConfig):
+    
     """
-    The download node is responsible for extracting information from a tavily search.
+    The download node is responsible for extracting raw data from a Tavily search.
+    Instead of summarizing the results, extract all relevant information including key facts and inline reference links.
+    This raw data will be used later to decompose the claim into supported (true) and unsupported (false) components.
     """
 
     current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
@@ -19,21 +22,24 @@ async def download_node(state: AgentState, config: RunnableConfig):
     if current_step["type"] != "search":
         raise ValueError("Current step is not of type search")
     
+  
     system_message = f"""
         This step was just executed: {json.dumps(current_step)}
 
         This is the result of the search:
 
-        Please summarize ONLY the result of the search and include all relevant information from the search and reference links.
-        DO NOT INCLUDE ANY EXTRA INFORMATION. ALL OF THE INFORMATION YOU ARE LOOKING FOR IS IN THE SEARCH RESULTS.
-
-        DO NOT answer the user's query yet. Just summarize the search results.
-
-        Use markdown formatting and put the references inline and the links at the end.
-        Like this:
-        This is a sentence with a reference to a source [source 1][1] and another reference [source 2][2].
-        [1]: http://example.com/source1 "Title of Source 1"
-        [2]: http://example.com/source2 "Title of Source 2"
+        Please extract ALL the relevant data from the search results, including key facts and all reference links.
+        DO NOT provide a summary or answer the user's query yet.
+        Instead, extract the raw data in a markdown format with inline references and list the full links at the end.
+        
+        Your output should be formatted as follows:
+        
+        - List each key fact along with its corresponding inline reference.
+        - At the end, provide the reference links formatted like:
+          [1]: http://example.com/source1 "Title of Source 1"
+          [2]: http://example.com/source2 "Title of Source 2"
+          
+        Do not include any extra commentary or analysis.
         """
 
     response = await get_model(state).ainvoke([
@@ -45,8 +51,8 @@ async def download_node(state: AgentState, config: RunnableConfig):
 
     current_step["result"] = response.content
     current_step["search_result"] = None
-    current_step["status"] = "complete"
-    current_step["updates"] = [*current_step["updates"], "Done."]
+    current_step["status"] = "decomposing"
+    current_step["updates"] = [*current_step["updates"], "Downloading information"]
 
     next_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
     if next_step:

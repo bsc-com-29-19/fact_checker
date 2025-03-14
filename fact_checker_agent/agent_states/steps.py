@@ -47,7 +47,7 @@ async def steps_node(state: AgentState, config: RunnableConfig):
     )
 
     instructions = f"""
-You are a search assistant. Your task is to help the user with complex search queries by breaking the down into smaller steps.
+You are a search assistant of a fact checker. Your task is to help the user with complex search queries by breaking the down into smaller steps.
 
 These steps are then executed serially. In the end, a final answer is produced in markdown format.
 
