@@ -508,6 +508,14 @@
         "documentation": {}
     },
     {
+        "label": "decomposing_node",
+        "importPath": "fact_checker_agent.agent_states.decomposer",
+        "description": "fact_checker_agent.agent_states.decomposer",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.decomposer",
+        "documentation": {}
+    },
+    {
         "label": "download_node",
         "importPath": "fact_checker_agent.agent_states.download",
         "description": "fact_checker_agent.agent_states.download",
@@ -736,15 +744,6 @@
         "importPath": "fact_checker_agent.agent_states.summarizer",
         "description": "fact_checker_agent.agent_states.summarizer",
         "peekOfCode": "def SummarizeTool(summary:str,sources:list[Source]):\n    \"\"\"\n    Summarize the final result. Ensure that the summary is complete and\n    includes all relevant information and source links.\n    \"\"\"\nasync def summarize_node(state: AgentState, config: RunnableConfig):\n    \"\"\"\n    The summarize node is responsible for summarizing the information.\n    \"\"\"\n    config = copilotkit_customize_config(",
-        "detail": "fact_checker_agent.agent_states.summarizer",
-        "documentation": {}
-    },
-    {
-        "label": "summarizer",
-        "kind": 2,
-        "importPath": "fact_checker_agent.agent_states.summarizer",
-        "description": "fact_checker_agent.agent_states.summarizer",
-        "peekOfCode": "def summarizer():\n    pass",
         "detail": "fact_checker_agent.agent_states.summarizer",
         "documentation": {}
     },

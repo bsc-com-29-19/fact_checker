@@ -26,7 +26,7 @@ async def decomposing_node(state: AgentState, config: RunnableConfig):
 
         This is the result of the search:
 
-       Please extract all relevant data from the search results, including key facts and reference links.
+        Please extract all relevant data from the search results, including key facts and reference links.
         Instead of summarizing, decompose the claim into two parts:
         
         1. **true**: Components that are supported by the evidence.

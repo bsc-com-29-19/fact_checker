@@ -1,6 +1,8 @@
 from typing import TypedDict,Literal
 
 from langgraph.graph import StateGraph,END
+
+from fact_checker_agent.agent_states.decomposer import decomposing_node
 from fact_checker_agent.agent_states.download import download_node
 # from fact_checker_agent.agent_states.nodes import should_continue
 from fact_checker_agent.agent_states.nodes import route
@@ -53,7 +55,7 @@ workflow = StateGraph(AgentState)
 workflow.add_node("steps_node",steps_node)
 workflow.add_node("search_node",search_node)
 workflow.add_node("summarizer_node",summarize_node)
-workflow.add_node("decomposing_node",steps_node)
+workflow.add_node("decomposing_node",decomposing_node)
 workflow.add_node("download_node",download_node)
 
 #Chatbot
