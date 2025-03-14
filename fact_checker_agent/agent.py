@@ -53,6 +53,7 @@ workflow = StateGraph(AgentState)
 workflow.add_node("steps_node",steps_node)
 workflow.add_node("search_node",search_node)
 workflow.add_node("summarizer_node",summarize_node)
+workflow.add_node("decomposing_node",steps_node)
 workflow.add_node("download_node",download_node)
 
 #Chatbot
@@ -61,7 +62,7 @@ workflow.set_entry_point("steps_node")
 workflow.add_conditional_edges(
     "steps_node", 
     route,
-    ["summarizer_node", "search_node", END]
+    ["decomposing_node", "search_node", END]
 )
 
 workflow.add_edge("search_node", "download_node")
@@ -69,12 +70,13 @@ workflow.add_edge("search_node", "download_node")
 workflow.add_conditional_edges(
     "download_node",
     route,
-    ["summarizer_node", "search_node"]
+    ["decomposing_node", "search_node"]
 )
 
 # workflow.add_conditional_edges(
 #     ["summarizer_node", "search_node"]
 # )
+workflow.add_edge("decomposing_node","summarizer_node")
 
 workflow.add_edge("summarizer_node", END)
 # workflow.add_edge("summarizer",END)

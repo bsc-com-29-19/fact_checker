@@ -1,5 +1,6 @@
 langgraph
-langgraph-cli
+# langgraph-cli
+langgraph-cli[inmem]
 langgraph-sdk
 langchain
 langchain_community

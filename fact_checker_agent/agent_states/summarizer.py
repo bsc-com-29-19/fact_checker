@@ -21,7 +21,7 @@ class SummarizerInput(BaseModel):
                           The markdown formatted summary of the final result.
                           If you add any headings, make sure to start at the top level (#).
                           """)
-    sources: list[Source] = Field(description="A list of references.")
+    sources: list[Source] = Field(description="A list of sources.")
 
 
 
