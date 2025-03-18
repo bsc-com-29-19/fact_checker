@@ -26,15 +26,22 @@ def route(state):
     if not state.get("steps", None):
         return END
 
-    current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
+    # current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
+    pending_steps = [step for step in state["steps"] if step["status"] == "pending"]
 
-    if not current_step:
+    if not pending_steps:
         return "summarizer_node"
 
-    if current_step["type"] == "search":
-        return "search_node"
+    # if current_step["type"] in ["search", "Wikipedia_search"]:
+    #     #running both in parralel
+    #     return ["web_search_node", "wikipedia_search_node"] 
+    
+    #handle parallel search
+    search_types = {step["type"] for step in pending_steps}
+    if search_types & {"search", "Wikipedia_search"}:
+        return ["web_search_node", "wikipedia_search_node"]
 
-    raise ValueError(f"Unknown step type: {current_step['type']}")
+    raise ValueError(f"Unknown step type: {search_types}")
 
 
 

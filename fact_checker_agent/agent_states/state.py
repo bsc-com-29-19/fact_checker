@@ -4,6 +4,8 @@ from langchain_core.messages import BaseMessage
 # import typing
 from typing import TypedDict,Optional,Annotated,Sequence,List
 
+from pydantic import Field
+
 class Step(TypedDict):
     """
     Represents a step taken in the research process.
@@ -12,7 +14,6 @@ class Step(TypedDict):
     description: str
     status: str
     type: str
-    description: str
     search_result: Optional[str]
     result: Optional[str]
     updates: Optional[List[str]]
@@ -24,7 +25,7 @@ class AgentState(MessagesState):
     """
      model:str = "gpt-3.5-turbo"
     #  question: Optional[str]
-     steps: List[Step]
+     steps: List[Step] = Field(default_factory=list)
     #  context:Annotated[Sequence[BaseMessage],add_messages]
-     answer:Optional[str]
+     answer:Optional[str] # | Annotated[list, operator.add]
     #  query: Optional[str]

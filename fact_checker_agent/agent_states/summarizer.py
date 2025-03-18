@@ -7,7 +7,7 @@ from langchain_core.runnables import RunnableConfig
 from fact_checker_agent.agent_states.state import AgentState
 from copilotkit.langgraph import copilotkit_customize_config
 
-from fact_checker_agent.agent_states.state import AgentState
+#from fact_checker_agent.agent_states.state import AgentState
 # from fact_checker_agent.agent_states.search import format_results
 class Source(BaseModel):
     """Model for a source"""
@@ -47,6 +47,7 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
             }
         ]
     )
+    steps = state.get("steps", [])
 
     system_message = f"""
         The system has performed a series of steps to answer the user's query.

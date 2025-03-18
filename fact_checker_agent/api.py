@@ -4,7 +4,7 @@ import os
 import sys
 from dotenv import load_dotenv
 
-from fact_checker_agent.agent_states.search import web_search
+from fact_checker_agent.agent_states.search import web_search_node
 from fact_checker_agent.agent_states.state import AgentState
 
 # Add the project directory to the PYTHONPATH
@@ -39,10 +39,10 @@ async def health():
     return {"status": "ok"}
 
 
-@app.get("/search/")
-async def search(query: str = Query(...)):
-    results = web_search(query)
-    return {"query": results}
+# @app.get("/search/")
+# async def search(query: str = Query(...)):
+#     results = web_search_node(query)
+#     return {"query": results}
 
 
 

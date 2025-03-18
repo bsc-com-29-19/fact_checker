@@ -17,7 +17,7 @@ class SearchStep(BaseModel):
     id: str = Field(description="The id of the step. This is used to identify the step in the state. Just make sure it is unique.")
     description: str = Field(description='The description of the step, i.e. "search for information about the latest AI news"')
     status: str = Field(description='The status of the step. Always "pending".', enum=['pending'])
-    type: str = Field(description='The type of step.', enum=['search'])
+    type: str = Field(description='The type of step.', enum=['search', 'Wikipedia_search'])
 
 
 @tool
@@ -27,6 +27,7 @@ def SearchTool(steps:List[SearchStep]):
     Use step type "search" to search the web for information.
     Make sure to add all the steps needed to answer the user's query.
     """
+    
 
 
 
@@ -63,6 +64,9 @@ The current date is {datetime.now().strftime("%Y-%m-%d")}.
             content=instructions
         ),
     ], config)
+    #initiliaze the steps
+    state["steps"] = response.tool_calls[0]["args"]["steps"] if response.tool_calls else []
+
 
     if len(response.tool_calls) == 0:
         steps = []
@@ -70,10 +74,28 @@ The current date is {datetime.now().strftime("%Y-%m-%d")}.
         steps = response.tool_calls[0]["args"]["steps"]
 
     if len(steps) != 0:
+        #web search step
+        steps[0]["status"] = "pending"
+        steps[0]["type"] = "search"
         steps[0]["updates"] = ["Searching the web..."]
+        
+        # steps[1]["status"] = "pending"
+        # steps[1]["type"] = "Wikipedia_search"
+        # steps[1]["updates"] = ["Searching the Wikipedia..."]
+
+        #wikipedia search step
+        wikipedia_step = {
+            "id": "wikipedia_step",
+            "description": state["steps"][0]["description"] ,  # Same query as web search
+            "status": "pending",
+            "type": "Wikipedia_search",
+            "updates": ["Searching Wikipedia..."]
+        }
+
+        state["steps"].append(wikipedia_step)
 
     return {
-        "steps": steps,
+        "steps": state["steps"],
     }
 
 # def steps(state:AgentState):
