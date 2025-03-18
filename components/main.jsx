@@ -1,0 +1,50 @@
+// components/FactCheckComponent.js
+import React from "react";
+import { Button } from "./ui/button";
+
+const FactCheckComponent = ({
+  claim,
+  trueStatement,
+  falseStatement,
+  wholeTruth,
+}) => {
+  return (
+    <div
+      style={{
+        padding: "20px",
+        borderRadius: "8px",
+        maxWidth: "600px",
+        margin: "auto",
+      }}
+    >
+      <h1 style={{ fontSize: "26px", marginBottom: "20px", FontFace: "bold" }}>
+        What Do You Want To Fact Check?
+      </h1>
+      <div style={{ marginBottom: "20px" }}>
+        <strong>Claim:</strong> {claim}
+      </div>
+      <div style={{ marginBottom: "20px" }}>
+        <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>
+          Claim Decomposition:
+        </h2>
+        <p>
+          <strong>True:</strong> {trueStatement}
+        </p>
+        <p>
+          <strong>False:</strong> {falseStatement}
+        </p>
+      </div>
+      <div>
+        <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>Whole Truth:</h2>
+        <p>{wholeTruth}</p>
+      </div>
+      {/* button for sources will be here */}
+      <div>
+        <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>Whole Truth:</h2>
+        <Button />
+      </div>
+    </div>
+  );
+};
+
+export default FactCheckComponent;

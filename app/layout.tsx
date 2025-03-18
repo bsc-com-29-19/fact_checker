@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CopilotKit } from "@copilotkit/react-core";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <CopilotKit publicApiKey="ck_pub_0638cd0f6d605e5bc03f086a25daab99">
+          <Suspense> {children}</Suspense>
+        </CopilotKit>
       </body>
     </html>
   );
