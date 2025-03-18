@@ -2,9 +2,19 @@
 
 import { useState } from "react";
 import { MenuSquareIcon, Moon, Sun, Plus } from "lucide-react";
+import FactCheckComponent  from "../components/main"
 import { Message } from "@copilotkit/runtime-client-gql";
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
+
+
+   const factCheckData = {
+     claim: "Tom's restaurant closed because of health violations",
+     trueStatement: "Tom's restaurant closed.",
+     falseStatement: "It closed solely because of health violations",
+     wholeTruth:
+       "Tom's restaurant did close, and the closure was primarily due to gross mismanagement from Tom's corporate office, as reported. While Tom cited leasing issues as the reason, evidence suggests that the space was secured well into the next spring, making the leasing claim questionable. Financial difficulties and poor management decisions appear to be the main reasons for the restaurant's abrupt closure, leaving staff with no severance and minimal notice.",
+   };
 
   // const handleSend = async (text: string): Promise<Message> => {
   //   console.log("User input:", text);
@@ -60,6 +70,12 @@ export default function Home() {
               isVisible={true}
             />
           </CopilotKit> */}
+          <FactCheckComponent
+            claim={factCheckData.claim}
+            trueStatement={factCheckData.trueStatement}
+            falseStatement={factCheckData.falseStatement}
+            wholeTruth={factCheckData.wholeTruth}
+          />
         </div>
       </div>
     </>
