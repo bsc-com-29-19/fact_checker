@@ -5,23 +5,20 @@ import { useClickAway } from "react-use";
 import { AiOutlineRollback } from "react-icons/ai";
 import { Plus } from "lucide-react";
 
-export const Sidebar = () => {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-  useClickAway(ref, () => setOpen(false));
-  const toggleSidebar = () => setOpen((prev) => !prev);
-
+export const Sidebar = ({isOpen,onClose}) => {
+   const ref = useRef(null);
+   useClickAway(ref, onClose);
   return (
     <>
       <button
-        onClick={toggleSidebar}
+        onClick={onClose}
         className="p-2 border-2 border-zinc-800 rounded-xl"
         aria-label="toggle sidebar"
       >
         <GiHamburgerMenu />
       </button>
       <AnimatePresence mode="wait" initial={false}>
-        {open && (
+        {isOpen && (
           <>
             <motion.div
               {...framerSidebarBackground}
@@ -30,21 +27,21 @@ export const Sidebar = () => {
             ></motion.div>
             <motion.div
               {...framerSidebarPanel}
-              className="fixed top-0 bottom-0 left-0 z-50  h-screen max-w-xs border-r-2 border-zinc-800 bg-zinc-900"
+              className="fixed top-0 bottom-0 left-0 z-50 w-full h-screen max-w-xs border-r-2 border-zinc-800 bg-zinc-900"
               ref={ref}
               aria-label="Sidebar"
             >
               <div className="flex items-center text-white justify-between p-5 border-b-2 border-zinc-800">
-                <span>fact checker</span>
+                <span className="text-2xl">Fact Checker</span>
                 <button className="p-1 rounded hover:bg-gray-400 dark:hover:bg-gray-700">
-                  <Plus size={16} />
+                  <Plus size={26} />
                 </button>
                 <button
-                  onClick={toggleSidebar}
+                  onClick={onClose}
                   className="p-1 rounded hover:bg-gray-400 dark:hover:bg-gray-700"
                   aria-label="close sidebar"
                 >
-                  <AiOutlineRollback size={16} />
+                  <AiOutlineRollback size={26} />
                 </button>
               </div>
               <ul>
@@ -53,7 +50,7 @@ export const Sidebar = () => {
                   return (
                     <li key={title}>
                       <a
-                        onClick={toggleSidebar}
+                        onClick={onClose}
                         href={href}
                         className="flex items-center text-white justify-between gap-5 p-5 transition-all border-b-2 hover:bg-zinc-900 border-zinc-800"
                       >
