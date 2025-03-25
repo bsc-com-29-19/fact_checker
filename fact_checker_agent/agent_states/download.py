@@ -1,107 +1,63 @@
 import json
 
 from langchain_core.runnables import RunnableConfig
+from fact_checker_agent.utils.log_config import LOGGER
 from fact_checker_agent.agent_states.state import AgentState
 from langchain_core.messages import HumanMessage
 from fact_checker_agent.utils.models import get_model
 
 
-# async def download_node(state: AgentState, config: RunnableConfig):
-#     """
-#     The download node is responsible for extracting information from a tavily search.
-#     """
-
-#     current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
-
-#     if current_step is None:
-#         raise ValueError("No current step")
-
-#     if current_step["type"] != "search":
-#         raise ValueError("Current step is not of type search")
-    
-#     system_message = f"""
-#         This step was just executed: {json.dumps(current_step)}
-
-#         This is the result of the search:
-
-#         Please summarize ONLY the result of the search and include all relevant information from the search and reference links.
-#         DO NOT INCLUDE ANY EXTRA INFORMATION. ALL OF THE INFORMATION YOU ARE LOOKING FOR IS IN THE SEARCH RESULTS.
-
-#         DO NOT answer the user's query yet. Just summarize the search results.
-
-#         Use markdown formatting and put the references inline and the links at the end.
-#         Like this:
-#         This is a sentence with a reference to a source [source 1][1] and another reference [source 2][2].
-#         [1]: http://example.com/source1 "Title of Source 1"
-#         [2]: http://example.com/source2 "Title of Source 2"
-#         """
-
-#     response = await get_model(state).ainvoke([
-#         state["messages"][0],
-#         HumanMessage(
-#             content=system_message
-#         )
-#     ], config)
-
-#     current_step["result"] = response.content
-#     current_step["search_result"] = None
-#     current_step["status"] = "complete"
-#     current_step["updates"] = [*current_step["updates"], "Done."]
-
-#     next_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
-#     if next_step:
-#         next_step["updates"] = ["Searching the web..."]
-
-#     return state
-
 async def download_node(state: AgentState, config: RunnableConfig):
+    
     """
-    The download node is responsible for extracting information from a tavily search.
-    It handles both `search` and `Wikipedia_search` steps.
+    The download node is responsible for extracting raw data from a Tavily search.
+    Instead of summarizing the results, extract all relevant information including key facts and inline reference links.
+    This raw data will be used later to decompose the claim into supported (true) and unsupported (false) components.
     """
 
-    # Get all steps with status "pending" and type either "search" or "Wikipedia_search"
-    search_steps = [step for step in state["steps"] if step["status"] == "pending" and step["type"] in ["search", "Wikipedia_search"]]
+    current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
+    LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
 
-    # Process each of the search steps
-    for step in search_steps:
-        if step["status"] == "pending":
-            # Process the step, set status to complete
-            step["status"] = "complete"
-            step["updates"].append("Processing completed")
+    if current_step is None:
+        raise ValueError("No current step")
 
-            # Create a system message for summarizing the search result
-            system_message = f"""
-            This step was just executed: {json.dumps(step)}
+    if current_step["type"] != "search":
+        raise ValueError("Current step is not of type search")
+    
+  
+    system_message = f"""
+        This step was just executed: {json.dumps(current_step)}
 
-            This is the result of the search:
+        This is the result of the search:
 
-            Please summarize ONLY the result of the search and include all relevant information from the search and reference links.
-            DO NOT INCLUDE ANY EXTRA INFORMATION. ALL OF THE INFORMATION YOU ARE LOOKING FOR IS IN THE SEARCH RESULTS.
+        Please extract ALL the relevant data from the search results, including key facts and all reference links.
+        DO NOT provide a summary or answer the user's query yet.
+        Instead, extract the raw data in a markdown format with inline references and list the full links at the end.
+        
+        Your output should be formatted as follows:
+        
+        - List each key fact along with its corresponding inline reference.
+        - At the end, provide the reference links formatted like:
+          [1]: http://example.com/source1 "Title of Source 1"
+          [2]: http://example.com/source2 "Title of Source 2"
+          
+        Do not include any extra commentary or analysis.
+        """
 
-            DO NOT answer the user's query yet. Just summarize the search results.
+    response = await get_model(state).ainvoke([
+        state["messages"][0],
+        HumanMessage(
+            content=system_message
+        )
+    ], config)
+    
+    current_step["result"] = response.content
+    current_step["search_result"] = None
+    current_step["status"] = "decomposing"
+    current_step["updates"] = [*current_step["updates"], "Downloading information"]
 
-            Use markdown formatting and put the references inline and the links at the end.
-            Like this:
-            This is a sentence with a reference to a source [source 1][1] and another reference [source 2][2].
-            [1]: http://example.com/source1 "Title of Source 1"
-            [2]: http://example.com/source2 "Title of Source 2"
-            """
-
-            # Get the response from the model
-            response = await get_model(state).ainvoke([ 
-                state["messages"][0],
-                HumanMessage(content=system_message)
-            ], config)
-
-            # Update the step with the response content
-            step["result"] = response.content
-            #step["search_result"] = None  # Clear the search results
-            step["updates"].append("Done.")  # Mark the step as complete
-
-    # Check for any remaining pending steps and update their status
     next_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
     if next_step:
-        next_step["updates"].append("Searching the web...")
+        next_step["updates"] = ["Searching the web..."]
 
     return state

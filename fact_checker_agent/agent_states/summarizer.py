@@ -18,10 +18,10 @@ class Source(BaseModel):
 class SummarizerInput(BaseModel):
     """Input for the summalizer tool"""
     markdown: str = Field(description="""
-                          The markdown formatted summary of the final result.
-                          If you add any headings, make sure to start at the top level (#).
-                          """)
-    sources: list[Source] = Field(description="A list of references.")
+                        The markdown formatted summary of the final result.
+                        If you add any headings, make sure to start at the top level (#).
+                        """)
+    sources: list[Source] = Field(description="A list of sources.")
 
 
 
@@ -47,13 +47,21 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
             }
         ]
     )
-    steps = state.get("steps", [])
 
     system_message = f"""
-        The system has performed a series of steps to answer the user's query.
+        The system has performed a series of steps to decompose the user's claim.
         These are all of the steps: {json.dumps(state["steps"])}
 
-        Please summarize the final result and include all relevant information and reference links.
+        Based on the decomposed data, please produce the final output exactly in the following format:
+
+        true: <supported claim text>
+        false: <unsupported claim text>
+        whole truth: <final overall assessment>
+
+        Include all relevant information and inline references to the source links.
+        Use markdown formatting and list the full reference links at the end.
+        Do not include any additional commentary or explanation.
+        If any section is empty, still include the key followed by a blank value.
         """
 
     response = await get_model(state).bind_tools(
@@ -68,7 +76,3 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     return {
         "answer": response.tool_calls[0]["args"],
     }
-
-
-def summarizer():
-    pass

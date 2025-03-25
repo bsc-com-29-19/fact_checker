@@ -4,8 +4,8 @@ import os
 import sys
 from dotenv import load_dotenv
 
-from fact_checker_agent.agent_states.search import web_search_node
-from fact_checker_agent.agent_states.state import AgentState
+# from fact_checker_agent.agent_states.search import web_search
+# from fact_checker_agent.agent_states.state import AgentState
 
 # Add the project directory to the PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -17,7 +17,9 @@ import uvicorn
 from copilotkit.integrations.fastapi import  add_fastapi_endpoint
 from copilotkit import LangGraphAgent,CopilotKitRemoteEndpoint
 
-from fact_checker_agent.agent import fack_check, graph
+# from fact_checker_agent.agent import fack_check, graph
+from fact_checker_agent.agent import  graph
+
 
 app = FastAPI()
 sdk = CopilotKitRemoteEndpoint(
@@ -41,7 +43,7 @@ async def health():
 
 # @app.get("/search/")
 # async def search(query: str = Query(...)):
-#     results = web_search_node(query)
+#     results = web_search(query)
 #     return {"query": results}
 
 

@@ -1,5 +1,6 @@
 langgraph
-langgraph-cli
+# langgraph-cli
+langgraph-cli[inmem]
 langgraph-sdk
 langchain
 langchain_community
@@ -8,6 +9,7 @@ langchain_anthropic
 langchain_openai
 langchain_ollama
 langchain_deepseek
+langchain-google-genai
 tavily-python
 wikipedia
 youtube_search

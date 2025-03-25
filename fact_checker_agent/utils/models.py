@@ -17,9 +17,9 @@ def get_model(state:AgentState):
     print(f"model_name: {model_name}")
 
     if model_name == "gpt-3.5-turbo":
-        model = ChatOpenAI(temperature=0.1,model_name=model_name)
+        model = ChatOpenAI(temperature=0,model_name=model_name)
     elif model_name == "llama3.5":
-        model = ChatOllama(temperature=0.1,model_name=model_name)
+        model = ChatOllama(temperature=0,model_name=model_name)
     elif model_name == "claude-3-sonnet-20240229":
         model = ChatAnthropic(temperature=0.1,model_name=model_name)
     elif model_name == "deepseek-r1:latest":
