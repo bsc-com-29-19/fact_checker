@@ -5,9 +5,10 @@ import { Moon, Sun, Plus } from "lucide-react";
 import { Sidebar } from "@/components/siderbar";
 import CustomHeader from "@/components/CustomHeader";
 // import { CustomAssistantMessage } from "@/components/assist";
-import { CopilotChat, CopilotPopup } from "@copilotkit/react-ui";
+import { CopilotChat, CopilotPopup, CopilotSidebar } from "@copilotkit/react-ui";
 // import { CustomUserMessage } from "@/components/user";
 import CustomInput from "@/components/CustomInput";
+import CustomWindow from "@/components/CustomWindow";
 import FactCheckComponent from "@/components/main";
 import { CopilotKit } from "@copilotkit/react-core";
 export default function Home() {
@@ -76,12 +77,13 @@ export default function Home() {
                 wholeTruth={factCheckData.wholeTruth}
               />
 
-              <CopilotPopup
+              <CopilotSidebar
                 Input={inputEmelent}
                 defaultOpen={true}
                 clickOutsideToClose={false}
                 showResponseButton={false}
                 Header={CustomHeader}
+                Window={CustomWindow}
               />
               {/* <CopilotChat
                 showResponseButton={false}

@@ -1,4 +1,7 @@
-import { HeaderProps, useChatContext } from "@copilotkit/react-ui";
+import {
+  HeaderProps,
+  useChatContext,
+} from "@copilotkit/react-ui";
 import { BookOpenIcon } from "@heroicons/react/24/outline";
 import "@copilotkit/react-ui/styles.css";
 export default function CustomHeader({}: HeaderProps) {
@@ -20,3 +23,5 @@ export default function CustomHeader({}: HeaderProps) {
     </div>
   );
 }
+
+
