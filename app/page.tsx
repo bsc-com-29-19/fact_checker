@@ -1,10 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Moon, Sun, Plus, MenuSquare } from "lucide-react";
-import { Sidebar } from "../components/siderbar";
-import FactCheckComponent from "../components/main";
-import { Message } from "@copilotkit/runtime-client-gql";
+import { Moon, Sun, Plus } from "lucide-react";
+import { Sidebar } from "@/components/siderbar";
+import CustomHeader from "@/components/CustomHeader";
+// import { CustomAssistantMessage } from "@/components/assist";
+import { CopilotChat, CopilotPopup } from "@copilotkit/react-ui";
+// import { CustomUserMessage } from "@/components/user";
+import CustomInput from "@/components/CustomInput";
+import FactCheckComponent from "@/components/main";
+import { CopilotKit } from "@copilotkit/react-core";
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -21,19 +26,7 @@ export default function Home() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // const handleSend = async (text: string): Promise<Message> => {
-  //   console.log("User input:", text);
-  //   // Simulate an async operation (e.g., sending a message to a server)
-  //   return new Promise((resolve) => {
-  //     setTimeout(() => {
-  //       resolve({
-  //         id: "1",
-  //         text: text,
-  //         timestamp: new Date(),
-  //       });
-  //     }, 1000);
-  //   });
-  // };
+  const inputEmelent = () => null;
 
   return (
     <>
@@ -49,12 +42,6 @@ export default function Home() {
             <button className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700">
               <Plus size={26} />
             </button>
-            {/* <button
-              onClick={toggleSidebar}
-              className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700"
-            >
-              <MenuSquare size={26} />
-            </button> */}
             <h1 className="text-xl font-bold">Fact Checker</h1>
           </div>
           <div className="flex items-center gap-4">
@@ -75,9 +62,7 @@ export default function Home() {
             className={`transition-all duration-300 ${
               isSidebarOpen ? "w-64" : "w-0"
             }`}
-          >
-            {/* <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} /> */}
-          </div>
+          ></div>
           <div
             className={`flex-1 transition-all duration-300 ${
               isSidebarOpen ? "ml-64" : "ml-0"
@@ -90,6 +75,20 @@ export default function Home() {
                 falseStatement={factCheckData.falseStatement}
                 wholeTruth={factCheckData.wholeTruth}
               />
+
+              <CopilotPopup
+                Input={inputEmelent}
+                defaultOpen={true}
+                clickOutsideToClose={false}
+                showResponseButton={false}
+                Header={CustomHeader}
+              />
+              {/* <CopilotChat
+                showResponseButton={false}
+                AssistantMessage={CustomAssistantMessage}
+                UserMessage={CustomUserMessage}
+                Input={CustomInput}
+              /> */}
             </div>
           </div>
         </div>
