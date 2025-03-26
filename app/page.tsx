@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Moon, Sun, Plus } from "lucide-react";
 import { Sidebar } from "@/components/siderbar";
 import CustomHeader from "@/components/CustomHeader";
-// import { CustomAssistantMessage } from "@/components/assist";
+import { CustomAssistantMessage } from "@/components/CustomAssistantMessage";
 import {
   CopilotChat,
   CopilotSidebar,
@@ -83,7 +83,7 @@ export default function Home() {
 
                  <CopilotChat
                 showResponseButton={false}
-                // AssistantMessage={CustomAssistantMessage}
+                AssistantMessage={CustomAssistantMessage}
                 // UserMessage={CustomUserMessage}
                 Input={CustomInput}
               />  
