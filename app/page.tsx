@@ -9,7 +9,7 @@ import {
   CopilotChat,
   CopilotSidebar,
 } from "@copilotkit/react-ui";
-// import { CustomUserMessage } from "@/components/user";
+import { CustomUserMessage } from "@/components/CustomUserMessage";
 import CustomInput from "@/components/CustomInput";
 import CustomWindow from "@/components/CustomWindow";
 import FactCheckComponent from "@/components/main";
@@ -84,7 +84,7 @@ export default function Home() {
                  <CopilotChat
                 showResponseButton={false}
                 AssistantMessage={CustomAssistantMessage}
-                // UserMessage={CustomUserMessage}
+                UserMessage={CustomUserMessage}
                 Input={CustomInput}
               />  
               </div>
