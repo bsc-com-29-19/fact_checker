@@ -12,7 +12,7 @@ export default function CustomWindow({ children }: WindowProps) {
 
   return (
     <div
-      className="fixed right-0 top-0 h-full"
+      className=" fixed right-0 top-0 h-full w-1/3 "
       onClick={() => setOpen(false)}
     >
       <div
