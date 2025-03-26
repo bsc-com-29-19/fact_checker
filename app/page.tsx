@@ -75,7 +75,7 @@ export default function Home() {
           >
             <div className="p-4 flex gap-4">
               {/* Left Column (FactCheck + CopilotChat) */}
-              <div className="className="flex-col gap-4>
+              <div className=" flex flex-col gap-4">
                 <FactCheckComponent
                   claim={factCheckData.claim}
                   trueStatement={factCheckData.trueStatement}

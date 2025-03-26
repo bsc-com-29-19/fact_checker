@@ -1,6 +1,6 @@
 // components/FactCheckComponent.js
 import React from "react";
-// import Button  from "@/components/button";
+import Button  from "@/components/button";
 
 const FactCheckComponent = ({
   claim,
@@ -40,8 +40,7 @@ const FactCheckComponent = ({
       </div>
       {/* button for sources will be here */}
       <div>
-        {/* <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>Whole Truth:</h2> */}
-        {/* <Button variant="primary">View Sources</Button> */}
+        <Button variant="primary">View Sources</Button>
       </div>
     </div>
   );
