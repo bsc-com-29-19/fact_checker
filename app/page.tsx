@@ -5,7 +5,11 @@ import { Moon, Sun, Plus } from "lucide-react";
 import { Sidebar } from "@/components/siderbar";
 import CustomHeader from "@/components/CustomHeader";
 // import { CustomAssistantMessage } from "@/components/assist";
-import { CopilotChat, CopilotPopup, CopilotSidebar } from "@copilotkit/react-ui";
+import {
+  CopilotChat,
+  CopilotPopup,
+  CopilotSidebar,
+} from "@copilotkit/react-ui";
 // import { CustomUserMessage } from "@/components/user";
 import CustomInput from "@/components/CustomInput";
 import CustomWindow from "@/components/CustomWindow";
@@ -69,22 +73,27 @@ export default function Home() {
               isSidebarOpen ? "ml-64" : "ml-0"
             }`}
           >
-            <div className="p-4">
-              <FactCheckComponent
-                claim={factCheckData.claim}
-                trueStatement={factCheckData.trueStatement}
-                falseStatement={factCheckData.falseStatement}
-                wholeTruth={factCheckData.wholeTruth}
-              />
+            <div className="p-4 flex gap-4">
+              <div className="flex-1">
+                <FactCheckComponent
+                  claim={factCheckData.claim}
+                  trueStatement={factCheckData.trueStatement}
+                  falseStatement={factCheckData.falseStatement}
+                  wholeTruth={factCheckData.wholeTruth}
+                />
+              </div>
 
-              <CopilotSidebar
-                Input={inputEmelent}
-                defaultOpen={true}
-                clickOutsideToClose={false}
-                showResponseButton={false}
-                Header={CustomHeader}
-                Window={CustomWindow}
-              />
+              <div className="flex-1">
+                {" "}
+                <CopilotSidebar
+                  Input={inputEmelent}
+                  defaultOpen={true}
+                  clickOutsideToClose={false}
+                  showResponseButton={false}
+                  Header={CustomHeader}
+                  Window={CustomWindow}
+                />
+              </div>
               {/* <CopilotChat
                 showResponseButton={false}
                 AssistantMessage={CustomAssistantMessage}
