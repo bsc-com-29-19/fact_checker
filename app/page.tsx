@@ -11,7 +11,7 @@ import {
   CopilotSidebar,
 } from "@copilotkit/react-ui";
 // import { CustomUserMessage } from "@/components/user";
-import CustomInput from "@/components/CustomInput";
+// import CustomInput from "@/components/CustomInput";
 import CustomWindow from "@/components/CustomWindow";
 import FactCheckComponent from "@/components/main";
 import { CopilotKit } from "@copilotkit/react-core";
@@ -74,13 +74,21 @@ export default function Home() {
             }`}
           >
             <div className="p-4 flex gap-4">
-              <div className="flex-1">
+              {/* Left Column (FactCheck + CopilotChat) */}
+              <div className="className="flex-col gap-4>
                 <FactCheckComponent
                   claim={factCheckData.claim}
                   trueStatement={factCheckData.trueStatement}
                   falseStatement={factCheckData.falseStatement}
                   wholeTruth={factCheckData.wholeTruth}
                 />
+
+                 <CopilotChat
+                showResponseButton={false}
+                // AssistantMessage={CustomAssistantMessage}
+                // UserMessage={CustomUserMessage}
+                // Input={CustomInput}
+              />  
               </div>
 
               <div className="flex-1">
@@ -94,12 +102,6 @@ export default function Home() {
                   Window={CustomWindow}
                 />
               </div>
-              {/* <CopilotChat
-                showResponseButton={false}
-                AssistantMessage={CustomAssistantMessage}
-                UserMessage={CustomUserMessage}
-                Input={CustomInput}
-              /> */}
             </div>
           </div>
         </div>
