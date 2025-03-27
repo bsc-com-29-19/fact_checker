@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-// components/FactCheckComponent.js
-=======
+
 // components/main.jsx
->>>>>>> df78d35 (Fixed: copilot from being hidden with the input section)
 import React from "react";
 import Button  from "@/components/button";
 
