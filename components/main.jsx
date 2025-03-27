@@ -1,4 +1,5 @@
-// components/FactCheckComponent.js
+
+// components/main.jsx
 import React from "react";
 import Button  from "@/components/button";
 
