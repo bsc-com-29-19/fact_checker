@@ -17,19 +17,27 @@ import FactCheckComponent from "@/components/main";
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [selectedModel, setSelectedModel] = useState<string | null>(null);
+  const [showModelModal, setShowModelModal] = useState(false);
 
   const factCheckData = {
     claim: "Tom's restaurant closed because of health violations",
     trueStatement: "Tom's restaurant closed.",
     falseStatement: "It closed solely because of health violations",
-
-    
     wholeTruth: "Tom's restaurant did close..................",
-
   };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleModelModal = () => {
+    setShowModelModal(!showModelModal);
+  };
+
+  const handleModelSelection = (model: string) => {
+    setSelectedModel(model);
+    setShowModelModal(false); // Close modal after selection
   };
 
   return (
@@ -80,6 +88,50 @@ export default function Home() {
               Input={CustomInput}
             />
           </div>
+
+          {/* Models Button */}
+          <button
+            onClick={toggleModelModal}
+            className="mt-4 p-2 bg-blue-500 text-white rounded-md"
+          >
+            Models
+          </button>
+
+          {/* Model Modal */}
+          {showModelModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-96">
+                <h3 className="text-lg font-bold mb-4">Select a Model</h3>
+                <ul className="space-y-2">
+                  <li
+                    onClick={() => handleModelSelection("LLM (Llama 3, Factcheck)")}
+                    className="cursor-pointer p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md"
+                  >
+                    LLM (Llama 3, Factcheck)
+                  </li>
+                  <li
+                    onClick={() => handleModelSelection("Image Generator (Midjourney)")}
+                    className="cursor-pointer p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md"
+                  >
+                    Image Generator (Midjourney)
+                  </li>
+                </ul>
+                <button
+                  onClick={toggleModelModal}
+                  className="mt-4 w-full py-2 bg-gray-300 text-black rounded-md"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Display the selected model */}
+          {selectedModel && (
+            <div className="mt-4 text-sm text-gray-500 dark:text-gray-300">
+              Selected Model: <strong>{selectedModel}</strong>
+            </div>
+          )}
         </div>
       </div>
 
@@ -94,6 +146,5 @@ export default function Home() {
         />
       </div>
     </div>
-
   );
 }
