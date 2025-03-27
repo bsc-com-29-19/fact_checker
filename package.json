@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@copilotkit/react-core": "^1.7.1",
     "@copilotkit/react-ui": "^1.7.1",
     "@copilotkit/runtime": "^1.5.20",
+=======
+    "@copilotkit/react-core": "^1.8.2",
+    "@copilotkit/react-textarea": "^1.8.2",
+    "@copilotkit/react-ui": "^1.8.2",
+    "@copilotkit/runtime": "^1.8.2",
+>>>>>>> df78d35 (Fixed: copilot from being hidden with the input section)
     "@copilotkit/runtime-client-gql": "^1.6.0",
     "@heroicons/react": "^2.2.0",
     "@langchain/langgraph": "^0.2.49",
@@ -29,6 +36,10 @@
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-use": "^17.6.0",
+<<<<<<< HEAD
+=======
+    "shadcn-ui": "^0.9.5",
+>>>>>>> df78d35 (Fixed: copilot from being hidden with the input section)
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7"
   },
