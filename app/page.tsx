@@ -74,6 +74,7 @@ export default function Home() {
             <div className="p-4 flex gap-4">
               {/* Left Column (FactCheck + CopilotChat) */}
               <div className=" flex flex-col gap-4">
+                <h1 className="text-2xl font-bold">What Do You Want To Fact Check?</h1>
                 <FactCheckComponent
                   claim={factCheckData.claim}
                   trueStatement={factCheckData.trueStatement}
@@ -81,12 +82,12 @@ export default function Home() {
                   wholeTruth={factCheckData.wholeTruth}
                 />
 
-                 <CopilotChat
-                showResponseButton={false}
-                AssistantMessage={CustomAssistantMessage}
-                UserMessage={CustomUserMessage}
-                Input={CustomInput}
-              />  
+                <CopilotChat
+                  showResponseButton={false}
+                  AssistantMessage={CustomAssistantMessage}
+                  UserMessage={CustomUserMessage}
+                  Input={CustomInput}
+                />
               </div>
 
               <div className="flex-1">
