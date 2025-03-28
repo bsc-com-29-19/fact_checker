@@ -6,14 +6,12 @@ import { Sidebar } from "@/components/siderbar";
 import CustomHeader from "@/components/CustomHeader";
 import AgentIntegrator from "@/components/AgentIntegrator";
 import { CustomAssistantMessage } from "@/components/CustomAssistantMessage";
-import {
-  CopilotChat,
-  CopilotSidebar,
-} from "@copilotkit/react-ui";
+import { CopilotChat, CopilotSidebar } from "@copilotkit/react-ui";
 import { CustomUserMessage } from "@/components/CustomUserMessage";
 import CustomInput from "@/components/CustomInput";
 import CustomWindow from "@/components/CustomWindow";
 import FactCheckComponent from "@/components/main";
+import Ranking from "@/components/Ranking";
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -32,29 +30,22 @@ export default function Home() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const toggleModelModal = () => {
-    setShowModelModal(!showModelModal);
-  };
-
-  const handleModelSelection = (model: string) => {
-    setSelectedModel(model);
-    setShowModelModal(false); // Close modal after selection
-  };
-
   return (
     <div
-      className={`min-h-screen flex flex-col ${
+      className={`min-h-screen flex flex-col items-center justify-center ${
         darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
       }`}
     >
       {/* Navbar */}
-      <nav className="flex justify-between items-center p-4 bg-gray-300 dark:bg-gray-800">
+      <nav className="w-full flex justify-between items-center p-4 bg-gray-300 dark:bg-gray-800">
         <div className="flex items-center gap-4">
           <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
           <button className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700">
             <Plus size={26} />
           </button>
-          <h1 className="text-xl font-bold">Fact Checker</h1>
+          <h1 className="text-xl font-bold text-black dark:text-white">
+            Fact Checker
+          </h1>
         </div>
         <div className="flex items-center gap-4">
           <button
@@ -63,42 +54,40 @@ export default function Home() {
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-          <button className="p-2 rounded-full bg-blue-500 text-white">
-            SG
-          </button>
+          <button className="p-2 rounded-full bg-blue-500 text-white">MK</button>
         </div>
       </nav>
 
-      {/* Main Content */}
-      <div className="flex flex-1 justify-center items-center px-4">
-        <div className="w-full max-w-4xl p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg flex flex-col gap-6">
-          {/* Fact Checking Component */}
-          <FactCheckComponent
-            claim={factCheckData.claim}
-            trueStatement={factCheckData.trueStatement}
-            falseStatement={factCheckData.falseStatement}
-            wholeTruth={factCheckData.wholeTruth}
+      {/* Main Content Container */}
+      <div className="w-full max-w-4xl p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg flex flex-col gap-6">
+        {/* Fact Checking Component */}
+        <FactCheckComponent
+          claim={factCheckData.claim}
+          trueStatement={factCheckData.trueStatement}
+          falseStatement={factCheckData.falseStatement}
+          wholeTruth={factCheckData.wholeTruth}
+        />
+
+        {/* Ranking Component (Fixed Position) */}
+        <Ranking />
+
+        {/* Copilot Chat - Always Fully Visible */}
+        <div className="h-[500px] w-full">
+          <CopilotChat
+            showResponseButton={false}
+            AssistantMessage={CustomAssistantMessage}
+            UserMessage={CustomUserMessage}
+            Input={CustomInput}
           />
+        </div>
 
-          {/* Copilot Chat - NOT Hidden Behind Anything */}
-          <div className="h-[500px] w-full">
-            <CopilotChat
-              showResponseButton={false}
-              AssistantMessage={CustomAssistantMessage}
-              UserMessage={CustomUserMessage}
-              Input={CustomInput}
-            />
-          </div>
-
-        
-          {/* AgentIntegrator - Retrieves Data Based on Selected Model */}
-          <div className="mt-4">
-            <AgentIntegrator selectedModel={selectedModel} />
-          </div>
+        {/* AgentIntegrator */}
+        <div className="mt-4">
+          <AgentIntegrator selectedModel={selectedModel} />
         </div>
       </div>
 
-      {/* Copilot Sidebar */}
+      {/* Copilot Sidebar - Always Visible */}
       <div className="w-full max-w-4xl mx-auto mt-4 p-4 bg-gray-200 dark:bg-gray-900 shadow-lg rounded-lg">
         <CopilotSidebar
           defaultOpen={true}
