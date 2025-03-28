@@ -60,8 +60,8 @@ async def run_search(state: AgentState, config: RunnableConfig, tool, step_type:
         
     search_tool_msg_answer = await tool.ainvoke(tool_call)
 
-    search_response = [json.loads(search_tool_msg_answer.content)]
-    current_step["search_result"] = search_response
+    search_response = json.loads(search_tool_msg_answer.content)
+    current_step["search_result"].append(search_response)
     
     LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
 
