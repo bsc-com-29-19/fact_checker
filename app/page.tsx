@@ -10,6 +10,7 @@ import { CustomUserMessage } from "@/components/CustomUserMessage";
 import CustomInput from "@/components/CustomInput";
 import CustomWindow from "@/components/CustomWindow";
 import { AgentSelector } from "@/components/agentSelector";
+import { ModelSelector } from "@/components/modelSelector";
 import FactCheckComponent from "@/components/main";
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -75,13 +76,19 @@ export default function Home() {
                 <h1 className="text-2xl font-bold">
                   What Do You Want To Fact Check?
                 </h1>
-                <AgentSelector />
-                {/* <FactCheckComponent
+
+                <div className="flex flex-row gap-2 my-7">
+                  {" "}
+                  <AgentSelector />
+                  <ModelSelector />
+                </div>
+
+                <FactCheckComponent
                   claim={factCheckData.claim}
                   trueStatement={factCheckData.trueStatement}
                   falseStatement={factCheckData.falseStatement}
                   wholeTruth={factCheckData.wholeTruth}
-                /> */}
+                />
 
                 <CopilotChat
                   showResponseButton={false}
