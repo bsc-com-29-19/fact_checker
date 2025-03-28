@@ -12,6 +12,8 @@ import CustomWindow from "@/components/CustomWindow";
 import { AgentSelector } from "@/components/agentSelector";
 import { ModelSelector } from "@/components/modelSelector";
 import FactCheckComponent from "@/components/main";
+import { LanguageSelector } from "@/components/languageSelector";
+
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -47,12 +49,14 @@ export default function Home() {
             <h1 className="text-xl font-bold">Fact Checker</h1>
           </div>
           <div className="flex items-center gap-4">
+            <LanguageSelector />
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700"
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
+
             <button className="p-2 rounded-full bg-blue-500 text-white">
               SG
             </button>
