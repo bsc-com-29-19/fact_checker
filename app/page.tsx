@@ -5,10 +5,7 @@ import { Moon, Sun, Plus } from "lucide-react";
 import { Sidebar } from "@/components/siderbar";
 import CustomHeader from "@/components/CustomHeader";
 import { CustomAssistantMessage } from "@/components/CustomAssistantMessage";
-import {
-  CopilotChat,
-  CopilotSidebar,
-} from "@copilotkit/react-ui";
+import { CopilotChat, CopilotSidebar } from "@copilotkit/react-ui";
 import { CustomUserMessage } from "@/components/CustomUserMessage";
 import CustomInput from "@/components/CustomInput";
 import CustomWindow from "@/components/CustomWindow";
@@ -60,7 +57,7 @@ export default function Home() {
           </div>
         </nav>
         {/* Main Content */}
-        <div className="flex">
+        <div className="flex justify-center">
           <div
             className={`transition-all duration-300 ${
               isSidebarOpen ? "w-64" : "w-0"
@@ -74,13 +71,15 @@ export default function Home() {
             <div className="p-4 flex gap-4">
               {/* Left Column (FactCheck + CopilotChat) */}
               <div className=" flex flex-col gap-4">
-                <h1 className="text-2xl font-bold">What Do You Want To Fact Check?</h1>
-                <FactCheckComponent
+                <h1 className="text-2xl font-bold">
+                  What Do You Want To Fact Check?
+                </h1>
+                {/* <FactCheckComponent
                   claim={factCheckData.claim}
                   trueStatement={factCheckData.trueStatement}
                   falseStatement={factCheckData.falseStatement}
                   wholeTruth={factCheckData.wholeTruth}
-                />
+                /> */}
 
                 <CopilotChat
                   showResponseButton={false}
