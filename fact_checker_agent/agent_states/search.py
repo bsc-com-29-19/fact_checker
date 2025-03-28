@@ -8,8 +8,9 @@ from fact_checker_agent.agent_states.state import AgentState
 from langchain_core.runnables import RunnableConfig
 from langchain_core.messages import HumanMessage
 
-#from langchain_community.document_loaders import WikipediaLoader
-
+# from langchain_community.document_loaders import WikipediaLoader
+# from langchain_community.tools import WikipediaQueryRun
+# from langchain_community.utilities import WikipediaAPIWrapper
 
 from fact_checker_agent.utils.models import get_model
 
@@ -23,6 +24,9 @@ def get_pending_step(state: AgentState, step_type: str):
     
     if not steps:
         raise ValueError("No steps in state")
+    
+    available = [f"{s.get('type')} ({s.get('status')})" for s in steps]
+    LOGGER.info(f"Available steps: {available}")
     
     # Find all pending steps of the requested type
     matching_steps = [step for step in steps if step.get("status") == "pending" and step.get("type") == step_type]
@@ -52,16 +56,34 @@ async def run_search(state: AgentState, config: RunnableConfig, tool, step_type:
     instructions = search_instructions(state, current_step)
         
     model = get_model(state).bind_tools([tool], tool_choice=tool.name)
+    # if step_type == "search":
+    #     model = model.bind_tools([tool], tool_choice=tool.name)  # Update model for search
+    # elif step_type == "Wikipedia_search":
+    #     model = model.bind_tools([tool], tool_choice=tool.name)
         
     response = await model.ainvoke([HumanMessage(content=instructions)], config)
         
     # Get the first tool call
     tool_call = response.tool_calls[0]
-        
+    LOGGER.info(f"Showwing tools\n\n{tool_call}" )
+    # total_results = []
+    # if step_type == "search":
     search_tool_msg_answer = await tool.ainvoke(tool_call)
-
+        #total_results.append(json.loads(search_tool_msg_answer.content))
+        
+    # if step_type == "Wikipedia_search":
+    #     wikipedia_results = tool.run(tool_call["args"].get("query"))
+        
+        #for result in wikipedia_results:
+        # LOGGER.info(f"The wikipedia results \n\n {wikipedia_results}")
+            #total_results.append({"url":result.metadata.get("source"),"content":result.page_content})
+        # total_results.append({"url": "https://en.wikipedia.org", "content": wikipedia_results})
+    
+    #wikipedia results
+    
+    LOGGER.info(f"The results of tavily \n\n{json.loads(search_tool_msg_answer)}")
     search_response = [json.loads(search_tool_msg_answer.content)]
-    current_step["search_result"] = search_response
+    current_step["search_result"].append(search_response)
     
     LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
 
@@ -94,13 +116,14 @@ async def web_search_node(state: AgentState,config: RunnableConfig):
     
 #     try:
 #         response = WikipediaLoader(query=current_step['description'], 
-#                                 load_max_docs=2).load() #wiki_tool.run(current_step["description"])
+#                                 load_max_docs=10).load() #wiki_tool.run(current_step["description"])
         
         
 #         for doc in response:
+#             LOGGER.info(f"WIKIPEDIA RESULTS \n\n {doc}")
 #             wikipedia_answer.append({"url":doc.metadata.get("source"),"content":doc.page_content})
             
-#         current_step["search_result"] = wikipedia_answer
+#         current_step["search_result"].append(wikipedia_answer)
     
     
 #         LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
@@ -115,3 +138,21 @@ async def web_search_node(state: AgentState,config: RunnableConfig):
 #         current_step["status"] = "failed"
     
 #     return state #{"search_result": wikipedia_answer }
+
+# async def wikipedia_search_node(state: AgentState,config: RunnableConfig):
+#     """Search Wikipedia for relevant information from the user's question."""
+#     wikipedia_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper(
+#         top_k_results=5,
+#         doc_content_chars_max=4000,
+#         load_all_available_meta = True
+#     ))
+    
+#     #adding the wiki step
+#     if not any(s.get("type") == "Wikipedia_search" for s in state.get("steps", [])):
+#         state["steps"].append({
+#             "type": "Wikipedia_search",
+#             "status": "pending",
+#             "description": "Find relevant facts from Wikipedia."
+#         })
+    
+#     return await run_search(state,config,wikipedia_tool,"Wikipedia_search")
