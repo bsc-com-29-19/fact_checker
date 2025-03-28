@@ -1,3 +1,4 @@
+//button.tsx
 export default function Button({ children, variant = "primary", onClick }) {
   const styles = "px-4 py-2 rounded-md font-medium transition-all";
   const variants = {

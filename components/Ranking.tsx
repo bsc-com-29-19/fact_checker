@@ -1,3 +1,4 @@
+//Ranking.tsx
 import React from "react";
 
 const sources = [
@@ -19,24 +20,26 @@ const Ranking = () => {
       <h2 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">
         Truthfulness Ranking
       </h2>
-      <ul>
+      <div className="flex flex-wrap gap-4 justify-center">
         {sources
           .sort((a, b) => b.truthPercentage - a.truthPercentage) // Sort highest first
           .map((source, index) => (
-            <li key={index} className="mb-2">
-              <div className="flex justify-between text-sm font-medium text-gray-900 dark:text-white">
-                <span>{source.name}</span>
-                <span>{source.truthPercentage}%</span>
+            <div key={index} className="relative flex items-center">
+              {/* Circle */}
+              <div
+                className={`w-12 h-12 flex items-center justify-center rounded-full text-white font-bold ${getColor(
+                  source.truthPercentage
+                )}`}
+              >
+                {source.truthPercentage}%
               </div>
-              <div className="w-full bg-gray-300 dark:bg-gray-700 h-2 rounded-full">
-                <div 
-                  className={`${getColor(source.truthPercentage)} h-2 rounded-full`}
-                  style={{ width: `${source.truthPercentage}%` }}
-                ></div>
-              </div>
-            </li>
+              {/* Source Name */}
+              <span className="ml-3 text-sm font-medium text-gray-900 dark:text-white">
+                {source.name}
+              </span>
+            </div>
           ))}
-      </ul>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-
+//CustomAssistantMessage.tsx
 "use client";
 import { AssistantMessageProps } from "@copilotkit/react-ui";
 import { useChatContext } from "@copilotkit/react-ui";

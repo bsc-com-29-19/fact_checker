@@ -1,3 +1,4 @@
+//CustomInput.tsx
 import { InputProps } from "@copilotkit/react-ui";
 import "@copilotkit/react-ui/styles.css";
 export default function CustomInput({
