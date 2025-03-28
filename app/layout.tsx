@@ -4,6 +4,8 @@ import "./globals.css";
 import { CopilotKit } from "@copilotkit/react-core";
 import { Suspense } from "react";
 import { AgentProvider } from "@/contexts/agentContext";
+import { ModelProvider } from "@/contexts/modelContext";
+
 
 
 const geistSans = Geist({
@@ -32,9 +34,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AgentProvider>
+          <ModelProvider>
           <CopilotKit publicApiKey={process.env.publicApiKey}>
             <Suspense> {children}</Suspense>
           </CopilotKit>
+          </ModelProvider>
         </AgentProvider>
       </body>
     </html>
