@@ -5,6 +5,7 @@ import { CopilotKit } from "@copilotkit/react-core";
 import { Suspense } from "react";
 import { AgentProvider } from "@/contexts/agentContext";
 import { ModelProvider } from "@/contexts/modelContext";
+import { LanguageProvider } from "@/contexts/languageContext";
 
 
 
@@ -35,9 +36,11 @@ export default function RootLayout({
       >
         <AgentProvider>
           <ModelProvider>
+            <LanguageProvider>
           <CopilotKit publicApiKey={process.env.publicApiKey}>
             <Suspense> {children}</Suspense>
           </CopilotKit>
+          </LanguageProvider>
           </ModelProvider>
         </AgentProvider>
       </body>
