@@ -1,8 +1,9 @@
 from langgraph.graph import MessagesState
-from langgraph.graph.message import add_messages
-from langchain_core.messages import BaseMessage
+# from langgraph.graph.message import add_messages
+# from langchain_core.messages import BaseMessage
 # import typing
-from typing import TypedDict,Optional,Annotated,Sequence,List
+import operator
+from typing import TypedDict,Optional,List,Annotated #,Sequence,
 
 class Step(TypedDict):
     """
@@ -12,8 +13,7 @@ class Step(TypedDict):
     description: str
     status: str
     type: str
-    description: str
-    search_result: Optional[str]
+    search_result: Annotated[List , operator.add]
     result: Optional[str]
     updates: Optional[List[str]]
 
@@ -24,7 +24,7 @@ class AgentState(MessagesState):
     """
      model:str = "gpt-3.5-turbo"
     #  question: Optional[str]
-     steps: List[Step]
+     steps: Annotated[List[Step], operator.add] #List[Step]
     #  context:Annotated[Sequence[BaseMessage],add_messages]
      answer:Optional[str]
     #  query: Optional[str]

@@ -17,7 +17,7 @@ class SearchStep(BaseModel):
     id: str = Field(description="The id of the step. This is used to identify the step in the state. Just make sure it is unique.")
     description: str = Field(description='The description of the step, i.e. "search for information about the latest AI news"')
     status: str = Field(description='The status of the step. Always "pending".', enum=['pending'])
-    type: str = Field(description='The type of step.', enum=['search'])
+    type: str = Field(description='The type of step.', enum=['search']) #,'Wikipedia_search'
 
 
 @tool
@@ -71,10 +71,10 @@ The current date is {datetime.now().strftime("%Y-%m-%d")}.
 
     if len(steps) != 0:
         steps[0]["updates"] = ["Searching the web..."]
+        # if steps[0]["type"] == "Wikipedia_search":
+        #     steps[0]["updates"] = ["Searching on Wikipedia"]
+        
 
     return {
         "steps": steps,
     }
-
-# def steps(state:AgentState):
-#     pass

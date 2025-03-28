@@ -1,0 +1,148 @@
+#import os
+#import textwrap
+import json
+#from langchain_core.tools import Tool
+#from tavily import TavilyClient
+from langchain_community.tools.tavily_search import TavilySearchResults
+from fact_checker_agent.agent_states.state import AgentState
+from langchain_core.runnables import RunnableConfig
+from langchain_core.messages import HumanMessage
+from langchain_community.tools import WikipediaQueryRun
+from langchain_community.utilities import WikipediaAPIWrapper
+# from dotenv import load_dotenv
+
+from fact_checker_agent.utils.models import get_model
+
+from datetime import datetime
+
+# load_dotenv()
+# TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
+# print(f"TAVILY_API_KEY: {TAVILY_API_KEY}")
+
+
+#start tavily
+# tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
+
+def get_pending_step(state: AgentState, step_type: str):
+    """Retrieve the next pending step of a specific type."""
+     #loop throuth the steps nd return the one whos status ==  pending
+    current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
+    if current_step is None:
+        raise ValueError("No pending step found")
+    if current_step["type"] != step_type:
+        raise ValueError(f"Current step is not of type {step_type}")
+    return current_step
+
+def search_instructions(state: AgentState, current_step):
+    """Generate instructions for the search tool based on the state."""
+    return f"""
+    This is a step in a sequence of steps being executed to answer the user's question.
+    These are all the steps: {json.dumps(state["steps"], indent=2)}
+    
+    You are responsible for executing the step: {json.dumps(current_step)}
+    
+    The current date is {datetime.now().strftime("%Y-%m-%d")}.
+    
+    This is what you need to search for: {current_step['description']}
+    """
+    
+async def run_search(state:AgentState,config: RunnableConfig,tool,step_type:str):
+        """Search the information based on the current Step"""
+        
+        current_step = get_pending_step(state,step_type)
+        
+        instructions = search_instructions(state,current_step)
+        
+        model = get_model(state).bind_tools([tool], tool_choice=tool.name)
+        
+        response = await model.ainvoke([
+        HumanMessage(
+            content= instructions
+        )
+    ], config)
+        
+        #get the first tool call
+        tool_call = response.tool_calls[0]
+        
+        search_tool_msg_answer = tool.invoke(tool_call)
+        
+        current_step["search_results"] = json.loads(search_tool_msg_answer.content)
+        current_step["updates"].append(f"Extracting relevant {step_type.replace('_', ' ')} information...")
+        
+        return state
+
+#the search method
+async def web_search_node(state: AgentState,config: RunnableConfig):
+    """Search the web for information using Tavily API."""
+    tavily_search_tool = TavilySearchResults(
+        max_results = 5,
+        search_depth="advanced",
+        inculde_raw_content=True,
+        include_images=True,
+        include_image_descriptions=True,
+        
+        )
+    
+    return run_search(state,config,tavily_search_tool,"search")
+    
+    
+    # model = get_model(state).bind_tools(
+    #     [tavily_search_tool],
+    #     tool_choice= tavily_search_tool.name
+    # )
+    
+    # response = await model.ainvoke([
+    #     HumanMessage(
+    #         content= instructions
+    #     )
+    # ], config)
+    
+    # search_tool_msg_answer = tavily_search_tool.invoke(response.tool_calls[0])
+    
+    # current_step["search_result"] = json.loads(search_tool_msg_answer.content)
+    # current_step["updates"] = [*current_step["updates"], "Extracting relevant information..."]
+    
+    
+    #search_data = tavily_search_tool.invoke(query)
+
+    #return state
+
+#the node | func for wikipedia search
+async def Search_wikipedia_node(state:AgentState,config:RunnableConfig):
+    """Search on Wikepedia for relevant information from the user's Question"""
+    
+    wikipedia_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper(
+        top_k_results=3,
+        doc_content_chars_max=4000,
+    ))
+    
+    return await run_search(state,config,wikipedia_tool,"Wikipedia_search")
+    
+    
+        
+        
+
+        
+        
+    
+
+
+# def format_results(search_data):
+#     # Extract query results
+#     formatted_response = []
+    
+#     for result in search_data:
+#         formatted_content = textwrap.fill(result.get("content", "N/A"), width=80)
+#         formatted_result = {
+#             "URL": result.get("url", "N/A"),
+#             "Content": formatted_content
+#         }
+#         formatted_response.append(formatted_result)
+    
+#     # Create the final formatted response
+#     # formatted_output = {
+#     #     "Answers": formatted_response
+#     # }
+    
+#     return {"context":[{"role":"system","content":formatted_response}]}
+        

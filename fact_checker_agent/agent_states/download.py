@@ -1,6 +1,7 @@
 import json
 
 from langchain_core.runnables import RunnableConfig
+from fact_checker_agent.utils.log_config import LOGGER
 from fact_checker_agent.agent_states.state import AgentState
 from langchain_core.messages import HumanMessage
 from fact_checker_agent.utils.models import get_model
@@ -15,6 +16,7 @@ async def download_node(state: AgentState, config: RunnableConfig):
     """
 
     current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
+    LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
 
     if current_step is None:
         raise ValueError("No current step")
@@ -48,7 +50,7 @@ async def download_node(state: AgentState, config: RunnableConfig):
             content=system_message
         )
     ], config)
-
+    
     current_step["result"] = response.content
     current_step["search_result"] = None
     current_step["status"] = "decomposing"

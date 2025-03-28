@@ -7,7 +7,7 @@ from langchain_core.runnables import RunnableConfig
 from fact_checker_agent.agent_states.state import AgentState
 from copilotkit.langgraph import copilotkit_customize_config
 
-from fact_checker_agent.agent_states.state import AgentState
+#from fact_checker_agent.agent_states.state import AgentState
 # from fact_checker_agent.agent_states.search import format_results
 class Source(BaseModel):
     """Model for a source"""
@@ -18,9 +18,9 @@ class Source(BaseModel):
 class SummarizerInput(BaseModel):
     """Input for the summalizer tool"""
     markdown: str = Field(description="""
-                          The markdown formatted summary of the final result.
-                          If you add any headings, make sure to start at the top level (#).
-                          """)
+                        The markdown formatted summary of the final result.
+                        If you add any headings, make sure to start at the top level (#).
+                        """)
     sources: list[Source] = Field(description="A list of sources.")
 
 
@@ -76,4 +76,3 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     return {
         "answer": response.tool_calls[0]["args"],
     }
-
