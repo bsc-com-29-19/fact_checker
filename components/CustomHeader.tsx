@@ -1,3 +1,4 @@
+//CustomHeader.tsx
 import {
   HeaderProps,
   useChatContext,

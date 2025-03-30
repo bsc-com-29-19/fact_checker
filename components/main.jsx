@@ -37,9 +37,9 @@ const FactCheckComponent = ({
         <p>{wholeTruth}</p>
       </div>
       {/* button for sources will be here */}
-      <div>
+      {/* <div>
         <Button variant="primary">View Sources</Button>
-      </div>
+      </div> */}
     </div>
   );
 };

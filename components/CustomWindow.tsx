@@ -1,3 +1,4 @@
+//CustomWindow.tsx
 "use client";
 
 import {
@@ -5,6 +6,7 @@ import {
   useChatContext,
 } from "@copilotkit/react-ui";
 import "@copilotkit/react-ui/styles.css";
+
 export default function CustomWindow({ children }: WindowProps) {
   const { open, setOpen } = useChatContext();
 
@@ -12,7 +14,7 @@ export default function CustomWindow({ children }: WindowProps) {
 
   return (
     <div
-      className=" fixed right-0 top-0 h-full w-1/3 "
+      className="fixed right-0 top-0 h-full w-1/3 mt-16" // added margin-top to push below header
       onClick={() => setOpen(false)}
     >
       <div
