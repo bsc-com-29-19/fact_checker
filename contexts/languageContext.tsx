@@ -3,8 +3,8 @@
 
 import { createContext, useContext, useState, ReactNode } from "react";
 
-type Language = "en" | "es" | "fr" | "de"; // Add more as needed
-type LanguageName = "English" | "Spanish" | "French" | "German";
+type Language = "en" | "es" | "fr" | "de" |"ch" ; // Add more as needed
+type LanguageName = "English" | "Spanish" | "French" | "German" |"Chichewa";
 
 interface LanguageContextType {
   language: Language;
@@ -21,6 +21,7 @@ const languageMap: Record<Language, LanguageName> = {
   es: "Spanish",
   fr: "French",
   de: "German",
+  ch: "Chichewa",
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
