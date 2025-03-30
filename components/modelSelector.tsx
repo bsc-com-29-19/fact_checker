@@ -11,7 +11,7 @@ import {
 import { useModel } from "@/contexts/modelContext"; // Update the import path
 
 export function ModelSelector() {
-  const { model, setModel } = useModel(); // Use the useModel hook instead
+  const { model, setModel } = useModel(); // Use the useModel hook
 
   return (
     <div>

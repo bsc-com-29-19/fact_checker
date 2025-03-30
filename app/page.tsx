@@ -87,12 +87,12 @@ export default function Home() {
                   <ModelSelector />
                 </div>
 
-                <FactCheckComponent
+                {/* <FactCheckComponent
                   claim={factCheckData.claim}
                   trueStatement={factCheckData.trueStatement}
                   falseStatement={factCheckData.falseStatement}
                   wholeTruth={factCheckData.wholeTruth}
-                />
+                /> */}
 
                 <CopilotChat
                   showResponseButton={false}
