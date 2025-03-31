@@ -99,6 +99,7 @@ export default function Home() {
 
           {/* Dark Mode + Profile Button */}
           <div className="flex items-center gap-2">
+            <LanguageSelector />
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700"
@@ -113,6 +114,9 @@ export default function Home() {
 
         {/* Main Content Container */}
         <div className="w-full max-w-4xl mx-auto p-6 bg-white flex flex-col gap-6">
+          <div className="flex flex-1 gap-1 ">
+            <AgentSelector /> <ModelSelector />
+          </div>
           {/* Fact Checking Component */}
           <FactCheckComponent
             claim={factCheckData.claim}
