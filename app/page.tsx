@@ -118,6 +118,9 @@ export default function Home() {
             <AgentSelector /> <ModelSelector />
           </div>
           {/* Fact Checking Component */}
+          <h1 className="font-bold justify-center flex text-3xl">
+            What do you want to fact check
+          </h1>
           <FactCheckComponent
             claim={factCheckData.claim}
             trueStatement={factCheckData.trueStatement}
