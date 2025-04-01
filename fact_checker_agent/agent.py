@@ -74,6 +74,7 @@
 #from typing import TypedDict,Literal
 
 from langgraph.graph import StateGraph,END
+from langgraph.checkpoint.memory import MemorySaver
 
 from fact_checker_agent.agent_states.decomposer import decomposing_node
 from fact_checker_agent.agent_states.download import download_node
@@ -141,4 +142,5 @@ workflow.add_edge("summarizer_node", END)
 # workflow.add_edge("summarizer",END)
 
 #compiling the graph
-graph = workflow.compile()
+memory = MemorySaver()
+graph = workflow.compile(checkpointer=memory)
