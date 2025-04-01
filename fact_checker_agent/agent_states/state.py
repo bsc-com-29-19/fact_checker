@@ -16,6 +16,7 @@ class Step(TypedDict):
     search_result: Annotated[List , operator.add]
     result: Optional[str]
     updates: Optional[List[str]]
+    results_ranked: Optional[List[str]]
 
 class AgentState(MessagesState):
      """

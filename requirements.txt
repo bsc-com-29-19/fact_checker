@@ -17,4 +17,9 @@ uvicorn[standard]
 fastapi
 python-dotenv
 copilotkit
+python-whois
+requests
+tldextract
+beautifulsoup4
+#seleium
 

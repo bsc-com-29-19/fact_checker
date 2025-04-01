@@ -10,7 +10,7 @@ from fact_checker_agent.utils.models import get_model
 async def download_node(state: AgentState, config: RunnableConfig):
     
     """
-    The download node is responsible for extracting raw data from a Tavily search.
+    The download node is responsible for extracting raw data from a Tavily search and Wikipedia search.
     Instead of summarizing the results, extract all relevant information including key facts and inline reference links.
     This raw data will be used later to decompose the claim into supported (true) and unsupported (false) components.
     """
@@ -19,10 +19,17 @@ async def download_node(state: AgentState, config: RunnableConfig):
     LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
 
     if current_step is None:
-        raise ValueError("No current step")
+        LOGGER.warning("No current step found, skipping download")
+        return state  # Return state instead of raising error
 
     if current_step["type"] != "search":
         raise ValueError("Current step is not of type search")
+
+    # if current_step is None:
+    #     raise ValueError("No current step")
+
+    # if current_step["type"] != "search":
+    #     raise ValueError("Current step is not of type search")
     
   
     system_message = f"""
