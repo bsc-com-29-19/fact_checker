@@ -1,7 +1,7 @@
 //page.tsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Moon, Sun, Plus, X } from "lucide-react";
 import { Sidebar } from "@/components/siderbar";
 import CustomHeader from "@/components/CustomHeader";
@@ -14,8 +14,37 @@ import CustomWindow from "@/components/CustomWindow";
 import FactCheckComponent from "@/components/main";
 import Ranking from "@/components/Ranking";
 import Button from "@/components/button";
+import "@copilotkit/react-ui/styles.css";
+//import { ModelSelector } from "@/components/ModelSelector";
+import { ModelSelectorProvider, useModelSelectorContext } from "@/lib/model-selector-provider";
+import { CopilotKit } from "@copilotkit/react-core";
+import { ResearchProvider } from "@/lib/research-provider";
+import { ResearchWrapper } from "@/components/ResearchWrapper";
 
-export default function Home() {
+// export default function ModelSelectorWrapper() {
+//   return (
+//       <main className="flex flex-col items-center justify-between">
+//         <ModelSelectorProvider>
+//             <Home/>
+//           <ModelSelector />
+//         </ModelSelectorProvider>
+//       </main>
+//   );
+// }
+
+function Home() {
+  const { useLgc } = useModelSelectorContext();
+
+  return (
+      <CopilotKit runtimeUrl={useLgc ? "/api/copilotkit-lgc" : "/api/copilotkit"} agent="fact_checker_agent">
+        <ResearchProvider>
+          <ResearchWrapper />
+        </ResearchProvider>
+      </CopilotKit>
+  );
+}
+
+export default function HomePage() {
   const [darkMode, setDarkMode] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedModel, setSelectedModel] = useState<string | null>(null);
