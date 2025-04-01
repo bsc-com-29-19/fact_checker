@@ -1,5 +1,5 @@
 //sidebar.tsx
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AnimatePresence, motion } from "framer-motion";
 import { useClickAway } from "react-use";

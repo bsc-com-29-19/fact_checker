@@ -4,6 +4,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CopilotKit } from "@copilotkit/react-core";
 import { Suspense } from "react";
+import { AgentProvider } from "@/contexts/agentContext";
+import { ModelProvider } from "@/contexts/modelContext";
+import { LanguageProvider } from "@/contexts/languageContext";
+
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +35,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CopilotKit publicApiKey="ck_pub_2dd6998aa37e6b464ebed283aca84b83">
-          <Suspense> {children}</Suspense>
-        </CopilotKit>
+        <AgentProvider>
+          <ModelProvider>
+            <LanguageProvider>
+          <CopilotKit publicApiKey={process.env.publicApiKey}>
+            <Suspense> {children}</Suspense>
+          </CopilotKit>
+          </LanguageProvider>
+          </ModelProvider>
+        </AgentProvider>
       </body>
     </html>
   );

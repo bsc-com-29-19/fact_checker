@@ -18,9 +18,6 @@ const FactCheckComponent = ({
         margin: "auto",
       }}
     >
-      <h1 style={{ fontSize: "26px", marginBottom: "20px", FontFace: "bold" }}>
-        What Do You Want To Fact Check?
-      </h1>
       <div style={{ marginBottom: "20px" }}>
         <strong>Claim:</strong> {claim}
       </div>
