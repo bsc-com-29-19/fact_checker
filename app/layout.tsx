@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { AgentProvider } from "@/contexts/agentContext";
 import { ModelProvider } from "@/contexts/modelContext";
 import { LanguageProvider } from "@/contexts/languageContext";
+import { ResearchProvider } from "@/lib/research-provider";
 
 
 
@@ -30,21 +31,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const { useLgc } = useModelSelectorContext();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AgentProvider>
-          <ModelProvider>
-            <LanguageProvider>
-          <CopilotKit publicApiKey={process.env.publicApiKey}>
             <Suspense> {children}</Suspense>
-          </CopilotKit>
-          </LanguageProvider>
-          </ModelProvider>
-        </AgentProvider>
+          
       </body>
     </html>
   );
 }
+
+

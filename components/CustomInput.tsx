@@ -1,12 +1,39 @@
+import { useAgent } from "@/contexts/agentContext";
+import { useModel } from "@/contexts/modelContext";
+import { useResearchContext } from "@/lib/research-provider";
+import { AgentState } from "@/lib/types";
+import { useCoAgent } from "@copilotkit/react-core";
 import { InputProps } from "@copilotkit/react-ui";
 import "@copilotkit/react-ui/styles.css";
+import { MessageRole, TextMessage } from "@copilotkit/runtime-client-gql";
 export default function CustomInput({
   inProgress,
   onSend,
   isVisible,
 }: InputProps) {
-  const handleSubmit = (value: string) => {
-    if (value.trim()) onSend(value);
+
+const {setResearchInput,researchInput,setResearchQuery} = useResearchContext();
+
+const {model} = useModel();
+const {agent} = useAgent();
+const {run: runSearchAgent} = useCoAgent<AgentState>({
+  name:agent,
+  initialState:{
+    model:"gpt-3.5-turbo",
+  },
+});
+
+
+  const handleSubmit = (query: string) => {
+    setResearchQuery(query);
+    runSearchAgent(()=>{
+      return new TextMessage({
+        role:MessageRole.User,
+        content:query
+      });
+    });
+
+    if (query.trim()) onSend(query);
   };
 
   const wrapperStyle = "flex gap-2 p-4 border-t";
@@ -24,6 +51,7 @@ export default function CustomInput({
         className={inputStyle}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
+            e.preventDefault();
             handleSubmit(e.currentTarget.value);
             e.currentTarget.value = "";
           }

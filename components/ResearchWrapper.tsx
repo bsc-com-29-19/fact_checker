@@ -1,7 +1,9 @@
 //import { HomeView } from "./HomeView";
-//import { ResultsView } from "./ResultsView";
+// import { ResultsView } from "./ResultsView";
 import { AnimatePresence } from "framer-motion";
 import { useResearchContext } from "@/lib/research-provider";
+import HomeView from "./HomeView";
+import { ResultsView } from "./ResultsView";
 
 export function ResearchWrapper() {
   const { researchQuery, setResearchInput } = useResearchContext();
