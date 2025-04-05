@@ -1,3 +1,4 @@
+//app/api/copilotkit/route.ts
 import { NextRequest } from "next/server";
 import {
   CopilotRuntime,

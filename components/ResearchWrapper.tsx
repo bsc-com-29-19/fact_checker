@@ -1,5 +1,4 @@
-//import { HomeView } from "./HomeView";
-// import { ResultsView } from "./ResultsView";
+//ResearchWrapper.tsx
 import { AnimatePresence } from "framer-motion";
 import { useResearchContext } from "@/lib/research-provider";
 import HomeView from "./HomeView";
@@ -35,7 +34,7 @@ export function ResearchWrapper() {
             rel="noopener noreferrer"
             className="text-slate-600 font-medium hover:underline"
           >
-            Powered by CopilotKit 🪁
+            Powered by Mayamiko 🪁
           </a>
         </footer>
       </div>

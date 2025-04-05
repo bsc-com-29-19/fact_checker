@@ -1,5 +1,5 @@
+//page.tsx
 "use client";
-
 
 import { ResearchProvider } from "@/lib/research-provider";
 import { CopilotKit } from "@copilotkit/react-core";
@@ -27,7 +27,6 @@ function Home() {
         <AgentProvider>
           <LanguageProvider>
         <ResearchProvider>
-          
           <ResearchWrapper />
         </ResearchProvider>
         </LanguageProvider>
@@ -36,7 +35,4 @@ function Home() {
   );
 }
 
-// function useModelSelectorContext(): { useLgc: any; } {
-//   throw new Error("Function not implemented.");
-// }
 

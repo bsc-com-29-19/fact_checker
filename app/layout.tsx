@@ -39,7 +39,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
             <Suspense> {children}</Suspense>
-          
       </body>
     </html>
   );

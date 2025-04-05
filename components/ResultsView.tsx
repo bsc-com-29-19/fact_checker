@@ -1,3 +1,4 @@
+//ResultsView.tsx
 "use client";
 
 import { useResearchContext } from "@/lib/research-provider";
@@ -69,7 +70,7 @@ export function ResultsView() {
                             // (
                             //     <SkeletonLoader />
                             // )
-                            'Loading ngini apapa....'
+                            'Loading....'
                              : (
                                 <AnswerMarkdown markdown={agentState?.answer?.markdown} /> //👈🏼 displays search results
                             )}

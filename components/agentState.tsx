@@ -1,3 +1,4 @@
+//AgentState.tsx
 "use client"; // only necessary if you are using Next.js with the App Router.
 
 import { useCoAgentStateRender } from "@copilotkit/react-core";

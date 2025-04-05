@@ -1,3 +1,4 @@
+//CustomInput.tsx
 import { useAgent } from "@/contexts/agentContext";
 import { useModel } from "@/contexts/modelContext";
 import { useResearchContext } from "@/lib/research-provider";
