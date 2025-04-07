@@ -1,3 +1,4 @@
+//modelSelector.tsx
 "use client";
 
 import React from "react";
@@ -21,6 +22,7 @@ export function ModelSelector() {
           v:
             | "gpt-3.5-turbo"
             | "llama3.5"
+            | "gpt-4o"
             | "claude-3-sonnet-20240229"
             | "deepseek-r1:latest"
         ) => setModel(v)}

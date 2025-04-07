@@ -2,18 +2,18 @@
 "use client";
 import { createContext, useContext, useState } from "react";
 
-type Agent = "fact-check" | "youtube";
+type Agent = "fact_checker_agent" | "youtube";
 
 const AgentContext = createContext<{
   agent: Agent;
   setAgent: (agent: Agent) => void;
 }>({
-  agent: "fact-check",
+  agent: "fact_checker_agent",
   setAgent: () => {},
 });
 
 export function AgentProvider({ children }: { children: React.ReactNode }) {
-  const [agent, setAgent] = useState<Agent>("fact-check");
+  const [agent, setAgent] = useState<Agent>("fact_checker_agent");
 
   return (
     <AgentContext.Provider value={{ agent, setAgent }}>

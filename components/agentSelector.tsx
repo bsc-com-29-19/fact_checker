@@ -1,3 +1,4 @@
+//AgentSelector.tsx
 "use client";
 
 import React from "react";
@@ -17,13 +18,13 @@ export function AgentSelector() {
     <div className="">
       <Select
         value={agent}
-        onValueChange={(v: "fact-check" | "youtube") => setAgent(v)}
+        onValueChange={(v: "fact_checker_agent" | "youtube") => setAgent(v)}
       >
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select agent" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="fact-check">Fact Check Agent</SelectItem>
+          <SelectItem value="fact_checker_agent">Fact Check Agent</SelectItem>
           <SelectItem value="youtube">YouTube Agent</SelectItem>
         </SelectContent>
       </Select>
