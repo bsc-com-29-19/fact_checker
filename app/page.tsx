@@ -44,7 +44,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`min-h-screen ${darkMode ? "dark" : ""}`}>
+    <div className={`min-h-screen flex ${darkMode ? "dark" : ""}`}>
       {/* Sources Sidebar */}
       <div
         className={`fixed inset-y-0 left-0 w-64 bg-gray-200 dark:bg-gray-900 shadow-lg transform ${
@@ -78,14 +78,13 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Main Sidebar - Now with internal close button */}
+      {/* Main Sidebar */}
       <div
         className={`fixed inset-y-0 left-0 w-64 bg-gray-100 dark:bg-gray-800 shadow-lg transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out z-10`}
       >
         <div className="h-full overflow-y-auto relative">
-          {/* Close button inside sidebar */}
           <button
             onClick={toggleSidebar}
             className="absolute top-4 right-4 p-2 rounded hover:bg-gray-300 dark:hover:bg-gray-700 z-20"
@@ -97,88 +96,89 @@ export default function Home() {
       </div>
 
       {/* Main Content Area */}
-      <div
-        className={`min-h-screen transition-all duration-300 ${
-          isSidebarOpen ? "ml-64" : "ml-0"
-        }`}
-      >
-        {/* Sticky Header */}
-        <header className="sticky top-0 z-10 bg-gray-300 dark:bg-gray-800 shadow-sm">
-          <div className="flex justify-between items-center p-4">
-            <div className="flex items-center space-x-4">
-              {/* Only show hamburger menu when sidebar is closed */}
-              {!isSidebarOpen && (
+      <div className="flex-1 flex">
+        {/* Content Container */}
+        <div
+          className={`flex-1 transition-all duration-300 ${
+            isSidebarOpen ? "ml-64" : "ml-0"
+          }`}
+        >
+          {/* Sticky Header */}
+          <header className="sticky top-0 z-10 bg-gray-300 dark:bg-gray-800 shadow-sm">
+            <div className="flex justify-between items-center p-4">
+              <div className="flex items-center space-x-4">
+                {!isSidebarOpen && (
+                  <button
+                    onClick={toggleSidebar}
+                    className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700"
+                  >
+                    <GiHamburgerMenu size={24} />
+                  </button>
+                )}
+                <button className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700">
+                  <Plus size={26} />
+                </button>
+                <h1 className="text-xl font-bold">Fact Checker</h1>
+                <Button variant="primary" onClick={toggleSources}>
+                  Sources
+                </Button>
+              </div>
+              <div className="flex items-center space-x-4">
+                <LanguageSelector />
                 <button
-                  onClick={toggleSidebar}
+                  onClick={() => setDarkMode(!darkMode)}
                   className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700"
                 >
-                  <GiHamburgerMenu size={24} />
+                  {darkMode ? <Sun size={24} /> : <Moon size={24} />}
                 </button>
-              )}
-              <button className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700">
-                <Plus size={26} />
-              </button>
-              <h1 className="text-xl font-bold">Fact Checker</h1>
-              <Button variant="primary" onClick={toggleSources}>
-                Sources
-              </Button>
+                <button className="p-2 rounded-full bg-blue-500 text-white">
+                  MK
+                </button>
+              </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <LanguageSelector />
-              <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700"
-              >
-                {darkMode ? <Sun size={24} /> : <Moon size={24} />}
-              </button>
-              <button className="p-2 rounded-full bg-blue-500 text-white">
-                MK
-              </button>
-            </div>
-          </div>
-        </header>
+          </header>
 
-        {/* Scrollable Content */}
-        <main className="bg-white dark:bg-gray-700 min-h-[calc(100vh-64px)]">
-          <div className="max-w-4xl mx-auto p-6 space-y-6">
-            <div className="flex space-x-2">
-              <AgentSelector />
-              <ModelSelector />
-            </div>
+          {/* Scrollable Content */}
+          <main className="bg-white dark:bg-gray-700 min-h-[calc(100vh-64px)]">
+            <div className="max-w-4xl mx-auto p-6 space-y-6">
+              <div className="flex space-x-2">
+                <AgentSelector />
+                <ModelSelector />
+              </div>
 
-            <h1 className="text-3xl font-bold text-center">
-              What do you want to fact check
-            </h1>
+              <h1 className="text-3xl font-bold text-center">
+                What do you want to fact check
+              </h1>
 
-            <FactCheckComponent
-              claim={factCheckData.claim}
-              trueStatement={factCheckData.trueStatement}
-              falseStatement={factCheckData.falseStatement}
-              wholeTruth={factCheckData.wholeTruth}
-            />
+              <FactCheckComponent
+                claim={factCheckData.claim}
+                trueStatement={factCheckData.trueStatement}
+                falseStatement={factCheckData.falseStatement}
+                wholeTruth={factCheckData.wholeTruth}
+              />
 
-            <Ranking />
+              <Ranking />
 
-            <div className="h-[500px]">
-              <CopilotChat
-                Input={CustomInput}
-                AssistantMessage={CustomAssistantMessage}
-                UserMessage={CustomUserMessage}
+              <div className="">
+                <CopilotChat
+                  // Input={CustomInput}
+                  AssistantMessage={CustomAssistantMessage}
+                  UserMessage={CustomUserMessage}
+                />
+              </div>
+              <CopilotSidebar
+                defaultOpen={true}
+                clickOutsideToClose={false}
+                Input={() => null}
+                Header={CustomHeader}
+                Window={CustomWindow}
               />
             </div>
-          </div>
-        </main>
-      </div>
+          </main>
+        </div>
 
-      {/* Copilot Sidebar */}
-      <div className="fixed right-0 top-0 h-full">
-        <CopilotSidebar
-          defaultOpen={true}
-          clickOutsideToClose={false}
-          Input={() => null}
-          Header={CustomHeader}
-          Window={CustomWindow}
-        />
+        {/* Copilot Sidebar - Now part of the flex layout */}
+        <div className="w-30 border-l dark:border-gray-600"></div>
       </div>
     </div>
   );
