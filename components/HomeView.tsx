@@ -156,7 +156,7 @@ export default function HomeView() {
               <div className="flex items-center space-x-4">
                 <LanguageSelector />
                 <button
-                  onClick={() => setDarkMode(!darkMode)}
+                  onClick={() => setDa,rkMode(!darkMode)}
                   className="p-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700"
                 >
                   {darkMode ? <Sun size={24} /> : <Moon size={24} />}

@@ -1,23 +1,31 @@
 //layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto, Inter, Mukta } from "next/font/google";
 import "./globals.css";
-import { CopilotKit } from "@copilotkit/react-core";
 import { Suspense } from "react";
-import { AgentProvider } from "@/contexts/agentContext";
-import { ModelProvider } from "@/contexts/modelContext";
-import { LanguageProvider } from "@/contexts/languageContext";
-import { ResearchProvider } from "@/lib/research-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Initialize Roboto font
+const roboto = Roboto({
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-roboto",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const inter = Inter({
+  subsets: ["latin"], // Optimize for Latin characters
+  weight: ["400", "500", "600", "700"], // Common weights
+  variable: "--font-inter", // Optional: Use CSS variable
 });
+
+
+
+// Initialize Mukta font
+const mukta = Mukta({
+  subsets: ["latin"], // Optimize for Latin characters
+  weight: ["300", "400", "500", "600", "700", "800"], // Available weights
+  variable: "--font-mukta", // Optional: CSS variable name
+});
+
 
 export const metadata: Metadata = {
   title: "Fact Checker",
@@ -34,13 +42,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const { useLgc } = useModelSelectorContext();
-
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${roboto.className} ${inter.className} antialiased`}>
         <Suspense> {children}</Suspense>
       </body>
     </html>
