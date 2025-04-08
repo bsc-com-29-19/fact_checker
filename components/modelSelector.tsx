@@ -22,6 +22,7 @@ export function ModelSelector() {
           v:
             | "gpt-3.5-turbo"
             | "llama3.5"
+            | "gpt-4o"
             | "claude-3-sonnet-20240229"
             | "deepseek-r1:latest"
         ) => setModel(v)}
@@ -32,6 +33,8 @@ export function ModelSelector() {
         <SelectContent>
           <SelectItem value="gpt-3.5-turbo">GPT-3.5 Turbo</SelectItem>
           <SelectItem value="llama3.5">Llama 3.5</SelectItem>
+          <SelectItem value="gpt-4o">gpt-4o</SelectItem>
+
           <SelectItem value="claude-3-sonnet-20240229">
             Claude 3 Sonnet
           </SelectItem>

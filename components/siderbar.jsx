@@ -34,9 +34,6 @@ export const Sidebar = ({isOpen,onClose}) => {
             >
               <div className="flex items-center text-white justify-between p-5 border-b-2 border-zinc-800">
                 <span className="text-2xl">Fact Checker</span>
-                <button className="p-1 rounded hover:bg-gray-400 dark:hover:bg-gray-700">
-                  <Plus size={26} />
-                </button>
                 <button
                   onClick={onClose}
                   className="p-1 rounded hover:bg-gray-400 dark:hover:bg-gray-700"
