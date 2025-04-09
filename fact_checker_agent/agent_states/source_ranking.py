@@ -9,7 +9,7 @@ def validate_url(url):
     try:
         result = urlparse(url)
         return all([result.scheme, result.netloc])
-    except:
+    except Exception:
         return False
     
 def extract_domain(url):
@@ -17,18 +17,22 @@ def extract_domain(url):
     return parsed_url.netloc.replace("www.", "")
 
 def rank_sources_node(urls):
-    """Rank sources based on domain reputation, SSL verification, and MBFC factors."""
+    """Rank sources based on multiple reputation factors including domain reputation, SSL verification, MBFC factors, and WHOIS data."""
     checker = DomainReputationChecker()
     ranked_results = []
     mbfc_checker = MediaBiasChecker()
     
-    # Scoring weights (total adds up to 100)
+    # Updated scoring weights (total adds up to 100)
     SCORE_WEIGHTS = {
-        'ssl_verification': 15,
+        'ssl_verification': 10,
         'domain_age': 10,
-        'bias': 30,
-        'credibility': 25,
-        'factual_reporting': 20
+        'registrar_reputation': 10,
+        'contact_consistency': 5,
+        'nameserver_reputation': 5,
+        'domain_status': 5,
+        'bias': 25,
+        'credibility': 20,
+        'factual_reporting': 10
     }
     
     # Enhanced scoring mappings
@@ -60,16 +64,13 @@ def rank_sources_node(urls):
         score_components = {}  # Track individual score components for debugging
         
         try:
-            # Get domain reputation data
+            # Get comprehensive domain reputation data
             reputation_data = checker.check_domain_reputation(url)
             
-            # SSL Verification (15%)
+            # SSL Verification (10%)
             ssl_valid = reputation_data.get("ssl_valid", False)
-            if ssl_valid:
-                score += SCORE_WEIGHTS['ssl_verification']
-                score_components['ssl'] = SCORE_WEIGHTS['ssl_verification']
-            else:
-                score_components['ssl'] = 0
+            score += SCORE_WEIGHTS['ssl_verification'] if ssl_valid else 0
+            score_components['ssl'] = SCORE_WEIGHTS['ssl_verification'] if ssl_valid else 0
             
             # Domain Age (10%)
             domain_age = reputation_data.get("domain_age", 0)
@@ -80,6 +81,26 @@ def rank_sources_node(urls):
             else:
                 score_components['age'] = 0
             
+            # Registrar Reputation (10%)
+            registrar_score = reputation_data.get("registrar_reputation", 50)
+            score += registrar_score * (SCORE_WEIGHTS['registrar_reputation'] / 100)
+            score_components['registrar'] = registrar_score * (SCORE_WEIGHTS['registrar_reputation'] / 100)
+            
+            # Contact Consistency (5%)
+            contact_score = reputation_data.get("contact_consistency", 50)
+            score += contact_score * (SCORE_WEIGHTS['contact_consistency'] / 100)
+            score_components['contact'] = contact_score * (SCORE_WEIGHTS['contact_consistency'] / 100)
+            
+            # Nameserver Reputation (5%)
+            ns_score = reputation_data.get("nameserver_reputation", 50)
+            score += ns_score * (SCORE_WEIGHTS['nameserver_reputation'] / 100)
+            score_components['nameserver'] = ns_score * (SCORE_WEIGHTS['nameserver_reputation'] / 100)
+            
+            # Domain Status (5%)
+            status_score = reputation_data.get("domain_status", 70)
+            score += status_score * (SCORE_WEIGHTS['domain_status'] / 100)
+            score_components['status'] = status_score * (SCORE_WEIGHTS['domain_status'] / 100)
+            
             # Get MBFC data
             mbfc_data = mbfc_checker.check_bias(domain)
             LOGGER.debug(f"MBFC data for {domain}: {mbfc_data}")
@@ -89,7 +110,7 @@ def rank_sources_node(urls):
             credibility = mbfc_data.get("credibility", "Unknown").upper()
             factual = mbfc_data.get("factual_reporting", "Unknown").upper()
             
-            # Bias Score (30%)
+            # Bias Score (25%)
             bias_score = BIAS_SCORES.get(bias, BIAS_SCORES["Unknown"])
             bias_contribution = bias_score * (SCORE_WEIGHTS['bias'] / 100)
             score += bias_contribution
@@ -99,7 +120,7 @@ def rank_sources_node(urls):
                 'contribution': bias_contribution
             }
             
-            # Credibility Score (25%)
+            # Credibility Score (20%)
             credibility_score = CREDIBILITY_SCORES.get(credibility, CREDIBILITY_SCORES["Unknown"])
             cred_contribution = credibility_score * (SCORE_WEIGHTS['credibility'] / 100)
             score += cred_contribution
@@ -109,7 +130,7 @@ def rank_sources_node(urls):
                 'contribution': cred_contribution
             }
             
-            # Factual Reporting Score (20%)
+            # Factual Reporting Score (10%)
             factual_score = FACTUAL_SCORES.get(factual, FACTUAL_SCORES["Unknown"])
             factual_contribution = factual_score * (SCORE_WEIGHTS['factual_reporting'] / 100)
             score += factual_contribution
@@ -141,32 +162,3 @@ def rank_sources_node(urls):
     
     LOGGER.info(f"Final ranked sources:\n{json.dumps(ranked_results, indent=2)}")
     return {"ranked_results": ranked_results}
-
-# def source_ranking_node(state: AgentState):
-#     try:
-#         urls = state.get("search_urls", [])
-#         if not urls:
-#             # Fallback to check steps
-#             steps = state.get("steps", [])
-#             for step in steps:
-#                 if "search_result" in step:
-#                     search_result = step["search_result"]
-#                     if isinstance(search_result, dict) and 'results' in search_result:
-#                         urls = [r['url'] for r in search_result['results'] if 'url' in r]
-#                     elif isinstance(search_result, list):
-#                         urls = [r['url'] for r in search_result if isinstance(r, dict) and 'url' in r]
-#                     break
-                
-#         if not urls:
-#             raise ValueError("No URLs available for ranking")
-            
-#         LOGGER.info(f"URLs to rank: {urls}")
-#         ranked_results = rank_sources(urls)
-#         state["ranked_results"] = ranked_results
-        
-#         LOGGER.info(f"Ranked sources: {json.dumps(ranked_results, indent=2)}")
-#         return state
-#     except Exception as e:
-#         LOGGER.error(f"Error in source_ranking_node: {e}")
-#         state["ranked_results"] = []
-#         return state

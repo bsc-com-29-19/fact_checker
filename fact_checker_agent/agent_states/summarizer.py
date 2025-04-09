@@ -8,7 +8,7 @@ from langchain_core.messages import HumanMessage
 
 from fact_checker_agent.agent_states.memory import save_summary_to_db
 from fact_checker_agent.database.model import SummarizedResult
-from fact_checker_agent.agent_states.source_ranking import extract_domain
+#from fact_checker_agent.agent_states.source_ranking import extract_domain
 from fact_checker_agent.utils.log_config import LOGGER
 #from fact_checker_agent.database.model import SummarizedResult
 #from fact_checker_agent.agent_states.memory import MemoryManager
@@ -25,6 +25,8 @@ class Source(BaseModel):
     title:str =Field(description="The title of the source")
     url:str =Field(description="The url of the source with credibility scores")
     Score:int = Field(description="The credibility score of the source")
+    credibility: str = Field(description="Credibility rating from MBFC")
+    bias: str = Field(description="Bias rating from MBFC")
 
 
 class SummarizerInput(BaseModel):
@@ -79,7 +81,9 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
         sources = [
             {
                 "title": source["title"],
-                "url": f"{source['url']} (Score: {source.get('Score', 0)})"
+                "url": f"{source['url']} (Score: {source.get('Score', 0)})",
+                "credibility": source.get('credibility', 'Unknown'),
+                "bias": source.get('bias', 'Unknown')
                 
             }
             for source in state["sources"]

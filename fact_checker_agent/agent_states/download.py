@@ -31,6 +31,11 @@ async def download_node(state: AgentState, config: RunnableConfig):
     # if current_step["type"] != "search":
     #     raise ValueError("Current step is not of type search")
     
+    if "sources" in state:
+        for source in state["sources"]:
+            url = source.get("url", "")
+            if url:
+                current_step["updates"].append(f"Downloading information from: {url}")
   
     system_message = f"""
         This step was just executed: {json.dumps(current_step)}
@@ -65,6 +70,12 @@ async def download_node(state: AgentState, config: RunnableConfig):
 
     next_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
     if next_step:
-        next_step["updates"] = ["Searching the web..."]
+        if "sources" in state:
+            
+            for source in state["sources"]:
+                url = source.get("url", "")
+                if url:
+                    next_step["updates"].append(f"Downloading information from: {url}")
+            #next_step["updates"] = ["Searching the web..."]
 
     return state
