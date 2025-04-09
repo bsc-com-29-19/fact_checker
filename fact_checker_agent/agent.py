@@ -2,8 +2,9 @@
 #from typing import TypedDict,Literal
 
 from langgraph.graph import StateGraph,END
-
-#from fact_checker_agent.agent_states.source_ranking import source_ranking_node
+# import os
+# from pymongo import MongoClient
+from fact_checker_agent.agent_states.source_ranking import rank_sources_node
 from fact_checker_agent.agent_states.decomposer import decomposing_node
 from fact_checker_agent.agent_states.download import download_node
 # from fact_checker_agent.agent_states.nodes import should_continue
@@ -16,8 +17,7 @@ from fact_checker_agent.agent_states.summarizer import summarize_node
 # from fact_checker_agent.utils.models import call_model
 #from fact_checker_agent.agent_states.nodes import search_node
 from langgraph.checkpoint.memory import MemorySaver
-
-
+#from langgraph.checkpoint.mongodb import MongoDBSaver
 
 workflow = StateGraph(AgentState)
 # 
@@ -45,7 +45,7 @@ workflow.add_node("web_search_node",web_search_node)
 workflow.add_node("summarizer_node",summarize_node)
 workflow.add_node("decomposing_node",decomposing_node)
 workflow.add_node("download_node",download_node)
-#workflow.add_node("source_ranking_node",source_ranking_node)
+workflow.add_node("rank_sources_node",rank_sources_node)
 
 #Chatbot
 workflow.set_entry_point("steps_node")
@@ -58,7 +58,7 @@ workflow.add_conditional_edges(
 # workflow.add_edge("steps_node","web_search_node")
 # workflow.add_edge("steps_node","wikipedia_search_node")
 workflow.add_edge("web_search_node", "download_node")
-#workflow.add_edge("web_search_node","source_ranking_node")
+workflow.add_edge("web_search_node","rank_sources_node")
 #workflow.add_edge("wikipedia_search_node","download_node")
 # workflow.add_edge("download_node","decomposing_node")
 workflow.add_conditional_edges(
@@ -68,8 +68,8 @@ workflow.add_conditional_edges(
 )
 
 # workflow.add_edge("download_node","decomposing_node")
-workflow.add_edge("decomposing_node","summarizer_node")
-#workflow.add_edge("source_ranking_node","summarizer_node")
+workflow.add_edge(["decomposing_node","rank_sources_node"],"summarizer_node")
+# workflow.add_edge("rank_sources_node","summarizer_node")
 
 workflow.add_edge("summarizer_node", END)
 # workflow.add_edge("summarizer",END)

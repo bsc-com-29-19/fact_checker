@@ -3,6 +3,7 @@ import json
 
 from langchain_community.tools.tavily_search import TavilySearchResults
 
+from fact_checker_agent.agent_states.source_ranking import rank_sources_node
 from fact_checker_agent.utils.log_config import LOGGER
 from fact_checker_agent.agent_states.state import AgentState
 from langchain_core.runnables import RunnableConfig
@@ -49,27 +50,85 @@ def search_instructions(state: AgentState, current_step):
     This is what you need to search for: {current_step['description']}
     """
 
-async def run_search(state: AgentState, config: RunnableConfig, tool, step_type: str):
+# async def run_search(state: AgentState, config: RunnableConfig, tool, step_type: str):
     
+#     current_step = get_pending_step(state, step_type)
+#     instructions = search_instructions(state, current_step)
+        
+#     model = get_model(state).bind_tools([tool], tool_choice=tool.name)
+
+        
+#     response = await model.ainvoke([HumanMessage(content=instructions)], config)
+        
+#     # Get the first tool call
+#     tool_call = response.tool_calls[0]
+#     LOGGER.info(f"Showwing tools\n\n{tool_call}" )
+#     # total_results = []
+#     # if step_type == "search":
+#     search_tool_msg_answer = await tool.ainvoke(tool_call)
+    
+#     LOGGER.info(f"The results of tavily \n\n{json.loads(search_tool_msg_answer.content)}")
+#     search_response = [json.loads(search_tool_msg_answer.content)]
+#     current_step["search_result"] = search_response
+#     state["search_results"] = search_response
+    
+#     LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
+    
+#     return state
+async def run_search(state: AgentState, config: RunnableConfig, tool, step_type: str):
     current_step = get_pending_step(state, step_type)
     instructions = search_instructions(state, current_step)
         
     model = get_model(state).bind_tools([tool], tool_choice=tool.name)
-
-        
     response = await model.ainvoke([HumanMessage(content=instructions)], config)
         
     # Get the first tool call
     tool_call = response.tool_calls[0]
-    LOGGER.info(f"Showwing tools\n\n{tool_call}" )
-    # total_results = []
-    # if step_type == "search":
+    LOGGER.info(f"Showing tools\n\n{tool_call}")
+    
     search_tool_msg_answer = await tool.ainvoke(tool_call)
+    answer = search_tool_msg_answer.artifact
+    LOGGER.info(f"The Raw results of tavily \n\n{search_tool_msg_answer.artifact}" )
+    search_response = json.loads(search_tool_msg_answer.content)
     
-    LOGGER.info(f"The results of tavily \n\n{json.loads(search_tool_msg_answer.content)}")
-    search_response = [json.loads(search_tool_msg_answer.content)]
-    current_step["search_result"] = search_response
+    # Extract URLs from search results
+    urls_title = []
+    if isinstance(answer, dict) and 'results' in answer:
+        for result in answer['results']:
+            if isinstance(result, dict) and 'url' in result:
+                title = result.get('title', 'No title available')
+                url = result['url']
+                urls_title.append((title, url))
+                current_step["updates"].append(f"Searching on: {url}")
+    elif isinstance(answer, list):
+        for result in answer:
+            if isinstance(result, dict) and 'url' in result:
+                title = result.get('title', 'No title available')
+                url = result['url']
+                urls_title.append((title, url))
+                current_step["updates"].append(f"Searching on: {url}")
+    LOGGER.info(f"Extracted URLs and TITLE: {urls_title}")
     
+    #extract url
+    urls = [url for title, url in urls_title]
+    current_step["updates"].append("Ranking sources based on their credibility....")
+    ranked_results = rank_sources_node(urls)
+    ranked_urls = {url: score for url, score in ranked_results["ranked_results"]}
+    sources = []
+    for title, url in urls_title:
+        sources.append({
+            "title": title,  # Keep the original title from search results
+            "url": url,
+            "Score": ranked_urls.get(url, 0)  # Use the score from ranking
+        })
+    LOGGER.info(f"Extracted URLs and TITLE: {sources}")
+    # Store URLs in state
+    
+    state["ranked_results"] = ranked_results["ranked_results"]  # Store ranked_results
+    state["sources"] = sources#[{"url": url, "score": score} for url, score in ranked_results["ranked_results"]]
+    current_step["search_result"] = search_response  # Keep original for reference
+    
+    LOGGER.info(f"Extracted URLs: {state['ranked_results']}")
     LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
     
     return state
@@ -79,6 +138,11 @@ async def run_search(state: AgentState, config: RunnableConfig, tool, step_type:
 #the search method
 async def web_search_node(state: AgentState,config: RunnableConfig):
     """Search the web for information using Tavily API."""
+    
+    current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
+    if current_step:
+        current_step["updates"] = ["Initializing web search..."]
+        
     tavily_search_tool = TavilySearchResults(
         max_results = 3,
         search_depth="advanced",

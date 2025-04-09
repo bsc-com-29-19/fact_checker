@@ -28,4 +28,5 @@ class AgentState(MessagesState):
      steps: Annotated[List[Step], operator.add] #List[Step]
     #  context:Annotated[Sequence[BaseMessage],add_messages]
      answer:Optional[str]
+     sources: Optional[List[dict]]
     #  query: Optional[str]
