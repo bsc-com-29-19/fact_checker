@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { useResearchContext } from "@/lib/research-provider";
 import HomeView from "./HomeView";
 import { ResultsView } from "./ResultsView";
+import { ViewContainer } from "./ViewContainer";
 
 export function ResearchWrapper() {
   const { researchQuery, setResearchInput } = useResearchContext();
@@ -23,7 +24,9 @@ export function ResearchWrapper() {
             </AnimatePresence>
           ) : (
             <AnimatePresence key="home" mode="wait">
+              {/* <HomeView key="home" /> */}
               <HomeView key="home" />
+              {/* <ViewContainer key="viewcontainer" /> */}
             </AnimatePresence>
           )}
         </div>

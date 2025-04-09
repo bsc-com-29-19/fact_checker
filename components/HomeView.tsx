@@ -74,7 +74,10 @@ export default function HomeView() {
   };
 
   return (
-    <div className={`min-h-screen ${darkMode ? "dark" : ""}`}>
+    <div
+      className="flex flex-1"
+      style={{ height: "calc(100vh - 60px)" }}
+    >
       {/* Sources Sidebar */}
       <div
         className={`fixed inset-y-0 left-0 w-64 bg-gray-200 dark:bg-gray-900 shadow-lg transform ${
@@ -202,7 +205,7 @@ export default function HomeView() {
                 }}
                 maxLength={MAX_INPUT_LENGTH}
               />
-              <div className="text-xs p-4 flex items-center justify-between">
+              <div className="text-xs p-4 flex items-center justify-between gap-4">
                 <div
                   className={cn(
                     "transition-all duration-300 mt-4 text-slate-500",
@@ -212,10 +215,11 @@ export default function HomeView() {
                     }
                   )}
                 >
-                  <AgentSelector />
-                  <ModelSelector />
                   {researchInput.length} / {MAX_INPUT_LENGTH}
                 </div>
+                <ModelSelector />
+                <AgentSelector />
+
                 <Button onClick={() => handleResearch(researchInput)}>
                   Check
                   <CornerDownLeftIcon className="w-4 h-4 ml-2" />
@@ -227,15 +231,27 @@ export default function HomeView() {
       </div>
 
       {/* Copilot Sidebar */}
-      {/* <div className="fixed right-0 top-0 h-full">
-          <CopilotSidebar
-            defaultOpen={true}
-            clickOutsideToClose={false}
-            Input={() => null}
-            Header={CustomHeader}
-            Window={CustomWindow}
-          />
-        </div> */}
+      <div
+        className="w-[500px] h-full flex-shrink-0"
+        style={
+          {
+            "--copilot-kit-background-color": "#E0E9FD",
+            "--copilot-kit-secondary-color": "#6766FC",
+            "--copilot-kit-separator-color": "#b8b8b8",
+            "--copilot-kit-primary-color": "#FFFFFF",
+            "--copilot-kit-contrast-color": "#000000",
+            "--copilot-kit-secondary-contrast-color": "#000",
+          } as any
+        }
+      >
+        <CopilotSidebar
+          defaultOpen={true}
+          clickOutsideToClose={false}
+          Input={() => null}
+          Header={CustomHeader}
+          Window={CustomWindow}
+        />
+      </div>
     </div>
   );
 }

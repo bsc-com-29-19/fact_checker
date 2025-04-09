@@ -9,17 +9,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useAgent } from "@/contexts/agentContext"; 
+import { useAgent } from "@/contexts/agentContext";
 
 export function AgentSelector() {
   const { agent, setAgent } = useAgent(); // Use the useAgent hook
 
+  const handleValueChange = (value: "fact_checker_agent" | "youtube") => {
+    setAgent(value);
+  };
+
   return (
     <div className="">
-      <Select
-        value={agent}
-        onValueChange={(v: "fact_checker_agent" | "youtube") => setAgent(v)}
-      >
+      <Select value={agent} onValueChange={handleValueChange}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select agent" />
         </SelectTrigger>

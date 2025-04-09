@@ -4,9 +4,7 @@
 import { ResearchProvider } from "@/lib/research-provider";
 import { CopilotKit } from "@copilotkit/react-core";
 import { ResearchWrapper } from "@/components/ResearchWrapper";
-import { useCoAgent } from "@copilotkit/react-core";
-import { ModelProvider, useModel } from "@/contexts/modelContext";
-import { ModelSelector } from "@/components/modelSelector";
+import { ModelProvider } from "@/contexts/modelContext";
 import { AgentProvider } from "@/contexts/agentContext";
 import { LanguageProvider } from "@/contexts/languageContext";
 
