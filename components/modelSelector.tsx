@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useCallback } from "react";
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
 import {
   Select,
   SelectContent,
@@ -9,7 +11,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useModel } from "@/contexts/modelContext";
-
 export function ModelSelector() {
   const { model, setModel } = useModel();
 
@@ -22,13 +23,10 @@ export function ModelSelector() {
         | "claude-3-sonnet-20240229"
         | "deepseek-r1:latest"
     ) => {
-      // Prevent default behavior just in case
       if (typeof window !== "undefined") {
         window.__isModelSelecting = true;
       }
-
       setModel(value);
-
       setTimeout(() => {
         if (typeof window !== "undefined") {
           window.__isModelSelecting = false;
@@ -40,18 +38,20 @@ export function ModelSelector() {
 
   return (
     <div
-      onClick={(e) => e.preventDefault()} // Additional safeguard
-      onKeyDown={(e) => e.preventDefault()} // Additional safeguard
+      onClick={(e) => e.preventDefault()}
+      onKeyDown={(e) => e.preventDefault()}
     >
       <Select value={model} onValueChange={handleValueChange}>
         <SelectTrigger
-          className="w-[180px]"
+          data-tooltip-id="my-tooltip"
+          data-tooltip-content="Select a model"
+          data-tooltip-place="top"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
           }}
         >
-          <SelectValue placeholder="Select model" />
+          <SelectValue placeholder="" />
         </SelectTrigger>
         <SelectContent>
           <SelectItem
@@ -80,6 +80,7 @@ export function ModelSelector() {
           </SelectItem>
         </SelectContent>
       </Select>
+      <Tooltip id="my-tooltip" />
     </div>
   );
 }

@@ -4,18 +4,18 @@
 import { useResearchContext } from "@/lib/research-provider";
 import { motion } from "framer-motion";
 import { BookOpenIcon, LoaderCircleIcon, SparkleIcon } from "lucide-react";
-import { useCoAgent } from "@copilotkit/react-core";
-import { Progress } from "@/components/progress";
 import { AnswerMarkdown } from "./AnswerMarkdown";
+import { useCoAgent } from "@copilotkit/react-core";
 import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
 import { AgentState } from "@/lib/types";
+import { readEnv } from "openai/core.mjs";
 
 export function ResultsView() {
   const { researchQuery } = useResearchContext();
   const { model } = useModel();
   const { agent } = useAgent();
-  //👇🏻 agent state
+
   const { state: agentState } = useCoAgent<AgentState>({
     name: agent,
     initialState: {
@@ -23,30 +23,11 @@ export function ResultsView() {
     },
   });
 
-  console.log("AGENT_STATE", agentState);
-
-  //👇🏻 keeps track of the current agent processing state
-  const steps =
-    agentState?.steps?.map((step: any) => {
-      return {
-        description: step.description || "",
-        status: step.status || "pending",
-        updates: step.updates || [],
-      };
-    }) || [];
-
   const isLoading = !agentState?.answer?.markdown;
 
   return (
-    <div className="max-w-[1000px] p-8 lg:p-4 flex flex-col gap-y-8 mt-4 lg:mt-6 text-sm lg:text-base">
-      <div className="space-y-4">
-        <h1 className="text-3xl lg:text-4xl font-extralight">
-          {researchQuery}
-        </h1>
-      </div>
-
-      <Progress steps={steps} />
-
+    <div className="p-4 flex flex-col gap-y-8">
+      {researchQuery}
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-8 flex flex-col">
           <h2 className="flex items-center gap-x-2">
@@ -62,7 +43,7 @@ export function ResultsView() {
             {isLoading ? (
               "Loading...."
             ) : (
-              <AnswerMarkdown markdown={agentState?.answer?.markdown} /> //👈🏼 displays search results
+              <AnswerMarkdown markdown={agentState?.answer?.markdown} />
             )}
           </div>
         </div>
@@ -72,7 +53,7 @@ export function ResultsView() {
             <h2 className="flex items-center gap-x-2">
               <BookOpenIcon className="w-4 h-4 text-slate-500" />
               References
-            </h2>
+           </h2>
             <ul className="text-slate-900 font-light text-sm flex flex-col gap-y-2">
               {agentState?.answer?.references?.map((ref: any, idx: number) => (
                 <li key={idx}>

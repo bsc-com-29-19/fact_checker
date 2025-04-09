@@ -2,6 +2,8 @@
 "use client";
 
 import React from "react";
+import "react-tooltip/dist/react-tooltip.css";
+
 import {
   Select,
   SelectContent,
@@ -10,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useAgent } from "@/contexts/agentContext";
+import { Tooltip } from "react-tooltip";
 
 export function AgentSelector() {
   const { agent, setAgent } = useAgent(); // Use the useAgent hook
@@ -21,14 +24,19 @@ export function AgentSelector() {
   return (
     <div className="">
       <Select value={agent} onValueChange={handleValueChange}>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Select agent" />
+        <SelectTrigger
+          data-tooltip-id="my-tooltip"
+          data-tooltip-content="Select an agent"
+          data-tooltip-place="top"
+        >
+          <SelectValue placeholder="Select an gent " />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="fact_checker_agent">Fact Check Agent</SelectItem>
           <SelectItem value="youtube">YouTube Agent</SelectItem>
         </SelectContent>
       </Select>
+      <Tooltip id="my-tooltip" />
     </div>
   );
 }

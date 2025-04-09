@@ -20,7 +20,6 @@ import { Textarea } from "./ui/textArea";
 import { useResearchContext } from "@/lib/research-provider";
 import { MessageRole, TextMessage } from "@copilotkit/runtime-client-gql";
 import { AgentState } from "@/lib/types";
-import { Agent } from "http";
 import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
 
@@ -74,10 +73,7 @@ export default function HomeView() {
   };
 
   return (
-    <div
-      className="flex flex-1"
-      style={{ height: "calc(100vh - 60px)" }}
-    >
+    <div className="flex flex-1" style={{ height: "calc(100vh - 60px)" }}>
       {/* Sources Sidebar */}
       <div
         className={`fixed inset-y-0 left-0 w-64 bg-gray-200 dark:bg-gray-900 shadow-lg transform ${
@@ -222,35 +218,12 @@ export default function HomeView() {
 
                 <Button onClick={() => handleResearch(researchInput)}>
                   Check
-                  <CornerDownLeftIcon className="w-4 h-4 ml-2" />
+                  <CornerDownLeftIcon className="w-2 h-2 ml-2" />
                 </Button>
               </div>
             </div>
           </div>
         </main>
-      </div>
-
-      {/* Copilot Sidebar */}
-      <div
-        className="w-[500px] h-full flex-shrink-0"
-        style={
-          {
-            "--copilot-kit-background-color": "#E0E9FD",
-            "--copilot-kit-secondary-color": "#6766FC",
-            "--copilot-kit-separator-color": "#b8b8b8",
-            "--copilot-kit-primary-color": "#FFFFFF",
-            "--copilot-kit-contrast-color": "#000000",
-            "--copilot-kit-secondary-contrast-color": "#000",
-          } as any
-        }
-      >
-        <CopilotSidebar
-          defaultOpen={true}
-          clickOutsideToClose={false}
-          Input={() => null}
-          Header={CustomHeader}
-          Window={CustomWindow}
-        />
       </div>
     </div>
   );
