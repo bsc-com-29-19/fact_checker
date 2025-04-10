@@ -16,7 +16,7 @@ export function ResultsView() {
     const { researchQuery } = useResearchContext();
     const {model} = useModel();
     const {agent} = useAgent();
-    //👇🏻 agent state
+    //agent state
     const { state: agentState } = useCoAgent<AgentState>({
         name: agent,
         initialState:{
@@ -26,7 +26,7 @@ export function ResultsView() {
 
     console.log("AGENT_STATE", agentState);
 
-    //👇🏻 keeps track of the current agent processing state
+    //keeps track of the current agent processing state
     const steps =
         agentState?.steps?.map((step: any) => {
             return {
@@ -72,7 +72,7 @@ export function ResultsView() {
                             // )
                             'Loading....'
                              : (
-                                <AnswerMarkdown markdown={agentState?.answer?.markdown} /> //👈🏼 displays search results
+                                <AnswerMarkdown markdown={agentState?.answer?.markdown} /> // displays search results
                             )}
                         </div>
                     </div>

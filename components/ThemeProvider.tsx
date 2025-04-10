@@ -1,22 +1,14 @@
-import React, { useState } from 'react';
-import ThemeContext from '@/contexts/ThemeContext';
+// ThemeProvider.tsx
+import { ThemeProvider } from '@/contexts/ThemeContext';
 
-interface ThemeProviderProps {
-  children: React.ReactNode;
-}
-
-const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeProvider>
+      <html lang="en" className="h-full">
+        <body className="h-full">
+          {children}
+        </body>
+      </html>
+    </ThemeProvider>
   );
-};
-
-export default ThemeProvider;
+}
