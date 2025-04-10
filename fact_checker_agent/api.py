@@ -4,6 +4,10 @@ import os
 import sys
 from dotenv import load_dotenv
 
+#from fact_checker_agent.agent_states.memory import MemoryManager
+from fact_checker_agent.database.config import async_pool
+from fact_checker_agent.agent_states.memory import PostgresMemoryManager
+
 # from fact_checker_agent.agent_states.search import web_search
 # from fact_checker_agent.agent_states.state import AgentState
 
@@ -12,7 +16,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 load_dotenv()
 
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, HTTPException, Query
 import uvicorn
 from copilotkit.integrations.fastapi import  add_fastapi_endpoint
 from copilotkit import LangGraphAgent,CopilotKitRemoteEndpoint
@@ -39,6 +43,16 @@ add_fastapi_endpoint(app, sdk,"/copilotkit")
 @app.get("/health")
 async def health():
     return {"status": "ok"}
+
+#memory_manager = MemoryManager()
+memory_manager = PostgresMemoryManager(async_pool)
+
+@app.get("/summaries/")
+async def get_summaries(query: str = None, thread_id: str = None, limit: int = 10):
+    try:
+        return memory_manager.get_summaries(query=query, thread_id=thread_id, limit=limit)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 # @app.get("/search/")
