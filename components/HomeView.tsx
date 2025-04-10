@@ -22,6 +22,7 @@ import { MessageRole, TextMessage } from "@copilotkit/runtime-client-gql";
 import { AgentState } from "@/lib/types";
 import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
+import RecordingView from "./RecordingView";
 
 export default function HomeView() {
   const [darkMode, setDarkMode] = useState(false);
@@ -215,9 +216,12 @@ export default function HomeView() {
                 </div>
                 <ModelSelector />
                 <AgentSelector />
-
+                <RecordingView
+                  onTranscriptChange={(transcript) =>
+                    setResearchInput(transcript)
+                  }
+                />
                 <Button onClick={() => handleResearch(researchInput)}>
-                  Check
                   <CornerDownLeftIcon className="w-2 h-2 ml-2" />
                 </Button>
               </div>
