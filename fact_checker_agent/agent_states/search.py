@@ -50,31 +50,8 @@ def search_instructions(state: AgentState, current_step):
     This is what you need to search for: {current_step['description']}
     """
 
-# async def run_search(state: AgentState, config: RunnableConfig, tool, step_type: str):
-    
-#     current_step = get_pending_step(state, step_type)
-#     instructions = search_instructions(state, current_step)
-        
-#     model = get_model(state).bind_tools([tool], tool_choice=tool.name)
 
-        
-#     response = await model.ainvoke([HumanMessage(content=instructions)], config)
-        
-#     # Get the first tool call
-#     tool_call = response.tool_calls[0]
-#     LOGGER.info(f"Showwing tools\n\n{tool_call}" )
-#     # total_results = []
-#     # if step_type == "search":
-#     search_tool_msg_answer = await tool.ainvoke(tool_call)
-    
-#     LOGGER.info(f"The results of tavily \n\n{json.loads(search_tool_msg_answer.content)}")
-#     search_response = [json.loads(search_tool_msg_answer.content)]
-#     current_step["search_result"] = search_response
-#     state["search_results"] = search_response
-    
-#     LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
-    
-#     return state
+
 async def run_search(state: AgentState, config: RunnableConfig, tool, step_type: str):
     current_step = get_pending_step(state, step_type)
     instructions = search_instructions(state, current_step)
@@ -125,7 +102,7 @@ async def run_search(state: AgentState, config: RunnableConfig, tool, step_type:
     # Store URLs in state
     
     state["ranked_results"] = ranked_results["ranked_results"]  # Store ranked_results
-    state["sources"] = sources#[{"url": url, "score": score} for url, score in ranked_results["ranked_results"]]
+    state["sources"] = sources # Store sources with titles and scores
     current_step["search_result"] = search_response  # Keep original for reference
     
     LOGGER.info(f"Extracted URLs: {state['ranked_results']}")
