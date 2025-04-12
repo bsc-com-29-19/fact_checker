@@ -3,7 +3,7 @@
 import os
 import sys
 from dotenv import load_dotenv
-from fact_checker_agent.agent import  graph
+
 
 from fastapi import FastAPI
 import uvicorn
@@ -14,7 +14,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 load_dotenv()
 
- 
+from fact_checker_agent.agent import  graph
 
 
 
