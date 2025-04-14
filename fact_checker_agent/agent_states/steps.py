@@ -70,6 +70,7 @@ The current date is {datetime.now().strftime("%Y-%m-%d")}.
         steps = response.tool_calls[0]["args"]["steps"]
 
     if len(steps) != 0:
+        
         steps[0]["updates"] = ["Searching the web..."]
         # if steps[0]["type"] == "Wikipedia_search":
         #     steps[0]["updates"] = ["Searching on Wikipedia"]
