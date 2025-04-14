@@ -4,3 +4,5 @@ __pycache__/
 .env
 .vercel
 .venv
+.langgraph_api/*.pckl
+.langgraph_api

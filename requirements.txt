@@ -17,4 +17,16 @@ uvicorn[standard]
 fastapi
 python-dotenv
 copilotkit
+python-whois
+requests
+tldextract
+beautifulsoup4
+#seleium
+#pymongo
+langgraph-checkpoint-mongodb
+pymongo[srv]
+langgraph-checkpoint-postgres
+psycopg[binary,pool]
+rich
+langgraph-checkpoint-sqlite
 

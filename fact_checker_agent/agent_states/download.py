@@ -10,7 +10,7 @@ from fact_checker_agent.utils.models import get_model
 async def download_node(state: AgentState, config: RunnableConfig):
     
     """
-    The download node is responsible for extracting raw data from a Tavily search.
+    The download node is responsible for extracting raw data from a Tavily search and Wikipedia search.
     Instead of summarizing the results, extract all relevant information including key facts and inline reference links.
     This raw data will be used later to decompose the claim into supported (true) and unsupported (false) components.
     """
@@ -19,11 +19,23 @@ async def download_node(state: AgentState, config: RunnableConfig):
     LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
 
     if current_step is None:
-        raise ValueError("No current step")
+        LOGGER.warning("No current step found, skipping download")
+        return state  # Return state instead of raising error
 
     if current_step["type"] != "search":
         raise ValueError("Current step is not of type search")
+
+    # if current_step is None:
+    #     raise ValueError("No current step")
+
+    # if current_step["type"] != "search":
+    #     raise ValueError("Current step is not of type search")
     
+    if "sources" in state:
+        for source in state["sources"]:
+            url = source.get("url", "")
+            if url:
+                current_step["updates"].append(f"Downloading information from: {url}")
   
     system_message = f"""
         This step was just executed: {json.dumps(current_step)}
@@ -58,6 +70,12 @@ async def download_node(state: AgentState, config: RunnableConfig):
 
     next_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
     if next_step:
-        next_step["updates"] = ["Searching the web..."]
+        if "sources" in state:
+            
+            for source in state["sources"]:
+                url = source.get("url", "")
+                if url:
+                    next_step["updates"].append(f"Downloading information from: {url}")
+            #next_step["updates"] = ["Searching the web..."]
 
     return state
