@@ -15,8 +15,10 @@ def get_model(state:AgentState):
     # model_name = 
 
     print(f"model_name: {model_name}")
-
-    if model_name == "gpt-3.5-turbo":
+    
+    if model_name == "gpt-4o":
+        model = ChatOpenAI(temperature=0,model_name=model_name)
+    elif model_name == "gpt-3.5-turbo":
         model = ChatOpenAI(temperature=0,model_name=model_name)
     elif model_name == "llama3.5":
         model = ChatOllama(temperature=0,model_name=model_name)
