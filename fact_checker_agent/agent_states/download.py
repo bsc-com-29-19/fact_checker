@@ -5,6 +5,7 @@ from fact_checker_agent.utils.log_config import LOGGER
 from fact_checker_agent.agent_states.state import AgentState
 from langchain_core.messages import HumanMessage
 from fact_checker_agent.utils.models import get_model
+from fact_checker_agent.agent_states.states_show_helper import append_update_to_step
 
 
 async def download_node(state: AgentState, config: RunnableConfig):
@@ -75,7 +76,5 @@ async def download_node(state: AgentState, config: RunnableConfig):
             for source in state["sources"]:
                 url = source.get("url", "")
                 if url:
-                    next_step["updates"].append(f"Downloading information from: {url}")
-            #next_step["updates"] = ["Searching the web..."]
-
+                    append_update_to_step(state, "download", f"Downloading information from: {url}")
     return state

@@ -16,7 +16,10 @@ from fact_checker_agent.agent_states.steps import steps_node
 from fact_checker_agent.agent_states.summarizer import summarize_node
 # from fact_checker_agent.utils.models import call_model
 #from fact_checker_agent.agent_states.nodes import search_node
-from langgraph.checkpoint.memory import MemorySaver
+# from langgraph.checkpoint.memory import MemorySaver
+
+
+from fact_checker_agent.database.configsql import SQLiteMemoryManager
 #from langgraph.checkpoint.mongodb import MongoDBSaver
 
 workflow = StateGraph(AgentState)
@@ -36,7 +39,8 @@ workflow = StateGraph(AgentState)
 
 
 #adding checkpointer memory
-memory = MemorySaver()
+# memory = MemorySaver()
+memory = SQLiteMemoryManager()
 
 # workflow.add_edge("web_search","agent")
 workflow.add_node("steps_node",steps_node)

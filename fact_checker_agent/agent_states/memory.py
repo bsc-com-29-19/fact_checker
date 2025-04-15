@@ -11,17 +11,15 @@
 #         LOGGER.info(f"Error saving summary to MongoDB: {e}")
 # memory.py
 
+# memory.py
 from fact_checker_agent.database.model import SummarizedResult
 from fact_checker_agent.utils.log_config import LOGGER
 from fact_checker_agent.database.configsql import memory_manager
 
-
-
-
-def save_summary_to_db(summary: SummarizedResult):
-    """Saves the summarized result to SQLite database."""
+async def save_summary_to_db(summary: SummarizedResult):
+    """Asynchronously saves the summarized result to SQLite database."""
     try:
-        memory_manager.save_agent_history(
+        await memory_manager.save_agent_history(
             query=summary.query,
             response_markdown=summary.summary,
             sources=summary.sources,

@@ -142,7 +142,7 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     )
     
     # Save to SQLite database
-    save_summary_to_db(results)
+    await save_summary_to_db(results)
     
     return {
         "answer": summarized_data["markdown"],

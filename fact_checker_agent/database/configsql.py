@@ -1,27 +1,26 @@
-# configsql.py
-import sqlite3
+import aiosqlite
 from typing import Optional, List, Dict, Any
-#from datetime import datetime
 from pathlib import Path
 import logging
 import json
+import asyncio
 
-# Set up logging
 logger = logging.getLogger(__name__)
 
 class SQLiteMemoryManager:
     def __init__(self, db_path: str = "fact_checker_agent.db"):
         self.db_path = db_path
-        self._init_db()
-        
-    def _init_db(self):
-        
+        self._initialized = False
+        self._connection = None  # Store a single connection
+
+    async def initialize(self):
+        """Initialize the database connection and tables"""
+        await self._init_db()
+
+    async def _init_db(self):
         """Initialize the database with required tables"""
-        with self._get_connection() as conn:
-            cursor = conn.cursor()
-            
-            # Create agent_history table
-            cursor.execute('''
+        async with aiosqlite.connect(self.db_path) as conn:
+            await conn.execute('''
                 CREATE TABLE IF NOT EXISTS agent_history (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     thread_id TEXT,
@@ -32,9 +31,7 @@ class SQLiteMemoryManager:
                     UNIQUE(thread_id, query)
                 )
             ''')
-            
-            # Create source_credibility table
-            cursor.execute('''
+            await conn.execute('''
                 CREATE TABLE IF NOT EXISTS source_credibility (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     domain TEXT NOT NULL,
@@ -44,101 +41,110 @@ class SQLiteMemoryManager:
                     UNIQUE(domain, url)
                 )
             ''')
-            
-            conn.commit()
-    
-    def _get_connection(self):
-        """Get a database connection"""
-        Path(self.db_path).parent.mkdir(parents=True, exist_ok=True)
-        return sqlite3.connect(self.db_path)
-    
-    def save_agent_history(
+            await conn.commit()
+        self._initialized = True
+
+    async def _get_connection(self):
+        """Get an async database connection"""
+        if self._connection is None:
+            dir_path = Path(self.db_path).parent
+            await asyncio.to_thread(dir_path.mkdir, parents=True, exist_ok=True)
+            self._connection = await aiosqlite.connect(self.db_path)
+        return self._connection
+
+    async def close(self):
+        """Close the database connection"""
+        if self._connection is not None:
+            await self._connection.close()
+            self._connection = None
+
+    async def save_agent_history(
         self,
         query: str,
         response_markdown: str,
         sources: List[Dict[str, Any]],
         thread_id: Optional[str] = None
     ):
-        """Save agent interaction to history"""
+        """Save agent interaction to history asynchronously"""
         try:
-            with self._get_connection() as conn:
-                cursor = conn.cursor()
-                cursor.execute('''
-                    INSERT OR REPLACE INTO agent_history (
-                        thread_id, query, response_markdown, sources_json
-                    ) VALUES (?, ?, ?, ?)
-                ''', (
-                    thread_id,
-                    query,
-                    response_markdown,
-                    json.dumps(sources)
-                ))
-                conn.commit()
+            conn = await self._get_connection()
+            await conn.execute('''
+                INSERT OR REPLACE INTO agent_history (
+                    thread_id, query, response_markdown, sources_json
+                ) VALUES (?, ?, ?, ?)
+            ''', (
+                thread_id,
+                query,
+                response_markdown,
+                json.dumps(sources)
+            ))
+            await conn.commit()
         except Exception as e:
             logger.error(f"Error saving agent history: {e}")
             raise
-    
-    def get_agent_history(
+
+
+    async def get_agent_history(
         self,
         thread_id: Optional[str] = None,
         limit: int = 10
     ) -> List[Dict[str, Any]]:
-        """Retrieve agent history"""
+        """Retrieve agent history asynchronously"""
         try:
-            with self._get_connection() as conn:
-                conn.row_factory = sqlite3.Row
-                cursor = conn.cursor()
+            async with await self._get_connection() as conn:
+                conn.row_factory = aiosqlite.Row
+                cursor = await conn.cursor()
                 
                 if thread_id:
-                    cursor.execute('''
+                    await cursor.execute('''
                         SELECT * FROM agent_history 
                         WHERE thread_id = ?
                         ORDER BY timestamp DESC
                         LIMIT ?
                     ''', (thread_id, limit))
                 else:
-                    cursor.execute('''
+                    await cursor.execute('''
                         SELECT * FROM agent_history 
                         ORDER BY timestamp DESC
                         LIMIT ?
                     ''', (limit,))
                 
-                return [dict(row) for row in cursor.fetchall()]
+                rows = await cursor.fetchall()
+                return [dict(row) for row in rows]
         except Exception as e:
             logger.error(f"Error retrieving agent history: {e}")
             return []
-    
-    def update_source_credibility(
+
+    async def update_source_credibility(
         self,
         domain: str,
         url: str,
         score: float
     ):
-        """Update or insert source credibility information"""
+        """Update or insert source credibility information asynchronously"""
         try:
-            with self._get_connection() as conn:
-                cursor = conn.cursor()
-                cursor.execute('''
+            async with await self._get_connection() as conn:
+                await conn.execute('''
                     INSERT OR REPLACE INTO source_credibility (
                         domain, url, score, last_used
                     ) VALUES (?, ?, ?, CURRENT_TIMESTAMP)
                 ''', (domain, url, score))
-                conn.commit()
+                await conn.commit()
         except Exception as e:
             logger.error(f"Error updating source credibility: {e}")
             raise
-    
-    def get_source_credibility(self, domain: str) -> Optional[float]:
-        """Get average credibility score for a domain"""
+
+    async def get_source_credibility(self, domain: str) -> Optional[float]:
+        """Get average credibility score for a domain asynchronously"""
         try:
-            with self._get_connection() as conn:
-                cursor = conn.cursor()
-                cursor.execute('''
+            async with await self._get_connection() as conn:
+                cursor = await conn.cursor()
+                await cursor.execute('''
                     SELECT AVG(score) as avg_score 
                     FROM source_credibility 
                     WHERE domain = ?
                 ''', (domain,))
-                result = cursor.fetchone()
+                result = await cursor.fetchone()
                 return result[0] if result and result[0] is not None else None
         except Exception as e:
             logger.error(f"Error getting source credibility: {e}")
