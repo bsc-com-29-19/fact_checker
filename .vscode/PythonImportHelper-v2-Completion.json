@@ -1,5 +1,21 @@
 [
     {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
@@ -105,22 +121,6 @@
         "documentation": {}
     },
     {
-        "label": "AgentState",
-        "importPath": "fact_checker_agent.agent_states.state",
-        "description": "fact_checker_agent.agent_states.state",
-        "isExtraImport": true,
-        "detail": "fact_checker_agent.agent_states.state",
-        "documentation": {}
-    },
-    {
-        "label": "AgentState",
-        "importPath": "fact_checker_agent.agent_states.state",
-        "description": "fact_checker_agent.agent_states.state",
-        "isExtraImport": true,
-        "detail": "fact_checker_agent.agent_states.state",
-        "documentation": {}
-    },
-    {
         "label": "HumanMessage",
         "importPath": "langchain_core.messages",
         "description": "langchain_core.messages",
@@ -138,14 +138,6 @@
     },
     {
         "label": "HumanMessage",
-        "importPath": "langchain_core.messages",
-        "description": "langchain_core.messages",
-        "isExtraImport": true,
-        "detail": "langchain_core.messages",
-        "documentation": {}
-    },
-    {
-        "label": "BaseMessage",
         "importPath": "langchain_core.messages",
         "description": "langchain_core.messages",
         "isExtraImport": true,
@@ -209,19 +201,289 @@
         "documentation": {}
     },
     {
-        "label": "steps",
-        "importPath": "fact_checker_agent.agent_states",
-        "description": "fact_checker_agent.agent_states",
+        "label": "whois",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "fact_checker_agent.agent_states",
+        "importPath": "whois",
+        "description": "whois",
+        "detail": "whois",
         "documentation": {}
     },
     {
-        "label": "StateGraph",
-        "importPath": "langgraph.graph",
-        "description": "langgraph.graph",
+        "label": "ssl",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "langgraph.graph",
+        "importPath": "ssl",
+        "description": "ssl",
+        "detail": "ssl",
+        "documentation": {}
+    },
+    {
+        "label": "socket",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "socket",
+        "description": "socket",
+        "detail": "socket",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TypedDict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Annotated",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "tldextract",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tldextract",
+        "description": "tldextract",
+        "detail": "tldextract",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "importPath": "fact_checker_agent.utils.log_config",
+        "description": "fact_checker_agent.utils.log_config",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.log_config",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "importPath": "fact_checker_agent.utils.log_config",
+        "description": "fact_checker_agent.utils.log_config",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.log_config",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "importPath": "fact_checker_agent.utils.log_config",
+        "description": "fact_checker_agent.utils.log_config",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.log_config",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "importPath": "fact_checker_agent.utils.log_config",
+        "description": "fact_checker_agent.utils.log_config",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.log_config",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "importPath": "fact_checker_agent.utils.log_config",
+        "description": "fact_checker_agent.utils.log_config",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.log_config",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "importPath": "fact_checker_agent.utils.log_config",
+        "description": "fact_checker_agent.utils.log_config",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.log_config",
+        "documentation": {}
+    },
+    {
+        "label": "append_update_to_step",
+        "importPath": "fact_checker_agent.agent_states.states_show_helper",
+        "description": "fact_checker_agent.agent_states.states_show_helper",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.states_show_helper",
+        "documentation": {}
+    },
+    {
+        "label": "SummarizedResult",
+        "importPath": "fact_checker_agent.database.model",
+        "description": "fact_checker_agent.database.model",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.database.model",
+        "documentation": {}
+    },
+    {
+        "label": "SummarizedResult",
+        "importPath": "fact_checker_agent.database.model",
+        "description": "fact_checker_agent.database.model",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.database.model",
+        "documentation": {}
+    },
+    {
+        "label": "memory_manager",
+        "importPath": "fact_checker_agent.database.configsql",
+        "description": "fact_checker_agent.database.configsql",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.database.configsql",
+        "documentation": {}
+    },
+    {
+        "label": "SQLiteMemoryManager",
+        "importPath": "fact_checker_agent.database.configsql",
+        "description": "fact_checker_agent.database.configsql",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.database.configsql",
         "documentation": {}
     },
     {
@@ -257,6 +519,176 @@
         "documentation": {}
     },
     {
+        "label": "TavilySearchResults",
+        "importPath": "langchain_community.tools.tavily_search",
+        "description": "langchain_community.tools.tavily_search",
+        "isExtraImport": true,
+        "detail": "langchain_community.tools.tavily_search",
+        "documentation": {}
+    },
+    {
+        "label": "rank_sources_node",
+        "importPath": "fact_checker_agent.agent_states.source_ranking",
+        "description": "fact_checker_agent.agent_states.source_ranking",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.source_ranking",
+        "documentation": {}
+    },
+    {
+        "label": "rank_sources_node",
+        "importPath": "fact_checker_agent.agent_states.source_ranking",
+        "description": "fact_checker_agent.agent_states.source_ranking",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.source_ranking",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.parse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urlparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "MediaBiasChecker",
+        "importPath": "fact_checker_agent.utils.media_bias_checker",
+        "description": "fact_checker_agent.utils.media_bias_checker",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.utils.media_bias_checker",
+        "documentation": {}
+    },
+    {
+        "label": "DomainReputationChecker",
+        "importPath": "fact_checker_agent.agent_states.domain_reputation",
+        "description": "fact_checker_agent.agent_states.domain_reputation",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.domain_reputation",
+        "documentation": {}
+    },
+    {
+        "label": "operator",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "operator",
+        "description": "operator",
+        "detail": "operator",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain.tools",
+        "description": "langchain.tools",
+        "isExtraImport": true,
+        "detail": "langchain.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain.tools",
+        "description": "langchain.tools",
+        "isExtraImport": true,
+        "detail": "langchain.tools",
+        "documentation": {}
+    },
+    {
+        "label": "copilotkit_customize_config",
+        "importPath": "copilotkit.langgraph",
+        "description": "copilotkit.langgraph",
+        "isExtraImport": true,
+        "detail": "copilotkit.langgraph",
+        "documentation": {}
+    },
+    {
+        "label": "copilotkit_customize_config",
+        "importPath": "copilotkit.langgraph",
+        "description": "copilotkit.langgraph",
+        "isExtraImport": true,
+        "detail": "copilotkit.langgraph",
+        "documentation": {}
+    },
+    {
+        "label": "save_summary_to_db",
+        "importPath": "fact_checker_agent.agent_states.memory",
+        "description": "fact_checker_agent.agent_states.memory",
+        "isExtraImport": true,
+        "detail": "fact_checker_agent.agent_states.memory",
+        "documentation": {}
+    },
+    {
+        "label": "DomainReputationChecker",
+        "importPath": "domain_reputation",
+        "description": "domain_reputation",
+        "isExtraImport": true,
+        "detail": "domain_reputation",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -266,204 +698,80 @@
         "documentation": {}
     },
     {
-        "label": "textwrap",
+        "label": "aiosqlite",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "textwrap",
-        "description": "textwrap",
-        "detail": "textwrap",
+        "importPath": "aiosqlite",
+        "description": "aiosqlite",
+        "detail": "aiosqlite",
         "documentation": {}
     },
     {
-        "label": "TavilyClient",
-        "importPath": "tavily",
-        "description": "tavily",
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
         "isExtraImport": true,
-        "detail": "tavily",
+        "detail": "pathlib",
         "documentation": {}
     },
     {
-        "label": "TavilySearchResults",
-        "importPath": "langchain_community.tools.tavily_search",
-        "description": "langchain_community.tools.tavily_search",
+        "label": "asyncio",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "langchain_community.tools.tavily_search",
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
+        "label": "motor.motor_asyncio",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "dotenv",
+        "importPath": "motor.motor_asyncio",
+        "description": "motor.motor_asyncio",
+        "detail": "motor.motor_asyncio",
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
+        "label": "AsyncIOMotorClient",
+        "importPath": "motor.motor_asyncio",
+        "description": "motor.motor_asyncio",
         "isExtraImport": true,
-        "detail": "dotenv",
+        "detail": "motor.motor_asyncio",
         "documentation": {}
     },
     {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
+        "label": "ConnectionFailure",
+        "importPath": "pymongo.errors",
+        "description": "pymongo.errors",
         "isExtraImport": true,
-        "detail": "datetime",
+        "detail": "pymongo.errors",
         "documentation": {}
     },
     {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
+        "label": "ServerSelectionTimeoutError",
+        "importPath": "pymongo.errors",
+        "description": "pymongo.errors",
         "isExtraImport": true,
-        "detail": "datetime",
+        "detail": "pymongo.errors",
         "documentation": {}
     },
     {
-        "label": "add_messages",
-        "importPath": "langgraph.graph.message",
-        "description": "langgraph.graph.message",
+        "label": "http.client",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "langgraph.graph.message",
+        "importPath": "http.client",
+        "description": "http.client",
+        "detail": "http.client",
         "documentation": {}
     },
     {
-        "label": "TypedDict",
-        "importPath": "typing",
-        "description": "typing",
+        "label": "time",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Annotated",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Sequence",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "List",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "List",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "TypedDict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Literal",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "BaseModel",
-        "importPath": "pydantic",
-        "description": "pydantic",
-        "isExtraImport": true,
-        "detail": "pydantic",
-        "documentation": {}
-    },
-    {
-        "label": "Field",
-        "importPath": "pydantic",
-        "description": "pydantic",
-        "isExtraImport": true,
-        "detail": "pydantic",
-        "documentation": {}
-    },
-    {
-        "label": "BaseModel",
-        "importPath": "pydantic",
-        "description": "pydantic",
-        "isExtraImport": true,
-        "detail": "pydantic",
-        "documentation": {}
-    },
-    {
-        "label": "Field",
-        "importPath": "pydantic",
-        "description": "pydantic",
-        "isExtraImport": true,
-        "detail": "pydantic",
-        "documentation": {}
-    },
-    {
-        "label": "tool",
-        "importPath": "langchain.tools",
-        "description": "langchain.tools",
-        "isExtraImport": true,
-        "detail": "langchain.tools",
-        "documentation": {}
-    },
-    {
-        "label": "tool",
-        "importPath": "langchain.tools",
-        "description": "langchain.tools",
-        "isExtraImport": true,
-        "detail": "langchain.tools",
-        "documentation": {}
-    },
-    {
-        "label": "copilotkit_customize_config",
-        "importPath": "copilotkit.langgraph",
-        "description": "copilotkit.langgraph",
-        "isExtraImport": true,
-        "detail": "copilotkit.langgraph",
-        "documentation": {}
-    },
-    {
-        "label": "copilotkit_customize_config",
-        "importPath": "copilotkit.langgraph",
-        "description": "copilotkit.langgraph",
-        "isExtraImport": true,
-        "detail": "copilotkit.langgraph",
-        "documentation": {}
-    },
-    {
-        "label": "lru_cache",
-        "importPath": "functools",
-        "description": "functools",
-        "isExtraImport": true,
-        "detail": "functools",
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
         "documentation": {}
     },
     {
@@ -532,7 +840,7 @@
         "documentation": {}
     },
     {
-        "label": "search_node",
+        "label": "web_search_node",
         "importPath": "fact_checker_agent.agent_states.search",
         "description": "fact_checker_agent.agent_states.search",
         "isExtraImport": true,
@@ -566,14 +874,6 @@
     },
     {
         "label": "FastAPI",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Query",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -622,12 +922,66 @@
         "documentation": {}
     },
     {
-        "label": "should_continue",
-        "kind": 2,
-        "importPath": "fact_checker_agent.agent_states.nodes",
-        "description": "fact_checker_agent.agent_states.nodes",
-        "peekOfCode": "def should_continue(state):\n    messages = state[\"context\"]\n    last_message = messages[-1]\n    # If there are no tool calls, then we finish\n    if not last_message.tool_calls:\n        return \"end\"\n    # Otherwise if there is, we continue\n    else:\n        return \"continue\"\ndef route(state):",
-        "detail": "fact_checker_agent.agent_states.nodes",
+        "label": "cluster_uri",
+        "kind": 5,
+        "importPath": "Testing mongoconnection.testmongo",
+        "description": "Testing mongoconnection.testmongo",
+        "peekOfCode": "cluster_uri = \"mongodb+srv://factchecker:1234@cluster0.xofadng.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0\"\nclient = MongoClient(\n    cluster_uri,\n    maxPoolSize=50,\n    minPoolSize=10,\n    maxIdleTimeMS=60000,\n    socketTimeoutMS=None,\n    serverSelectionTimeoutMS=30000,\n    connectTimeoutMS=30000,\n    tls = True",
+        "detail": "Testing mongoconnection.testmongo",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "Testing mongoconnection.testmongo",
+        "description": "Testing mongoconnection.testmongo",
+        "peekOfCode": "client = MongoClient(\n    cluster_uri,\n    maxPoolSize=50,\n    minPoolSize=10,\n    maxIdleTimeMS=60000,\n    socketTimeoutMS=None,\n    serverSelectionTimeoutMS=30000,\n    connectTimeoutMS=30000,\n    tls = True\n    )",
+        "detail": "Testing mongoconnection.testmongo",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "Testing mongoconnection.testmongo",
+        "description": "Testing mongoconnection.testmongo",
+        "peekOfCode": "db = client[\"fact_checker\"]\ncollection = db[\"memory\"]\n# Insert a single document\ndocument = {\n    \"name\": \"DILHTA\",\n    \"email\": \"DIL@example.com\",\n    \"age\": 300\n}\nresult = collection.insert_one(document)\nprint(f\"Inserted document ID: {result.inserted_id}\")",
+        "detail": "Testing mongoconnection.testmongo",
+        "documentation": {}
+    },
+    {
+        "label": "collection",
+        "kind": 5,
+        "importPath": "Testing mongoconnection.testmongo",
+        "description": "Testing mongoconnection.testmongo",
+        "peekOfCode": "collection = db[\"memory\"]\n# Insert a single document\ndocument = {\n    \"name\": \"DILHTA\",\n    \"email\": \"DIL@example.com\",\n    \"age\": 300\n}\nresult = collection.insert_one(document)\nprint(f\"Inserted document ID: {result.inserted_id}\")",
+        "detail": "Testing mongoconnection.testmongo",
+        "documentation": {}
+    },
+    {
+        "label": "document",
+        "kind": 5,
+        "importPath": "Testing mongoconnection.testmongo",
+        "description": "Testing mongoconnection.testmongo",
+        "peekOfCode": "document = {\n    \"name\": \"DILHTA\",\n    \"email\": \"DIL@example.com\",\n    \"age\": 300\n}\nresult = collection.insert_one(document)\nprint(f\"Inserted document ID: {result.inserted_id}\")",
+        "detail": "Testing mongoconnection.testmongo",
+        "documentation": {}
+    },
+    {
+        "label": "result",
+        "kind": 5,
+        "importPath": "Testing mongoconnection.testmongo",
+        "description": "Testing mongoconnection.testmongo",
+        "peekOfCode": "result = collection.insert_one(document)\nprint(f\"Inserted document ID: {result.inserted_id}\")",
+        "detail": "Testing mongoconnection.testmongo",
+        "documentation": {}
+    },
+    {
+        "label": "DomainReputationChecker",
+        "kind": 6,
+        "importPath": "fact_checker_agent.agent_states.domain_reputation",
+        "description": "fact_checker_agent.agent_states.domain_reputation",
+        "peekOfCode": "class DomainReputationChecker:\n    \"\"\"\n    Checks the reputation of a domain based on:\n    - Domain Age\n    - SSL Certificate Validity\n    - WHOIS reputation (registrar, contact info)\n    - Nameserver reputation\n    - Domain status flags\n    \"\"\"\n    REPUTABLE_REGISTRARS = [",
+        "detail": "fact_checker_agent.agent_states.domain_reputation",
         "documentation": {}
     },
     {
@@ -635,7 +989,7 @@
         "kind": 2,
         "importPath": "fact_checker_agent.agent_states.nodes",
         "description": "fact_checker_agent.agent_states.nodes",
-        "peekOfCode": "def route(state):\n    \"\"\"Route to research nodes.\"\"\"\n    if not state.get(\"steps\", None):\n        return END\n    current_step = next((step for step in state[\"steps\"] if step[\"status\"] == \"pending\"), None)\n    # if not current_step:\n    #     return \"summarizer_node\"\n    if not current_step:\n        return \"decomposing_node\"\n    if current_step[\"type\"] == \"search\":",
+        "peekOfCode": "def route(state):\n    \"\"\"Route to research nodes.\"\"\"\n    if not state.get(\"steps\", None):\n        return END\n    current_step = next((step for step in state[\"steps\"] if step[\"status\"] == \"pending\"), None)\n    if not current_step:\n        return \"decomposing_node\"\n    if current_step[\"type\"] in [\"search\"]: #,\"Wikipedia_search\"\n        return [\"web_search_node\"]#,\"wikipedia_search_node\",\n    raise ValueError(f\"Unknown step type: {current_step['type']}\")",
         "detail": "fact_checker_agent.agent_states.nodes",
         "documentation": {}
     },
@@ -649,39 +1003,48 @@
         "documentation": {}
     },
     {
-        "label": "web_search",
+        "label": "get_pending_step",
         "kind": 2,
         "importPath": "fact_checker_agent.agent_states.search",
         "description": "fact_checker_agent.agent_states.search",
-        "peekOfCode": "def web_search(query: str):\n    \"\"\"Search the web using Tavily API.\"\"\"\n    tavily_search = TavilySearchResults(\n        max_results = 5,\n        search_depth=\"advanced\",\n        inculde_raw_content=True,\n        include_images=True,\n        include_image_descriptions=True,\n        )\n    search_data = tavily_search.invoke(query)",
+        "peekOfCode": "def get_pending_step(state: AgentState, step_type: str):\n    \"\"\"Retrieve the next pending step of a specific type.\"\"\"\n    steps = state.get(\"steps\", [])\n    if not steps:\n        raise ValueError(\"No steps in state\")\n    available = [f\"{s.get('type')} ({s.get('status')})\" for s in steps]\n    LOGGER.info(f\"Available steps: {available}\")\n    # Find all pending steps of the requested type\n    matching_steps = [step for step in steps if step.get(\"status\") == \"pending\" and step.get(\"type\") == step_type]\n    if not matching_steps:",
         "detail": "fact_checker_agent.agent_states.search",
         "documentation": {}
     },
     {
-        "label": "format_results",
+        "label": "search_instructions",
         "kind": 2,
         "importPath": "fact_checker_agent.agent_states.search",
         "description": "fact_checker_agent.agent_states.search",
-        "peekOfCode": "def format_results(search_data):\n    # Extract query results\n    formatted_response = []\n    for result in search_data:\n        formatted_content = textwrap.fill(result.get(\"content\", \"N/A\"), width=80)\n        formatted_result = {\n            \"URL\": result.get(\"url\", \"N/A\"),\n            \"Content\": formatted_content\n        }\n        formatted_response.append(formatted_result)",
+        "peekOfCode": "def search_instructions(state: AgentState, current_step):\n    \"\"\"Generate instructions for the search tool based on the state.\"\"\"\n    return f\"\"\"\n    This is a step in a sequence of steps being executed to answer the user's question.\n    These are all the steps: {json.dumps(state[\"steps\"], indent=2)}\n    You are responsible for executing the step: {json.dumps(current_step)}\n    The current date is {datetime.now().strftime(\"%Y-%m-%d\")}.\n    This is what you need to search for: {current_step['description']}\n    \"\"\"\nasync def run_search(state: AgentState, config: RunnableConfig, tool, step_type: str):",
         "detail": "fact_checker_agent.agent_states.search",
         "documentation": {}
     },
     {
-        "label": "TAVILY_API_KEY",
-        "kind": 5,
-        "importPath": "fact_checker_agent.agent_states.search",
-        "description": "fact_checker_agent.agent_states.search",
-        "peekOfCode": "TAVILY_API_KEY = os.getenv(\"TAVILY_API_KEY\")\nprint(f\"TAVILY_API_KEY: {TAVILY_API_KEY}\")\n#start tavily\ntavily_client = TavilyClient(api_key=TAVILY_API_KEY)\n#the search method\ndef web_search(query: str):\n    \"\"\"Search the web using Tavily API.\"\"\"\n    tavily_search = TavilySearchResults(\n        max_results = 5,\n        search_depth=\"advanced\",",
-        "detail": "fact_checker_agent.agent_states.search",
+        "label": "validate_url",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.source_ranking",
+        "description": "fact_checker_agent.agent_states.source_ranking",
+        "peekOfCode": "def validate_url(url):\n    \"\"\"Validate the URL format.\"\"\"\n    try:\n        result = urlparse(url)\n        return all([result.scheme, result.netloc])\n    except Exception:\n        return False\ndef extract_domain(url):\n    parsed_url = urlparse(url)\n    return parsed_url.netloc.replace(\"www.\", \"\")",
+        "detail": "fact_checker_agent.agent_states.source_ranking",
         "documentation": {}
     },
     {
-        "label": "tavily_client",
-        "kind": 5,
-        "importPath": "fact_checker_agent.agent_states.search",
-        "description": "fact_checker_agent.agent_states.search",
-        "peekOfCode": "tavily_client = TavilyClient(api_key=TAVILY_API_KEY)\n#the search method\ndef web_search(query: str):\n    \"\"\"Search the web using Tavily API.\"\"\"\n    tavily_search = TavilySearchResults(\n        max_results = 5,\n        search_depth=\"advanced\",\n        inculde_raw_content=True,\n        include_images=True,\n        include_image_descriptions=True,",
-        "detail": "fact_checker_agent.agent_states.search",
+        "label": "extract_domain",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.source_ranking",
+        "description": "fact_checker_agent.agent_states.source_ranking",
+        "peekOfCode": "def extract_domain(url):\n    parsed_url = urlparse(url)\n    return parsed_url.netloc.replace(\"www.\", \"\")\ndef rank_sources_node(urls):\n    \"\"\"Rank sources based on multiple reputation factors including domain reputation, SSL verification, MBFC factors, and WHOIS data.\"\"\"\n    checker = DomainReputationChecker()\n    ranked_results = []\n    mbfc_checker = MediaBiasChecker()\n    # Updated scoring weights (total adds up to 100)\n    SCORE_WEIGHTS = {",
+        "detail": "fact_checker_agent.agent_states.source_ranking",
+        "documentation": {}
+    },
+    {
+        "label": "rank_sources_node",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.source_ranking",
+        "description": "fact_checker_agent.agent_states.source_ranking",
+        "peekOfCode": "def rank_sources_node(urls):\n    \"\"\"Rank sources based on multiple reputation factors including domain reputation, SSL verification, MBFC factors, and WHOIS data.\"\"\"\n    checker = DomainReputationChecker()\n    ranked_results = []\n    mbfc_checker = MediaBiasChecker()\n    # Updated scoring weights (total adds up to 100)\n    SCORE_WEIGHTS = {\n        'ssl_verification': 10,\n        'domain_age': 10,\n        'registrar_reputation': 10,",
+        "detail": "fact_checker_agent.agent_states.source_ranking",
         "documentation": {}
     },
     {
@@ -689,7 +1052,7 @@
         "kind": 6,
         "importPath": "fact_checker_agent.agent_states.state",
         "description": "fact_checker_agent.agent_states.state",
-        "peekOfCode": "class Step(TypedDict):\n    \"\"\"\n    Represents a step taken in the research process.\n    \"\"\"\n    id: str\n    description: str\n    status: str\n    type: str\n    description: str\n    search_result: Optional[str]",
+        "peekOfCode": "class Step(TypedDict):\n    \"\"\"\n    Represents a step taken in the research process.\n    \"\"\"\n    id: str\n    description: str\n    status: str\n    type: str\n    search_result: Annotated[List , operator.add]\n    result: Optional[str]",
         "detail": "fact_checker_agent.agent_states.state",
         "documentation": {}
     },
@@ -698,8 +1061,17 @@
         "kind": 6,
         "importPath": "fact_checker_agent.agent_states.state",
         "description": "fact_checker_agent.agent_states.state",
-        "peekOfCode": "class AgentState(MessagesState):\n     \"\"\"\n    This is the state of the agent.\n    It is a subclass of the MessagesState class from langgraph.\n    \"\"\"\n     model:str = \"gpt-3.5-turbo\"\n    #  question: Optional[str]\n     steps: List[Step]\n    #  context:Annotated[Sequence[BaseMessage],add_messages]\n     answer:Optional[str]",
+        "peekOfCode": "class AgentState(MessagesState):\n     \"\"\"\n    This is the state of the agent.\n    It is a subclass of the MessagesState class from langgraph.\n    \"\"\"\n     model:str = \"gpt-3.5-turbo\"\n    #  question: Optional[str]\n     steps: Annotated[List[Step], operator.add] #List[Step]\n    #  context:Annotated[Sequence[BaseMessage],add_messages]\n     answer:Optional[str]",
         "detail": "fact_checker_agent.agent_states.state",
+        "documentation": {}
+    },
+    {
+        "label": "append_update_to_step",
+        "kind": 2,
+        "importPath": "fact_checker_agent.agent_states.states_show_helper",
+        "description": "fact_checker_agent.agent_states.states_show_helper",
+        "peekOfCode": "def append_update_to_step(state, step_type, message):\n    step = next((s for s in state[\"steps\"] if s[\"status\"] == \"pending\" and s[\"type\"] == step_type), None)\n    if step:\n        step.setdefault(\"updates\", []).append(message)",
+        "detail": "fact_checker_agent.agent_states.states_show_helper",
         "documentation": {}
     },
     {
@@ -707,7 +1079,7 @@
         "kind": 6,
         "importPath": "fact_checker_agent.agent_states.steps",
         "description": "fact_checker_agent.agent_states.steps",
-        "peekOfCode": "class SearchStep(BaseModel):\n    \"\"\"Model for a search step\"\"\"\n    id: str = Field(description=\"The id of the step. This is used to identify the step in the state. Just make sure it is unique.\")\n    description: str = Field(description='The description of the step, i.e. \"search for information about the latest AI news\"')\n    status: str = Field(description='The status of the step. Always \"pending\".', enum=['pending'])\n    type: str = Field(description='The type of step.', enum=['search'])\n@tool\ndef SearchTool(steps:List[SearchStep]):\n    \"\"\"\n     Break the user's query into smaller steps.",
+        "peekOfCode": "class SearchStep(BaseModel):\n    \"\"\"Model for a search step\"\"\"\n    id: str = Field(description=\"The id of the step. This is used to identify the step in the state. Just make sure it is unique.\")\n    description: str = Field(description='The description of the step, i.e. \"search for information about the latest AI news\"')\n    status: str = Field(description='The status of the step. Always \"pending\".', enum=['pending'])\n    type: str = Field(description='The type of step.', enum=['search']) #,'Wikipedia_search'\n@tool\ndef SearchTool(steps:List[SearchStep]):\n    \"\"\"\n     Break the user's query into smaller steps.",
         "detail": "fact_checker_agent.agent_states.steps",
         "documentation": {}
     },
@@ -725,7 +1097,7 @@
         "kind": 6,
         "importPath": "fact_checker_agent.agent_states.summarizer",
         "description": "fact_checker_agent.agent_states.summarizer",
-        "peekOfCode": "class Source(BaseModel):\n    \"\"\"Model for a source\"\"\"\n    title:str =Field(description=\"The title of the source\")\n    url:str =Field(description=\"The url of the source\")\nclass SummarizerInput(BaseModel):\n    \"\"\"Input for the summalizer tool\"\"\"\n    markdown: str = Field(description=\"\"\"\n                          The markdown formatted summary of the final result.\n                          If you add any headings, make sure to start at the top level (#).\n                          \"\"\")",
+        "peekOfCode": "class Source(BaseModel):\n    \"\"\"Model for a source\"\"\"\n    title:str =Field(description=\"The title of the source\")\n    url:str =Field(description=\"The url of the source with credibility scores\")\n    Score:int = Field(description=\"The credibility score of the source\")\n    credibility: str = Field(description=\"Credibility rating from MBFC\")\n    bias: str = Field(description=\"Bias rating from MBFC\")\nclass SummarizerInput(BaseModel):\n    \"\"\"Input for the summalizer tool\"\"\"\n    markdown: str = Field(description=\"\"\"",
         "detail": "fact_checker_agent.agent_states.summarizer",
         "documentation": {}
     },
@@ -734,7 +1106,7 @@
         "kind": 6,
         "importPath": "fact_checker_agent.agent_states.summarizer",
         "description": "fact_checker_agent.agent_states.summarizer",
-        "peekOfCode": "class SummarizerInput(BaseModel):\n    \"\"\"Input for the summalizer tool\"\"\"\n    markdown: str = Field(description=\"\"\"\n                          The markdown formatted summary of the final result.\n                          If you add any headings, make sure to start at the top level (#).\n                          \"\"\")\n    sources: list[Source] = Field(description=\"A list of sources.\")\n@tool(args_schema=SummarizerInput)\ndef SummarizeTool(summary:str,sources:list[Source]):\n    \"\"\"",
+        "peekOfCode": "class SummarizerInput(BaseModel):\n    \"\"\"Input for the summalizer tool\"\"\"\n    markdown: str = Field(description=\"\"\"\n                        The markdown formatted summary of the final result.\n                        If you add any headings, make sure to start at the top level (#).\n                        \"\"\")\n    sources: list[Source] = Field(description=\"A list of sources.\")\n@tool(args_schema=SummarizerInput)\ndef SummarizeTool(summary:str,sources:list[Source]):\n    \"\"\"",
         "detail": "fact_checker_agent.agent_states.summarizer",
         "documentation": {}
     },
@@ -743,8 +1115,143 @@
         "kind": 2,
         "importPath": "fact_checker_agent.agent_states.summarizer",
         "description": "fact_checker_agent.agent_states.summarizer",
-        "peekOfCode": "def SummarizeTool(summary:str,sources:list[Source]):\n    \"\"\"\n    Summarize the final result. Ensure that the summary is complete and\n    includes all relevant information and source links.\n    \"\"\"\nasync def summarize_node(state: AgentState, config: RunnableConfig):\n    \"\"\"\n    The summarize node is responsible for summarizing the information.\n    \"\"\"\n    config = copilotkit_customize_config(",
+        "peekOfCode": "def SummarizeTool(summary:str,sources:list[Source]):\n    \"\"\"\n    Summarize the final result. Ensure that the summary is complete and\n    includes all relevant information and source links.\n    \"\"\"\nasync def summarize_node(state: AgentState, config: RunnableConfig):\n    config = copilotkit_customize_config(\n        config,\n        emit_intermediate_state=[\n            {",
         "detail": "fact_checker_agent.agent_states.summarizer",
+        "documentation": {}
+    },
+    {
+        "label": "checker",
+        "kind": 5,
+        "importPath": "fact_checker_agent.agent_states.test_domain",
+        "description": "fact_checker_agent.agent_states.test_domain",
+        "peekOfCode": "checker = DomainReputationChecker()\n# Test with BBC URL\ntest_url = \"https://www.google.com\"\nreputation_data = checker.check_domain_reputation(test_url)\nprint(reputation_data)\n# Test with invalid URL\ninvalid_url = \"not-a-valid-url\"\nprint(checker.check_domain_reputation(invalid_url))  # Should return {\"error\": \"Invalid URL\"}\n# Test with HTTPS URL without SSL\nno_ssl_url = \"http://example.com\"  # Assuming this doesn't have SSL",
+        "detail": "fact_checker_agent.agent_states.test_domain",
+        "documentation": {}
+    },
+    {
+        "label": "test_url",
+        "kind": 5,
+        "importPath": "fact_checker_agent.agent_states.test_domain",
+        "description": "fact_checker_agent.agent_states.test_domain",
+        "peekOfCode": "test_url = \"https://www.google.com\"\nreputation_data = checker.check_domain_reputation(test_url)\nprint(reputation_data)\n# Test with invalid URL\ninvalid_url = \"not-a-valid-url\"\nprint(checker.check_domain_reputation(invalid_url))  # Should return {\"error\": \"Invalid URL\"}\n# Test with HTTPS URL without SSL\nno_ssl_url = \"http://example.com\"  # Assuming this doesn't have SSL\nprint(checker.check_domain_reputation(no_ssl_url))",
+        "detail": "fact_checker_agent.agent_states.test_domain",
+        "documentation": {}
+    },
+    {
+        "label": "reputation_data",
+        "kind": 5,
+        "importPath": "fact_checker_agent.agent_states.test_domain",
+        "description": "fact_checker_agent.agent_states.test_domain",
+        "peekOfCode": "reputation_data = checker.check_domain_reputation(test_url)\nprint(reputation_data)\n# Test with invalid URL\ninvalid_url = \"not-a-valid-url\"\nprint(checker.check_domain_reputation(invalid_url))  # Should return {\"error\": \"Invalid URL\"}\n# Test with HTTPS URL without SSL\nno_ssl_url = \"http://example.com\"  # Assuming this doesn't have SSL\nprint(checker.check_domain_reputation(no_ssl_url))",
+        "detail": "fact_checker_agent.agent_states.test_domain",
+        "documentation": {}
+    },
+    {
+        "label": "invalid_url",
+        "kind": 5,
+        "importPath": "fact_checker_agent.agent_states.test_domain",
+        "description": "fact_checker_agent.agent_states.test_domain",
+        "peekOfCode": "invalid_url = \"not-a-valid-url\"\nprint(checker.check_domain_reputation(invalid_url))  # Should return {\"error\": \"Invalid URL\"}\n# Test with HTTPS URL without SSL\nno_ssl_url = \"http://example.com\"  # Assuming this doesn't have SSL\nprint(checker.check_domain_reputation(no_ssl_url))",
+        "detail": "fact_checker_agent.agent_states.test_domain",
+        "documentation": {}
+    },
+    {
+        "label": "no_ssl_url",
+        "kind": 5,
+        "importPath": "fact_checker_agent.agent_states.test_domain",
+        "description": "fact_checker_agent.agent_states.test_domain",
+        "peekOfCode": "no_ssl_url = \"http://example.com\"  # Assuming this doesn't have SSL\nprint(checker.check_domain_reputation(no_ssl_url))",
+        "detail": "fact_checker_agent.agent_states.test_domain",
+        "documentation": {}
+    },
+    {
+        "label": "MONGOURL",
+        "kind": 5,
+        "importPath": "fact_checker_agent.database.config",
+        "description": "fact_checker_agent.database.config",
+        "peekOfCode": "MONGOURL = os.getenv(\"MONGOURL\")\nclient = MongoClient(\n    MONGOURL,\n    maxPoolSize=50,\n    minPoolSize=10,\n    maxIdleTimeMS=60000,\n    socketTimeoutMS=None,\n    serverSelectionTimeoutMS=30000,\n    connectTimeoutMS=30000,\n    tls = True",
+        "detail": "fact_checker_agent.database.config",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "fact_checker_agent.database.config",
+        "description": "fact_checker_agent.database.config",
+        "peekOfCode": "client = MongoClient(\n    MONGOURL,\n    maxPoolSize=50,\n    minPoolSize=10,\n    maxIdleTimeMS=60000,\n    socketTimeoutMS=None,\n    serverSelectionTimeoutMS=30000,\n    connectTimeoutMS=30000,\n    tls = True\n    )",
+        "detail": "fact_checker_agent.database.config",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "fact_checker_agent.database.config",
+        "description": "fact_checker_agent.database.config",
+        "peekOfCode": "db = client[\"fact_checker\"]\ncollection = db[\"memory\"]",
+        "detail": "fact_checker_agent.database.config",
+        "documentation": {}
+    },
+    {
+        "label": "collection",
+        "kind": 5,
+        "importPath": "fact_checker_agent.database.config",
+        "description": "fact_checker_agent.database.config",
+        "peekOfCode": "collection = db[\"memory\"]",
+        "detail": "fact_checker_agent.database.config",
+        "documentation": {}
+    },
+    {
+        "label": "SQLiteMemoryManager",
+        "kind": 6,
+        "importPath": "fact_checker_agent.database.configsql",
+        "description": "fact_checker_agent.database.configsql",
+        "peekOfCode": "class SQLiteMemoryManager:\n    def __init__(self, db_path: str = \"fact_checker_agent.db\"):\n        self.db_path = db_path\n        self._initialized = False\n        self._connection = None  # Store a single connection\n    async def initialize(self):\n        \"\"\"Initialize the database connection and tables\"\"\"\n        await self._init_db()\n    async def _init_db(self):\n        \"\"\"Initialize the database with required tables\"\"\"",
+        "detail": "fact_checker_agent.database.configsql",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "fact_checker_agent.database.configsql",
+        "description": "fact_checker_agent.database.configsql",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass SQLiteMemoryManager:\n    def __init__(self, db_path: str = \"fact_checker_agent.db\"):\n        self.db_path = db_path\n        self._initialized = False\n        self._connection = None  # Store a single connection\n    async def initialize(self):\n        \"\"\"Initialize the database connection and tables\"\"\"\n        await self._init_db()\n    async def _init_db(self):",
+        "detail": "fact_checker_agent.database.configsql",
+        "documentation": {}
+    },
+    {
+        "label": "memory_manager",
+        "kind": 5,
+        "importPath": "fact_checker_agent.database.configsql",
+        "description": "fact_checker_agent.database.configsql",
+        "peekOfCode": "memory_manager = SQLiteMemoryManager()",
+        "detail": "fact_checker_agent.database.configsql",
+        "documentation": {}
+    },
+    {
+        "label": "SummarizedResult",
+        "kind": 6,
+        "importPath": "fact_checker_agent.database.model",
+        "description": "fact_checker_agent.database.model",
+        "peekOfCode": "class SummarizedResult(BaseModel):\n    \"\"\"Model for summarized results\"\"\"\n    query: str\n    summary: str\n    sources: List[Dict[str, Any]]\n    thread_id: Optional[str] = None",
+        "detail": "fact_checker_agent.database.model",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "fact_checker_agent.utils.log_config",
+        "description": "fact_checker_agent.utils.log_config",
+        "peekOfCode": "LOGGER = logging.getLogger(__name__)",
+        "detail": "fact_checker_agent.utils.log_config",
+        "documentation": {}
+    },
+    {
+        "label": "MediaBiasChecker",
+        "kind": 6,
+        "importPath": "fact_checker_agent.utils.media_bias_checker",
+        "description": "fact_checker_agent.utils.media_bias_checker",
+        "peekOfCode": "class MediaBiasChecker:\n    def __init__(self):\n        self.host = \"media-bias-fact-check-ratings-api2.p.rapidapi.com\"\n        self.key = \"e8fa217766msh208cdb27eeb1479p1badc3jsn4edf3a94a422\"   \n        self.timeout = 10 # seconds\n        self.last_request_time = 0\n        self.min_request_interval = 1.0  # Minimum seconds between requests\n        self.max_retries = 5\n    def check_bias(self, domain):\n        \"\"\"Check media bias and credibility for a given domain.\"\"\"",
+        "detail": "fact_checker_agent.utils.media_bias_checker",
         "documentation": {}
     },
     {
@@ -752,7 +1259,7 @@
         "kind": 2,
         "importPath": "fact_checker_agent.utils.models",
         "description": "fact_checker_agent.utils.models",
-        "peekOfCode": "def get_model(state:AgentState):\n    model_name:str = state.get(\"model\")\n    # model_name = \n    print(f\"model_name: {model_name}\")\n    if model_name == \"gpt-3.5-turbo\":\n        model = ChatOpenAI(temperature=0.1,model_name=model_name)\n    elif model_name == \"llama3.5\":\n        model = ChatOllama(temperature=0.1,model_name=model_name)\n    elif model_name == \"claude-3-sonnet-20240229\":\n        model = ChatAnthropic(temperature=0.1,model_name=model_name)",
+        "peekOfCode": "def get_model(state:AgentState):\n    model_name:str = state.get(\"model\")\n    # model_name = \n    print(f\"model_name: {model_name}\")\n    if model_name == \"gpt-4o\":\n        model = ChatOpenAI(temperature=0,model_name=model_name)\n    elif model_name == \"gpt-3.5-turbo\":\n        model = ChatOpenAI(temperature=0,model_name=model_name)\n    elif model_name == \"llama3.5\":\n        model = ChatOllama(temperature=0,model_name=model_name)",
         "detail": "fact_checker_agent.utils.models",
         "documentation": {}
     },
@@ -793,11 +1300,20 @@
         "documentation": {}
     },
     {
+        "label": "memory",
+        "kind": 5,
+        "importPath": "fact_checker_agent.agent",
+        "description": "fact_checker_agent.agent",
+        "peekOfCode": "memory = SQLiteMemoryManager()\n# workflow.add_edge(\"web_search\",\"agent\")\nworkflow.add_node(\"steps_node\",steps_node)\nworkflow.add_node(\"web_search_node\",web_search_node)\n#workflow.add_node(\"wikipedia_search_node\",wikipedia_search_node)\nworkflow.add_node(\"summarizer_node\",summarize_node)\nworkflow.add_node(\"decomposing_node\",decomposing_node)\nworkflow.add_node(\"download_node\",download_node)\nworkflow.add_node(\"rank_sources_node\",rank_sources_node)\n#Chatbot",
+        "detail": "fact_checker_agent.agent",
+        "documentation": {}
+    },
+    {
         "label": "graph",
         "kind": 5,
         "importPath": "fact_checker_agent.agent",
         "description": "fact_checker_agent.agent",
-        "peekOfCode": "graph = workflow.compile()",
+        "peekOfCode": "graph = workflow.compile(checkpointer = memory)",
         "detail": "fact_checker_agent.agent",
         "documentation": {}
     },

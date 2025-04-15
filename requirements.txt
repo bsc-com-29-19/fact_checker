@@ -25,8 +25,9 @@ beautifulsoup4
 #pymongo
 langgraph-checkpoint-mongodb
 pymongo[srv]
-langgraph-checkpoint-postgres
-psycopg[binary,pool]
+asyncio
 rich
+aiosqlite
 langgraph-checkpoint-sqlite
+
 

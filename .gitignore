@@ -6,3 +6,4 @@ __pycache__/
 .venv
 .langgraph_api/*.pckl
 .langgraph_api
+.virtualEnv
