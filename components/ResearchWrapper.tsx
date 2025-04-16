@@ -34,7 +34,7 @@ export function ResearchWrapper() {
             rel="noopener noreferrer"
             className="text-slate-600 font-medium hover:underline"
           >
-            Powered by Mayamiko 🪁
+            Powered by Group 10 🪁
           </a>
         </footer>
       </div>
