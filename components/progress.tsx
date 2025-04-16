@@ -1,5 +1,7 @@
 //progress.tsx
+
 'use client'
+
 import { cn } from "@/lib/utils";
 import { CheckIcon, LoaderCircle } from "lucide-react";
 

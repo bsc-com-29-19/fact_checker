@@ -1,5 +1,7 @@
 //HomeView.tsx
+
 'use client'
+
 import { useCoAgent } from "@copilotkit/react-core";
 import { useEffect, useState } from "react";
 import { Moon, Sun, Plus, X, CornerDownLeftIcon } from "lucide-react";

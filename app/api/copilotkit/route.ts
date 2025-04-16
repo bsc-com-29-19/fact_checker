@@ -12,6 +12,7 @@ const openai = new OpenAI();
 const serviceAdapter = new OpenAIAdapter({ openai } as any);
 
 //connects the CopilotKit runtime to the CoAgent
+
 const runtime = new CopilotRuntime({
   remoteEndpoints: [
     {

@@ -1,3 +1,4 @@
+//page.tsx
 "use client";
 import { ResearchProvider } from "@/lib/research-provider";
 import { CopilotKit } from "@copilotkit/react-core";
