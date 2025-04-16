@@ -7,6 +7,7 @@ import {
 } from "@copilotkit/runtime";
 import OpenAI from "openai";
 
+
 //initializes OpenAI as the adapter
 const openai = new OpenAI();
 const serviceAdapter = new OpenAIAdapter({ openai } as any);
