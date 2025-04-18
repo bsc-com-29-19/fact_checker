@@ -1,18 +1,20 @@
 //HomeView.tsx
 import { useCoAgent } from "@copilotkit/react-core";
-import { useEffect, useState } from "react";
-import { Moon, Sun, Plus, X, CornerDownLeftIcon } from "lucide-react";
-import { Sidebar } from "@/components/siderbar";
-import CustomHeader from "@/components/CustomHeader";
-import { CustomAssistantMessage } from "@/components/CustomAssistantMessage";
-import { CopilotChat, CopilotSidebar } from "@copilotkit/react-ui";
-import { CustomUserMessage } from "@/components/CustomUserMessage";
-import CustomInput from "@/components/CustomInput";
-import CustomWindow from "@/components/CustomWindow";
+import { useState } from "react";
+// import { Moon, Sun, Plus, X, CornerDownLeftIcon } from "lucide-react";
+import { CornerDownLeftIcon } from "lucide-react";
+
+// import { Sidebar } from "@/components/siderbar";
+// import CustomHeader from "@/components/CustomHeader";
+// import { CustomAssistantMessage } from "@/components/CustomAssistantMessage";
+// import { CopilotChat, CopilotSidebar } from "@copilotkit/react-ui";
+// import { CustomUserMessage } from "@/components/CustomUserMessage";
+// import CustomInput from "@/components/CustomInput";
+// import CustomWindow from "@/components/CustomWindow";
 import { AgentSelector } from "@/components/agentSelector";
 import { ModelSelector } from "@/components/modelSelector";
-import FactCheckComponent from "@/components/main";
-import Ranking from "@/components/Ranking";
+// import FactCheckComponent from "@/components/main";
+// import Ranking from "@/components/Ranking";
 import Button from "@/components/button";
 
 import { cn } from "@/lib/utils";
@@ -30,11 +32,11 @@ export default function HomeView() {
   const { model } = useModel();
   const { agent } = useAgent();
 
-  const sources = [
-    { title: "News Report", url: "https://example.com/news" },
-    { title: "Government Report", url: "https://example.com/gov" },
-    { title: "Health Inspection Document", url: "https://example.com/health" },
-  ];
+  // const sources = [
+  //   { title: "News Report", url: "https://example.com/news" },
+  //   { title: "Government Report", url: "https://example.com/gov" },
+  //   { title: "Health Inspection Document", url: "https://example.com/health" },
+  // ];
 
   const MAX_INPUT_LENGTH = 500;
 
@@ -120,17 +122,6 @@ export default function HomeView() {
           </div>
         </main>
       </div>
-
-      {/* Copilot Sidebar */}
-      {/* <div className="fixed right-0 top-0 h-full">
-          <CopilotSidebar
-            defaultOpen={true}
-            clickOutsideToClose={false}
-            Input={() => null}
-            Header={CustomHeader}
-            Window={CustomWindow}
-          />
-        </div> */}
     </div>
   );
 }
