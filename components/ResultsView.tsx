@@ -6,12 +6,14 @@ import { motion } from "framer-motion";
 import { BookOpenIcon, LoaderCircleIcon, SparkleIcon } from "lucide-react";
 // import { SkeletonLoader } from "./SkeletonLoader";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useCoAgent } from "@copilotkit/react-core";
+import { useCoAgent, useCoAgentStateRender } from "@copilotkit/react-core";
 import { Progress } from "./progress";
 import { AnswerMarkdown } from "./AnswerMarkdown";
 import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
 import { AgentState } from "@/lib/types";
+import { useState } from "react";
+import { Progress1 } from "./progress1";
 
 export function ResultsView() {
   const { researchQuery } = useResearchContext();
@@ -24,6 +26,38 @@ export function ResultsView() {
       model,
     },
   });
+
+  //keeps track of the current agent processing state
+  const steps =
+    agentState?.steps?.map((step: any) => {
+      return {
+        description: step.description || "",
+        status: step.status || "pending",
+        updates: step.updates || [],
+      };
+    }) || [];
+
+  // Handle progress rendering with co-agent state
+  useCoAgentStateRender<AgentState>(
+    {
+      name: agent,
+      // render: ({ state }) => {
+      //   if (state.steps?.length > 0) {
+      //     const steps = state.steps.map((step) => ({
+      //       description: step.message,
+      //       status: step.done ? "complete" : "pending",
+      //       updates: [],
+      //     }));
+      //     return <Progress steps={steps} />;
+      //   }
+      //   return null;
+      // },
+      render: () => {
+        return <Progress1 steps={steps} />;
+      },
+    },
+    [agentState]
+  );
 
   console.log("AGENT_STATE", agentState);
 
@@ -38,19 +72,11 @@ export function ResultsView() {
     },
   ];
 
-  //keeps track of the current agent processing state
-  const steps =
-    agentState?.steps?.map((step: any) => {
-      return {
-        description: step.description || "",
-        status: step.status || "pending",
-        updates: step.updates || [],
-      };
-    }) || [];
-
   const isLoading = !agentState?.answer?.markdown;
 
   console.log("is loading :", isLoading);
+
+  const [activeTab, setActiveTab] = useState(tabs[0].value);
 
   return (
     <motion.div
@@ -116,32 +142,53 @@ export function ResultsView() {
           )}
         </div>
       </div> */}
-      <div className="w-full flex-col my-8 ">
-        <div className="space-y-4">
-          <h1 className="text-3xl lg:text-4xl font-extralight">
+      <div className="w-full flex-col my-8 h-full">
+        <div className="space-y-4 flex justify-center">
+          <h1 className="text-3xl lg:text-4xl font-extralight mb-4">
             {researchQuery}
           </h1>
         </div>
-        <Tabs defaultValue={tabs[0].value} className="max-w-xs w-full mt-2">
-          <TabsList className="w-full p-0 bg-background justify-start border-b rounded-none">
+        <Tabs
+          // defaultValue={tabs[0].value}
+          // defaultValue={}
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="max-w-xs w-full flex-col mx-auto  mt-2"
+        >
+          <TabsList className="w-full p-0 bg-background  flex justify-center border-b rounded-none">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="rounded-none flex  bg-background h-full data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-red-500 mb-4"
+                className="rounded-none flex bg-background h-full data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-[#6766FC] mb-4"
               >
-                <code className="text-[20px]">{tab.name}</code>
+                <code className="text-[20px] flex gap-4">
+                  {isLoading && activeTab === tab.value ? (
+                    <LoaderCircleIcon className="animate-spin w-4 h-4 text-[#6766FC] data-[state=active]:opacity-100 transition-opacity" />
+                  ) : (
+                    <SparkleIcon
+                      className={`w-4 h-4 text-slate-500 opacity-100 data-[state=active]:opacity-0 transition-opacity
+                    `}
+                    />
+                  )}
+
+                  {tab.name}
+                </code>
               </TabsTrigger>
             ))}
           </TabsList>
 
-          <TabsContent key={"results"} value="results">
+          <TabsContent
+            key={"results"}
+            value="results"
+            className="flex justify-center"
+          >
             <div>
               <h1>results</h1>
               <AnswerMarkdown markdown={agentState?.answer?.markdown} />
             </div>
           </TabsContent>
-          <TabsContent value="sources">
+          <TabsContent value="sources" className="flex justify-center">
             <div>
               <h1>sources</h1>
             </div>

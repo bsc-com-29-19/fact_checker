@@ -11,9 +11,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         // ... rest of your color definitions
+      },
+      variants: {
+        extend: {
+          opacity: ["group-data"],
+        },
       },
     },
   },
