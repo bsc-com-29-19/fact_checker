@@ -7,13 +7,13 @@ import { BookOpenIcon, LoaderCircleIcon, SparkleIcon } from "lucide-react";
 // import { SkeletonLoader } from "./SkeletonLoader";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCoAgent, useCoAgentStateRender } from "@copilotkit/react-core";
-import { Progress } from "./progress";
+import { Progress } from "./Progress";
 import { AnswerMarkdown } from "./AnswerMarkdown";
 import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
 import { AgentState } from "@/lib/types";
 import { useState } from "react";
-import { Progress1 } from "./progress1";
+import { Progress1 } from "./Progress1";
 
 export function ResultsView() {
   const { researchQuery } = useResearchContext();
