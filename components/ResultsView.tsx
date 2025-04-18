@@ -13,7 +13,7 @@ import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
 import { AgentState } from "@/lib/types";
 import { useState } from "react";
-import { Progress1 } from "./Progress1";
+import { Progress1 } from "./progress1";
 
 export function ResultsView() {
   const { researchQuery } = useResearchContext();
