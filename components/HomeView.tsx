@@ -1,7 +1,5 @@
-//HomeView.tsx
 import { useCoAgent } from "@copilotkit/react-core";
 import { useState } from "react";
-// import { Moon, Sun, Plus, X, CornerDownLeftIcon } from "lucide-react";
 import { CornerDownLeftIcon } from "lucide-react";
 import Button from "./button";
 // import { Sidebar } from "@/components/siderbar";
@@ -26,17 +24,10 @@ import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
 
 export default function HomeView() {
-  const { setResearchQuery, researchInput, setResearchInput } =
-    useResearchContext();
+  const { setResearchQuery, researchInput, setResearchInput } = useResearchContext();
   const [isInputFocused, setIsInputFocused] = useState(false);
   const { model } = useModel();
   const { agent } = useAgent();
-
-  // const sources = [
-  //   { title: "News Report", url: "https://example.com/news" },
-  //   { title: "Government Report", url: "https://example.com/gov" },
-  //   { title: "Health Inspection Document", url: "https://example.com/health" },
-  // ];
 
   const MAX_INPUT_LENGTH = 500;
 
@@ -60,16 +51,13 @@ export default function HomeView() {
   return (
     <div className="h-full">
       <div>
-        {/* Scrollable Content */}
         <main className="bg-white dark:bg-gray-700 min-h-[calc(80vh-64px)]">
           <div className="max-w-4xl mx-auto p-6 space-y-6">
             <div className="flex space-x-2"></div>
 
             <h1 className="text-3xl font-bold text-center">
-              What do you want to fact check ?
+              What do you want to fact check?
             </h1>
-
-            {/* <Ranking /> */}
 
             <div
               className={cn(
@@ -95,17 +83,16 @@ export default function HomeView() {
                 maxLength={MAX_INPUT_LENGTH}
               />
 
-              {/* Grid container for horizontal alignment */}
-              <div className="grid grid-cols-3 gap-2 p-4 items-center">
-                {/* Column 1: Character count + AgentSelector */}
-                <div className="col-span-1 flex items-center gap-2">
+              <div className="grid grid-cols-3 gap-4 p-4 items-center">
+                {/* Left Section - Character count and Agent Selector */}
+                <div className="col-span-1 flex items-center gap-4">
                   <span className="text-xs text-slate-500">
                     {researchInput.length} / {MAX_INPUT_LENGTH}
                   </span>
                   <AgentSelector />
                 </div>
 
-                {/* Column 2: ModelSelector (centered) */}
+                {/* Center Section - Model Selector */}
                 <div className="col-span-1 flex justify-center">
                   <ModelSelector />
                 </div>
