@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { LanguageSelector } from "@/components/languageSelector";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { Sidebar } from "@/components/siderbar";
 import { useTheme } from "@/contexts/ThemeContext";
 
@@ -29,7 +28,6 @@ export function Header() {
               onClick={toggleSidebar}
               className="p-2 rounded hover:bg-accent"
             >
-              <GiHamburgerMenu size={24} />
             </button>
           )}
         </div>
