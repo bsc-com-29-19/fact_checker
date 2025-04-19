@@ -10,6 +10,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useModel } from "@/contexts/modelContext"; // Update the import path
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
+
 
 export function ModelSelector() {
   const { model, setModel } = useModel(); // Use the useModel hook
@@ -18,6 +21,7 @@ export function ModelSelector() {
     <div>
       <Select
         value={model}
+        // value="gpt-3.5-turbo"
         onValueChange={(
           v:
             | "gpt-3.5-turbo"
@@ -27,7 +31,9 @@ export function ModelSelector() {
             | "deepseek-r1:latest"
         ) => setModel(v)}
       >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px]"  data-tooltip-id="my-tooltip"
+          data-tooltip-content="Select a model"
+          data-tooltip-place="top">
           <SelectValue placeholder="Select model" />
         </SelectTrigger>
         <SelectContent>
@@ -41,6 +47,8 @@ export function ModelSelector() {
           <SelectItem value="deepseek-r1:latest">DeepSeek R1</SelectItem>
         </SelectContent>
       </Select>
+              <Tooltip id="my-tooltip" />
+      
     </div>
   );
 }
