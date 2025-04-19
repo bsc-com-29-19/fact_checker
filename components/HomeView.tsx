@@ -1,20 +1,11 @@
 //HomeView.tsx
 import { useCoAgent } from "@copilotkit/react-core";
-import { useEffect, useState } from "react";
-import { Moon, Sun, Plus, X, CornerDownLeftIcon } from "lucide-react";
+import { useState } from "react";
+import { X, CornerDownLeftIcon } from "lucide-react";
 import { Sidebar } from "@/components/siderbar";
-import CustomHeader from "@/components/CustomHeader";
-import { CustomAssistantMessage } from "@/components/CustomAssistantMessage";
-import { CopilotChat, CopilotSidebar } from "@copilotkit/react-ui";
-import { CustomUserMessage } from "@/components/CustomUserMessage";
-import CustomWindow from "@/components/CustomWindow";
 import { AgentSelector } from "@/components/agentSelector";
 import { ModelSelector } from "@/components/modelSelector";
-import FactCheckComponent from "@/components/main";
-import Ranking from "@/components/Ranking";
 import Button from "@/components/button";
-import { LanguageSelector } from "@/components/languageSelector";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { cn } from "@/lib/utils";
 import { Textarea } from "./ui/textArea";
 import { useResearchContext } from "@/lib/research-provider";
