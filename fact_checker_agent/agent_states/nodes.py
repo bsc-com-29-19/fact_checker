@@ -20,8 +20,9 @@ def route(state):
     if not current_step:
         return "decomposing_node"
 
-    if current_step["type"] == "search":# and current_step["type"] == "Wikipedia_search":
-        return ["web_search_node"] #,["wikipedia_search_node"]#
+    if current_step["type"] in ["search"]: #,"Wikipedia_search"
+        return ["web_search_node"]#,"wikipedia_search_node",
+    
 
 
     raise ValueError(f"Unknown step type: {current_step['type']}")
