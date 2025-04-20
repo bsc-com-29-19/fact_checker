@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import icon8 from "../../icons/icons8-mic-24.png";
 import { FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
 
 declare global {
@@ -16,9 +15,9 @@ interface RecordingViewProps {
 export default function RecordingView({
   onTranscriptChange,
 }: RecordingViewProps) {
-  const [isRecording, setIsRecording] = useState<Boolean>(false);
-  const [recordingComplete, setRecordingComplete] = useState<Boolean>(false);
-  const [transcript, setTranscript] = useState<String>("");
+  const [isRecording, setIsRecording] = useState<boolean>(false);
+  const [recordingComplete, setRecordingComplete] = useState<boolean>(false);
+  const [transcript, setTranscript] = useState<string>("");
 
   const recognitionRef = useRef<any>(null);
 
@@ -41,7 +40,7 @@ export default function RecordingView({
   useEffect(() => {
     return () => {
       if (recognitionRef.current) {
-        recognitionRef.current.stop;
+        recognitionRef.current.stop();
       }
     };
   });
