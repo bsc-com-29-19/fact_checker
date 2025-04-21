@@ -29,7 +29,7 @@ export function Header() {
               onClick={toggleSidebar}
               className="p-2 rounded hover:bg-accent"
             >
-              <GiHamburgerMenu size={24} />
+              {/* <GiHamburgerMenu size={24} /> */}
             </button>
           )}
         </div>
