@@ -9,9 +9,6 @@ export default function CustomHeader({}: HeaderProps) {
   return (
     <div className="flex justify-between items-center p-4 bg-blue-500 text-white">
       <div className="w-24">
-        {/* <a href="/">
-          <BookOpenIcon className="w-6 h-6" />
-        </a> */}
         <Link href="/">
           <BookOpenIcon className="w-6 h-6" />
         </Link>

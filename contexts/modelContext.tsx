@@ -34,9 +34,9 @@ const ModelContext = createContext<ModelContextType | undefined>(undefined);
     }) => {
       const model =
         globalThis.window === undefined
-          ? "openai"
+          ? "gpt-3.5-turbo"
           : new URL(window.location.href).searchParams.get("coAgentsModel") ??
-            "openai";
+            "gpt-3.5-turbo";
       // const [hidden, setHidden] = useState<boolean>(false);
     
       const setModel = (model: string) => {

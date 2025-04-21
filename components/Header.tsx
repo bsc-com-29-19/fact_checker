@@ -4,6 +4,7 @@ import { Moon, Sun } from "lucide-react";
 import { LanguageSelector } from "@/components/languageSelector";
 import { Sidebar } from "@/components/siderbar";
 import { ModeToggle } from "./ui/modeToggle";
+import { GiHamburgerMenu } from "react-icons/gi";
 // import { useTheme } from "@/contexts/ThemeContext";
 
 export function Header() {
@@ -29,6 +30,7 @@ export function Header() {
               onClick={toggleSidebar}
               className="p-2 rounded hover:bg-accent"
             >
+              <GiHamburgerMenu />
             </button>
           )}
         </div>

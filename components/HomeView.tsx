@@ -1,10 +1,12 @@
 import { useCoAgent } from "@copilotkit/react-core";
 import { useState } from "react";
 import { CornerDownLeftIcon } from "lucide-react";
+
 import RecordingView from "@/components/RecordView";
 import { AgentSelector } from "@/components/agentSelector";
 import { ModelSelector } from "@/components/modelSelector";
 import Button from "@/components/button";
+
 import { cn } from "@/lib/utils";
 import { Textarea } from "./ui/textArea";
 import { useResearchContext } from "@/lib/research-provider";
@@ -93,6 +95,7 @@ export default function HomeView() {
                     onTranscriptChange={(transcript) => setResearchInput(transcript)}
                   />
                   <Button onClick={() => handleResearch(researchInput)}>
+
                     Check
                     <CornerDownLeftIcon className="w-4 h-4 ml-2" />
                   </Button>

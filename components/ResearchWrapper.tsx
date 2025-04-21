@@ -35,35 +35,29 @@ export function ResearchWrapper() {
             {/* <CopilotChat /> */}
 
             <div
-              className="h-[80vh] w-full"
-              style={
-                {
-                  "--copilot-kit-background-color": "#E0E9FD",
-                  "--copilot-kit-secondary-color": "#6766FC",
-                  "--copilot-kit-separator-color": "#b8b8b8",
-                  "--copilot-kit-primary-color": "#FFFFFF",
-                  "--copilot-kit-contrast-color": "#000000",
-                  "--copilot-kit-secondary-contrast-color": "#000",
-                } as React.CSSProperties
-              }
+              className="h-[80vh] w-full flex flex-col overflow-hidden"
+              // style={
+              //   {
+              //     "--copilot-kit-background-color": "#E0E9FD",
+              //     "--copilot-kit-secondary-color": "#6766FC",
+              //     "--copilot-kit-separator-color": "#b8b8b8",
+              //     "--copilot-kit-primary-color": "#FFFFFF",
+              //     "--copilot-kit-contrast-color": "#000000",
+              //     "--copilot-kit-secondary-contrast-color": "#000",
+              //   } as React.CSSProperties
+              // }
             >
               <CopilotSidebar
-                className="w-full h-full"
+                className="w-full h-full flex flex-col"
                 Header={SideHeader}
                 // Window={SideWindow}
                 defaultOpen={true}
                 clickOutsideToClose={false}
                 Input={() => null}
+                RenderResultMessage={() => null}
+                // RenderAgentStateMessage={}
               />
-              {/* <CopilotChat
-                labels={{
-                  title: "Fact Checker steps",
-                  initial: "fact checker steps",
-                }}
-                Input={() => null}
-              /> */}
             </div>
-            {/* <CopilotChat /> */}
           </div>
         </div>
         <footer className="text-xs flex mx-auto">
@@ -75,15 +69,6 @@ export function ResearchWrapper() {
           >
             Powered by Fact Checker MW
           </Link>
-
-          {/* <a
-            href="https://copilotkit.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-600 font-medium hover:underline mx-auto"
-          >
-            Powered by Fact Checker MW
-          </a> */}
         </footer>
       </div>
     </>
