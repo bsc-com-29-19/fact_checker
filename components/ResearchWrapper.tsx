@@ -57,15 +57,7 @@ export function ResearchWrapper() {
                 RenderResultMessage={() => null}
                 // RenderAgentStateMessage={}
               />
-              {/* <CopilotChat
-                labels={{
-                  title: "Fact Checker steps",
-                  initial: "fact checker steps",
-                }}
-                Input={() => null}
-              /> */}
             </div>
-            {/* <CopilotChat /> */}
           </div>
         </div>
         <footer className="text-xs flex mx-auto">
@@ -77,15 +69,6 @@ export function ResearchWrapper() {
           >
             Powered by Fact Checker MW
           </Link>
-
-          {/* <a
-            href="https://copilotkit.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-600 font-medium hover:underline mx-auto"
-          >
-            Powered by Fact Checker MW
-          </a> */}
         </footer>
       </div>
     </>
