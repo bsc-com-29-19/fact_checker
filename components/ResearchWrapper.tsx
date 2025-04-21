@@ -36,16 +36,16 @@ export function ResearchWrapper() {
 
             <div
               className="h-[80vh] w-full flex flex-col overflow-hidden"
-              style={
-                {
-                  "--copilot-kit-background-color": "#E0E9FD",
-                  "--copilot-kit-secondary-color": "#6766FC",
-                  "--copilot-kit-separator-color": "#b8b8b8",
-                  "--copilot-kit-primary-color": "#FFFFFF",
-                  "--copilot-kit-contrast-color": "#000000",
-                  "--copilot-kit-secondary-contrast-color": "#000",
-                } as React.CSSProperties
-              }
+              // style={
+              //   {
+              //     "--copilot-kit-background-color": "#E0E9FD",
+              //     "--copilot-kit-secondary-color": "#6766FC",
+              //     "--copilot-kit-separator-color": "#b8b8b8",
+              //     "--copilot-kit-primary-color": "#FFFFFF",
+              //     "--copilot-kit-contrast-color": "#000000",
+              //     "--copilot-kit-secondary-contrast-color": "#000",
+              //   } as React.CSSProperties
+              // }
             >
               <CopilotSidebar
                 className="w-full h-full flex flex-col"

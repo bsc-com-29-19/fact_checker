@@ -3,7 +3,7 @@ import { useCoAgent } from "@copilotkit/react-core";
 import { useState } from "react";
 // import { Moon, Sun, Plus, X, CornerDownLeftIcon } from "lucide-react";
 import { CornerDownLeftIcon } from "lucide-react";
-
+import Button from "./button";
 // import { Sidebar } from "@/components/siderbar";
 // import CustomHeader from "@/components/CustomHeader";
 // import { CustomAssistantMessage } from "@/components/CustomAssistantMessage";
@@ -15,7 +15,7 @@ import { AgentSelector } from "@/components/agentSelector";
 import { ModelSelector } from "@/components/modelSelector";
 // import FactCheckComponent from "@/components/main";
 // import Ranking from "@/components/Ranking";
-import Button from "@/components/button";
+// import Button from "@/components/button";
 
 import { cn } from "@/lib/utils";
 import { Textarea } from "./ui/textArea";
@@ -112,7 +112,10 @@ export default function HomeView() {
 
                 {/* Column 3: Search button (right-aligned) */}
                 <div className="col-span-1 flex justify-end">
-                  <Button onClick={() => handleResearch(researchInput)}>
+                  <Button
+                    onClick={() => handleResearch(researchInput)}
+                  
+                  >
                     Check
                     <CornerDownLeftIcon className="w-4 h-4 ml-2" />
                   </Button>
