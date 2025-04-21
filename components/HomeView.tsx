@@ -1,22 +1,10 @@
-//HomeView.tsx
 import { useCoAgent } from "@copilotkit/react-core";
 import { useState } from "react";
-// import { Moon, Sun, Plus, X, CornerDownLeftIcon } from "lucide-react";
 import { CornerDownLeftIcon } from "lucide-react";
-
-// import { Sidebar } from "@/components/siderbar";
-// import CustomHeader from "@/components/CustomHeader";
-// import { CustomAssistantMessage } from "@/components/CustomAssistantMessage";
-// import { CopilotChat, CopilotSidebar } from "@copilotkit/react-ui";
-// import { CustomUserMessage } from "@/components/CustomUserMessage";
-// import CustomInput from "@/components/CustomInput";
-// import CustomWindow from "@/components/CustomWindow";
+import RecordingView from "@/components/RecordView";
 import { AgentSelector } from "@/components/agentSelector";
 import { ModelSelector } from "@/components/modelSelector";
-// import FactCheckComponent from "@/components/main";
-// import Ranking from "@/components/Ranking";
 import Button from "@/components/button";
-
 import { cn } from "@/lib/utils";
 import { Textarea } from "./ui/textArea";
 import { useResearchContext } from "@/lib/research-provider";
@@ -26,17 +14,10 @@ import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
 
 export default function HomeView() {
-  const { setResearchQuery, researchInput, setResearchInput } =
-    useResearchContext();
+  const { setResearchQuery, researchInput, setResearchInput } = useResearchContext();
   const [isInputFocused, setIsInputFocused] = useState(false);
   const { model } = useModel();
   const { agent } = useAgent();
-
-  // const sources = [
-  //   { title: "News Report", url: "https://example.com/news" },
-  //   { title: "Government Report", url: "https://example.com/gov" },
-  //   { title: "Health Inspection Document", url: "https://example.com/health" },
-  // ];
 
   const MAX_INPUT_LENGTH = 500;
 
@@ -60,16 +41,13 @@ export default function HomeView() {
   return (
     <div className="h-full">
       <div>
-        {/* Scrollable Content */}
         <main className="bg-white dark:bg-gray-700 min-h-[calc(80vh-64px)]">
           <div className="max-w-4xl mx-auto p-6 space-y-6">
             <div className="flex space-x-2"></div>
 
             <h1 className="text-3xl font-bold text-center">
-              What do you want to fact check ?
+              What do you want to fact check?
             </h1>
-
-            {/* <Ranking /> */}
 
             <div
               className={cn(
@@ -95,23 +73,25 @@ export default function HomeView() {
                 maxLength={MAX_INPUT_LENGTH}
               />
 
-              {/* Grid container for horizontal alignment */}
-              <div className="grid grid-cols-3 gap-2 p-4 items-center">
-                {/* Column 1: Character count + AgentSelector */}
-                <div className="col-span-1 flex items-center gap-2">
+              <div className="grid grid-cols-3 gap-4 p-4 items-center">
+                {/* Left Section - Character count and Agent Selector */}
+                <div className="col-span-1 flex items-center gap-4">
                   <span className="text-xs text-slate-500">
                     {researchInput.length} / {MAX_INPUT_LENGTH}
                   </span>
                   <AgentSelector />
                 </div>
 
-                {/* Column 2: ModelSelector (centered) */}
+                {/* Center Section - Model Selector */}
                 <div className="col-span-1 flex justify-center">
                   <ModelSelector />
                 </div>
 
-                {/* Column 3: Search button (right-aligned) */}
-                <div className="col-span-1 flex justify-end">
+                {/* Right Section - Recording and Submit Button */}
+                <div className="col-span-1 flex justify-end items-center gap-4">
+                  <RecordingView
+                    onTranscriptChange={(transcript) => setResearchInput(transcript)}
+                  />
                   <Button onClick={() => handleResearch(researchInput)}>
                     Check
                     <CornerDownLeftIcon className="w-4 h-4 ml-2" />

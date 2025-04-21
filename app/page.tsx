@@ -8,19 +8,20 @@ import { ModelProvider } from "@/contexts/modelContext";
 import { AgentProvider } from "@/contexts/agentContext";
 import { LanguageProvider } from "@/contexts/languageContext";
 import { Header } from "@/components/Header";
-import ThemeProvider from "@/components/ThemeProvider";
+// import ThemeProvider from "@/components/ThemeProvider";
+
 
 export default function ModelSelectorWrapper() {
   return (
     <main>
-      <ThemeProvider>
+      
         <ModelProvider>
           <LanguageProvider>
             <Header />
             <Home />
           </LanguageProvider>
         </ModelProvider>
-      </ThemeProvider>
+   
     </main>
   );
 }

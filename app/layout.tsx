@@ -1,5 +1,7 @@
 // app/layout.tsx
-import { ThemeProvider } from '@/contexts/ThemeContext';
+// import { ThemeProvider } from '@/contexts/ThemeContext';
+import { ThemeProvider } from "@/components/ThemeProvider"
+
 import './globals.css';
 
 export default function RootLayout({
@@ -10,7 +12,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <ThemeProvider>
+        <ThemeProvider
+         attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange>
           {children}
         </ThemeProvider>
       </body>
