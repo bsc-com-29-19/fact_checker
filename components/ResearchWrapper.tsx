@@ -35,7 +35,7 @@ export function ResearchWrapper() {
             {/* <CopilotChat /> */}
 
             <div
-              className="h-[80vh] w-full"
+              className="h-[80vh] w-full flex flex-col overflow-hidden"
               style={
                 {
                   "--copilot-kit-background-color": "#E0E9FD",
@@ -48,7 +48,7 @@ export function ResearchWrapper() {
               }
             >
               <CopilotSidebar
-                className="w-full h-full"
+                className="w-full h-full flex flex-col"
                 Header={SideHeader}
                 // Window={SideWindow}
                 defaultOpen={true}
