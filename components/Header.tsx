@@ -9,14 +9,19 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 export function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showSources, setShowSources] = useState(false);
   // const { theme, toggleTheme } = useTheme();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  // const toggleSources = () => {
+  //   setShowSources(!showSources);
+  // };
+
   return (
-    <header className="sticky top-0 z-99 bg-background border-b">
+    <header className="sticky top-0 z-10 bg-background border-b">
       <div className="flex justify-between items-center p-4">
         <div className="flex items-center space-x-4">
           <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
@@ -34,9 +39,9 @@ export function Header() {
           {/* <button
             onClick={toggleTheme}
             className="p-2 rounded hover:bg-accent"
-            aria-label={`Toggle ${theme === "dark" ? "light" : "dark"} mode`}
+            aria-label={`Toggle ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
-            {theme === "dark" ? (
+            {theme === 'dark' ? (
               <Sun size={24} className="text-primary" />
             ) : (
               <Moon size={24} className="text-primary" />
