@@ -24,7 +24,8 @@ import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
 
 export default function HomeView() {
-  const { setResearchQuery, researchInput, setResearchInput } = useResearchContext();
+  const { setResearchQuery, researchInput, setResearchInput } =
+    useResearchContext();
   const [isInputFocused, setIsInputFocused] = useState(false);
   const { model } = useModel();
   const { agent } = useAgent();
