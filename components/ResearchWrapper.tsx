@@ -54,6 +54,8 @@ export function ResearchWrapper() {
                 defaultOpen={true}
                 clickOutsideToClose={false}
                 Input={() => null}
+                RenderResultMessage={() => null}
+                // RenderAgentStateMessage={}
               />
               {/* <CopilotChat
                 labels={{
