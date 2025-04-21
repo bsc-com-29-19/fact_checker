@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { useResearchContext } from "@/lib/research-provider";
 import HomeView from "./HomeView";
 import { ResultsView } from "./ResultsView";
-import { CopilotChat, CopilotSidebar } from "@copilotkit/react-ui";
+import {CopilotSidebar } from "@copilotkit/react-ui";
 import SideHeader from "./chatsidebarcomponents/SideHeader";
 import Link from "next/link";
 // import SideWindow from "./chatsidebarcomponents/SideWindow";
