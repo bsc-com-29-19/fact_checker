@@ -198,6 +198,7 @@
 //     </motion.div>
 //   );
 // }
+
 "use client";
 
 import { useResearchContext } from "@/lib/research-provider";
@@ -244,8 +245,6 @@ export function ResultsView() {
       let trueStatement = "";
       let falseStatement = "";
       let wholeTruth = "";
-      const references: Reference[] = [];
-
       let currentSection: string | null = null;
 
       for (const line of lines) {
@@ -258,14 +257,6 @@ export function ResultsView() {
         } else if (line.toLowerCase().startsWith("whole truth:")) {
           currentSection = "wholeTruth";
           wholeTruth = line.substring("whole truth:".length).trim();
-        } else if (/^\[\d+\]:/.test(line)) {
-          currentSection = "references";
-          const match = line.match(/^\[\d+\]:\s+(https?:\/\/[^\s]+)\s+"([^"]+)"/);
-          if (match) {
-            const url = match[1];
-            const title = match[2];
-            references.push({ url, title });
-          }
         } else {
           if (currentSection === "true" && line) {
             trueStatement += (trueStatement ? "\n" : "") + line;
@@ -277,6 +268,8 @@ export function ResultsView() {
         }
       }
 
+      const references: Reference[] = agentState.answer.sources || [];
+
       setParsedResults({
         trueStatement,
         falseStatement,
@@ -284,7 +277,7 @@ export function ResultsView() {
         references,
       });
     }
-  }, [agentState?.answer?.markdown]);
+  }, [agentState?.answer]);
 
   const steps =
     agentState?.steps?.map((step: any) => ({
