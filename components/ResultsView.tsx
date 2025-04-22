@@ -260,7 +260,9 @@ export function ResultsView() {
           wholeTruth = line.substring("whole truth:".length).trim();
         } else if (/^\[\d+\]:/.test(line)) {
           currentSection = "references";
-          const match = line.match(/^\[\d+\]:\s+(https?:\/\/[^\s]+)\s+"([^"]+)"/);
+          const match = line.match(
+            /^\[\d+\]:\s+(https?:\/\/[^\s]+)\s+"([^"]+)"/
+          );
           if (match) {
             const url = match[1];
             const title = match[2];
@@ -314,9 +316,12 @@ export function ResultsView() {
     >
       <div className="w-full flex-col my-8 h-full">
         <div className="space-y-4 flex justify-center">
-          <h1 className="text-3xl lg:text-4xl font-extralight mb-4">
-            {researchQuery}
-          </h1>
+          <div className="flex justify-center items-center gap-4 mb-4">
+            <h1 className="text-2xl lg:text-3xl font-normal"> Claim : </h1>
+            <h1 className="text-2xl lg:text-3xl font-extralight  items-center">
+              {researchQuery}
+            </h1>
+          </div>
         </div>
 
         <Tabs
@@ -349,6 +354,9 @@ export function ResultsView() {
                 <div className="text-center py-8">Loading results...</div>
               ) : (
                 <>
+                  <h1 className="font-bold text-3xl">
+                    {`User's Claim Decomposition`}
+                  </h1>
                   <Card className="border-green-200 bg-green-50">
                     <CardHeader>
                       <CardTitle className="text-green-700">
