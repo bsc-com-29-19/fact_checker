@@ -2,22 +2,23 @@
 import React, { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { LanguageSelector } from "@/components/languageSelector";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { Sidebar } from "@/components/siderbar";
-import { useTheme } from "@/contexts/ThemeContext";
+import { ModeToggle } from "./ui/modeToggle";
+import { GiHamburgerMenu } from "react-icons/gi";
+// import { useTheme } from "@/contexts/ThemeContext";
 
 export function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showSources, setShowSources] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  // const { theme, toggleTheme } = useTheme();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const toggleSources = () => {
-    setShowSources(!showSources);
-  };
+  // const toggleSources = () => {
+  //   setShowSources(!showSources);
+  // };
 
   return (
     <header className="sticky top-0 z-10 bg-background border-b">
@@ -29,13 +30,13 @@ export function Header() {
               onClick={toggleSidebar}
               className="p-2 rounded hover:bg-accent"
             >
-              {/* <GiHamburgerMenu size={24} /> */}
+              <GiHamburgerMenu />
             </button>
           )}
         </div>
         <div className="flex items-center space-x-4">
           <LanguageSelector />
-          <button
+          {/* <button
             onClick={toggleTheme}
             className="p-2 rounded hover:bg-accent"
             aria-label={`Toggle ${theme === 'dark' ? 'light' : 'dark'} mode`}
@@ -45,7 +46,9 @@ export function Header() {
             ) : (
               <Moon size={24} className="text-primary" />
             )}
-          </button>
+
+          </button> */}
+          <ModeToggle />
           <button className="p-2 rounded-full bg-primary text-primary-foreground">
             MK
           </button>

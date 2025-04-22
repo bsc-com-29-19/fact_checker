@@ -1,14 +1,11 @@
-// ThemeProvider.tsx
-import { ThemeProvider } from '@/contexts/ThemeContext';
+"use client"
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <ThemeProvider>
-      <html lang="en" className="h-full">
-        <body className="h-full">
-          {children}
-        </body>
-      </html>
-    </ThemeProvider>
-  );
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+
+export function ThemeProvider({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
 }
