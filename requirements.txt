@@ -21,5 +21,6 @@ python-whois
 requests
 tldextract
 beautifulsoup4
+langgraph.checkpoint.sqlite
 #seleium
 

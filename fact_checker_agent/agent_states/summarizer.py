@@ -2,6 +2,8 @@ import json
 from pydantic import BaseModel,Field
 from langchain.tools import tool
 from langchain_core.messages import HumanMessage
+# from fact_checker_agent.agent_states.memory import save_summary_to_db
+# from fact_checker_agent.database.model import SummarizedResult
 from fact_checker_agent.utils.models import get_model
 from langchain_core.runnables import RunnableConfig
 from fact_checker_agent.agent_states.state import AgentState
@@ -47,6 +49,10 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
             }
         ]
     )
+    
+    
+    
+    
 
     system_message = f"""
         The system has performed a series of steps to decompose the user's claim.
@@ -63,7 +69,18 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
         Do not include any additional commentary or explanation.
         If any section is empty, still include the key followed by a blank value.
         """
-
+    # thread_id = config.get("configurable", {}).get("thread_id", "")
+    sources = []
+    
+    if state.get("ranked_sources"):
+        sources = [
+            {
+                "title": source["title"],
+                "url": f"{source['url']} (Score: {source.get('score', 0)})",
+            }
+            for source in state["ranked_sources"]
+        ]
+    
     response = await get_model(state).bind_tools(
         [SummarizeTool],
         tool_choice="SummarizeTool"
@@ -72,7 +89,30 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
             content=system_message
         ),
     ], config)
+    
+    
+    if response.tool_calls and len(response.tool_calls) > 0:
+        summarized_data = response.tool_calls[0]["args"]
+        summarized_data["sources"] = sources
+    else:
+        summarized_data = {
+            "markdown": "No summary could be generated",
+            "sources": sources
+        }
+    # summarized_data = response.tool_calls[0]["args"]
 
+    # results = SummarizedResult(
+    #     query=state["steps"][0]["description"] if state.get("steps") else "No query available",
+    #     summary=summarized_data["markdown"],
+    #     sources=summarized_data["sources"],
+    #     thread_id=thread_id
+    # )
+    # #save to database
+    # save_summary_to_db(results)
+    
+    # Get the summarized data and add the ranked sources
+    state["ranked_sources"] = sources
+    
     return {
-        "answer": response.tool_calls[0]["args"],
+        "answer": summarized_data["markdown"]
     }

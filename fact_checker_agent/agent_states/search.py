@@ -3,6 +3,7 @@ import json
 
 from langchain_community.tools.tavily_search import TavilySearchResults
 
+from fact_checker_agent.agent_states.source_rank import rank_sources_with_whois
 from fact_checker_agent.utils.log_config import LOGGER
 from fact_checker_agent.agent_states.state import AgentState
 from langchain_core.runnables import RunnableConfig
@@ -66,20 +67,40 @@ async def run_search(state: AgentState, config: RunnableConfig, tool, step_type:
     # if step_type == "search":
     search_tool_msg_answer = await tool.ainvoke(tool_call)
     answer = search_tool_msg_answer.artifact
+    urls_title = []
     if isinstance(answer, dict) and 'results' in answer:
         for result in answer['results']:
             if isinstance(result, dict) and 'url' in result:
+                title = result.get('title', 'No title available')
                 url = result['url']
-        
-                current_step["updates"].append(f"Search on: {url}")
+                urls_title.append((title, url))
+                current_step["updates"].append(f"Searching on: {url}")
     elif isinstance(answer, list):
         for result in answer:
             if isinstance(result, dict) and 'url' in result:
-                
+                title = result.get('title', 'No title available')
                 url = result['url']
-                
-                current_step["updates"].append(f"Search on: {url}")
+                urls_title.append((title, url))
+                current_step["updates"].append(f"Searching on: {url}")    
+    #rank the 
+    urls = [url for title, url in urls_title]
     
+    ranked_urls = rank_sources_with_whois(urls)
+    
+    ranked_sources = []
+    for (title, url), (ranked_url, score) in zip(urls_title, ranked_urls):
+        if url == ranked_url:  # Ensure we're matching the same URL
+            ranked_sources.append({
+                "title": title,
+                "url": url,
+                "score": score
+            })
+    
+    current_step["results_ranked"] = ranked_urls
+    state["ranked_sources"] = ranked_sources 
+    
+    
+    current_step["results_ranked"] = ranked_urls
     LOGGER.info(f"The results of tavily \n\n{json.loads(search_tool_msg_answer.content)}")
     search_response = [json.loads(search_tool_msg_answer.content)]
     current_step["search_result"] = search_response

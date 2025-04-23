@@ -16,7 +16,7 @@ class Step(TypedDict):
     search_result: Annotated[List , operator.add]
     result: Optional[str]
     updates: Optional[List[str]]
-    results_ranked: Optional[List[str]]
+    results_ranked: Annotated[List, operator.add]
 
 class AgentState(MessagesState):
      """
@@ -29,3 +29,4 @@ class AgentState(MessagesState):
     #  context:Annotated[Sequence[BaseMessage],add_messages]
      answer:Optional[str]
     #  query: Optional[str]
+     ranked_sources: Optional[List]
