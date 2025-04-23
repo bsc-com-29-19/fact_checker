@@ -86,19 +86,22 @@ async def run_search(state: AgentState, config: RunnableConfig, tool, step_type:
     urls = [url for title, url in urls_title]
     
     ranked_urls = rank_sources_with_whois(urls)
-    
+    print(ranked_urls)
+    url_to_title = {url: title for title, url in urls_title}
     ranked_sources = []
-    for (title, url), (ranked_url, score) in zip(urls_title, ranked_urls):
-        if url == ranked_url:  # Ensure we're matching the same URL
+    for ranked_url, score in ranked_urls:
+        
+        if ranked_url in url_to_title:
+        
             ranked_sources.append({
-                "title": title,
-                "url": url,
+                "title": url_to_title[ranked_url],
+                "url": ranked_url,
                 "score": score
             })
+
     
     current_step["results_ranked"] = ranked_urls
     state["ranked_sources"] = ranked_sources 
-    
     
     current_step["results_ranked"] = ranked_urls
     LOGGER.info(f"The results of tavily \n\n{json.loads(search_tool_msg_answer.content)}")

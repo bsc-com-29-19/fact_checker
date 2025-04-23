@@ -71,12 +71,14 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
         """
     # thread_id = config.get("configurable", {}).get("thread_id", "")
     sources = []
-    
+    print(state["ranked_sources"])
     if state.get("ranked_sources"):
+        
         sources = [
             {
                 "title": source["title"],
-                "url": f"{source['url']} (Score: {source.get('score', 0)})",
+                "url": source['url'],
+                "Score": source.get('score', 0),
             }
             for source in state["ranked_sources"]
         ]
@@ -111,8 +113,10 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     # save_summary_to_db(results)
     
     # Get the summarized data and add the ranked sources
-    state["ranked_sources"] = sources
+    #state["ranked_sources"] = sources
+    # print(state["ranked_sources"])
     
     return {
-        "answer": summarized_data["markdown"]
+        "answer": summarized_data["markdown"],
+        "ranked_sources": sources,
     }
