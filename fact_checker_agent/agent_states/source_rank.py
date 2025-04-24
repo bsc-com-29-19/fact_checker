@@ -2,14 +2,16 @@ from urllib.parse import urlparse
 import requests
 import logging
 from datetime import datetime, timezone
+import os
 #import tldextract
 
+WHOIS_API_KEY = os.getenv("WHOIS_API_KEY")
 # Setup basic logger
 LOGGER = logging.getLogger("WhoisSourceRanker")
 LOGGER.setLevel(logging.INFO)
 
 # Your Whois API key and endpoint (replace with your actual key)
-WHOIS_API_KEY = "at_VnFmqcZWXnQfcj1dQngJaAquyL3Ne"
+
 WHOIS_API_URL = "https://www.whoisxmlapi.com/whoisserver/WhoisService"
 
 SCORE_WEIGHTS = {
