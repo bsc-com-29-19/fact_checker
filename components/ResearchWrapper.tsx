@@ -1,12 +1,91 @@
-//ResearchWrapper.tsx
+// //ResearchWrapper.tsx
+// import { AnimatePresence } from "framer-motion";
+// import { useResearchContext } from "@/lib/research-provider";
+// import HomeView from "./HomeView";
+// import { ResultsView } from "./ResultsView";
+// import {CopilotSidebar } from "@copilotkit/react-ui";
+// import SideHeader from "./chatsidebarcomponents/SideHeader";
+// import Link from "next/link";
+// // import SideWindow from "./chatsidebarcomponents/SideWindow";
+// export function ResearchWrapper() {
+//   const { researchQuery, setResearchInput } = useResearchContext();
+
+//   return (
+//     <>
+//       <div className="flex flex-col items-center justify-center h-full">
+//         <div className="flex flex-col md:flex-row w-full">
+//           <div className="flex-1">
+//             {researchQuery ? (
+//               <AnimatePresence
+//                 key="results"
+//                 onExitComplete={() => {
+//                   setResearchInput("");
+//                 }}
+//                 mode="wait"
+//               >
+//                 <ResultsView key="results" />
+//               </AnimatePresence>
+//             ) : (
+//               <AnimatePresence key="home" mode="wait">
+//                 <HomeView key="home" />
+//               </AnimatePresence>
+//             )}
+//           </div>
+//           <div className="hidden md:flex md:w-64 lg:w-80 xl:w-96 p-4 border-l">
+//             {/* <CopilotChat /> */}
+
+//             <div
+//               className="h-[80vh] w-full flex flex-col overflow-hidden"
+//               // style={
+//               //   {
+//               //     "--copilot-kit-background-color": "#E0E9FD",
+//               //     "--copilot-kit-secondary-color": "#6766FC",
+//               //     "--copilot-kit-separator-color": "#b8b8b8",
+//               //     "--copilot-kit-primary-color": "#FFFFFF",
+//               //     "--copilot-kit-contrast-color": "#000000",
+//               //     "--copilot-kit-secondary-contrast-color": "#000",
+//               //   } as React.CSSProperties
+//               // }
+//             >
+//               <CopilotSidebar
+//                 className="w-full h-full flex flex-col"
+//                 Header={SideHeader}
+//                 // Window={SideWindow}
+//                 defaultOpen={true}
+//                 clickOutsideToClose={false}
+//                 Input={() => null}
+//                 RenderResultMessage={() => null}
+//                 // RenderAgentStateMessage={}
+//               />
+//             </div>
+//           </div>
+//         </div>
+//         <footer className="text-xs flex mx-auto">
+//           <Link
+//             href="https://copilotkit.ai"
+//             target="_blank"
+//             rel="noopener noreferrer"
+//             className="text-slate-600 font-medium hover:underline mx-auto"
+//           >
+//             Powered by Fact Checker MW
+//           </Link>
+//         </footer>
+//       </div>
+//     </>
+//   );
+// }
+
+
+
+// ResearchWrapper.tsx
 import { AnimatePresence } from "framer-motion";
 import { useResearchContext } from "@/lib/research-provider";
 import HomeView from "./HomeView";
 import { ResultsView } from "./ResultsView";
-import {CopilotSidebar } from "@copilotkit/react-ui";
+import { CopilotSidebar } from "@copilotkit/react-ui";
 import SideHeader from "./chatsidebarcomponents/SideHeader";
 import Link from "next/link";
-// import SideWindow from "./chatsidebarcomponents/SideWindow";
+
 export function ResearchWrapper() {
   const { researchQuery, setResearchInput } = useResearchContext();
 
@@ -15,7 +94,15 @@ export function ResearchWrapper() {
       <div className="flex flex-col items-center justify-center h-full">
         <div className="flex flex-col md:flex-row w-full">
           <div className="flex-1">
-            {researchQuery ? (
+            {/* Always render HomeView */}
+            <div className="sticky top-0 z-10 bg-white dark:bg-gray-700">
+              <AnimatePresence key="home" mode="wait">
+                <HomeView key="home" />
+              </AnimatePresence>
+            </div>
+
+            {/* Conditionally render ResultsView below HomeView */}
+            {researchQuery && (
               <AnimatePresence
                 key="results"
                 onExitComplete={() => {
@@ -25,42 +112,22 @@ export function ResearchWrapper() {
               >
                 <ResultsView key="results" />
               </AnimatePresence>
-            ) : (
-              <AnimatePresence key="home" mode="wait">
-                <HomeView key="home" />
-              </AnimatePresence>
             )}
           </div>
           <div className="hidden md:flex md:w-64 lg:w-80 xl:w-96 p-4 border-l">
-            {/* <CopilotChat /> */}
-
-            <div
-              className="h-[80vh] w-full flex flex-col overflow-hidden"
-              // style={
-              //   {
-              //     "--copilot-kit-background-color": "#E0E9FD",
-              //     "--copilot-kit-secondary-color": "#6766FC",
-              //     "--copilot-kit-separator-color": "#b8b8b8",
-              //     "--copilot-kit-primary-color": "#FFFFFF",
-              //     "--copilot-kit-contrast-color": "#000000",
-              //     "--copilot-kit-secondary-contrast-color": "#000",
-              //   } as React.CSSProperties
-              // }
-            >
+            <div className="h-[80vh] w-full flex flex-col overflow-hidden">
               <CopilotSidebar
                 className="w-full h-full flex flex-col"
                 Header={SideHeader}
-                // Window={SideWindow}
                 defaultOpen={true}
                 clickOutsideToClose={false}
                 Input={() => null}
                 RenderResultMessage={() => null}
-                // RenderAgentStateMessage={}
               />
             </div>
           </div>
         </div>
-        <footer className="text-xs flex mx-auto">
+        <footer className="text-xs flex mx-auto py-4">
           <Link
             href="https://copilotkit.ai"
             target="_blank"
