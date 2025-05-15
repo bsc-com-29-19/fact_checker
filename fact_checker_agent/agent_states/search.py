@@ -121,8 +121,8 @@ async def web_search_node(state: AgentState,config: RunnableConfig):
         max_results = 3,
         search_depth="advanced",
         include_raw_content=True,
-        include_images=True,
-        include_image_descriptions=True,
+       
+    
         
         )
     

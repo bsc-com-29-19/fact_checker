@@ -47,12 +47,26 @@ async def steps_node(state: AgentState, config: RunnableConfig):
     )
 
     instructions = f"""
-You are a search assistant of a fact checker. Your task is to help the user with complex search queries by breaking the down into smaller steps.
+    You are a search assistant of a fact checker. Your task is to help the user with complex search queries by breaking the down into smaller steps.
 
-These steps are then executed serially. In the end, a final answer is produced in markdown format.
+    These steps are then executed serially. In the end, a final answer is produced in markdown format.
 
-The current date is {datetime.now().strftime("%Y-%m-%d")}.
-"""
+    The current date is {datetime.now().strftime("%Y-%m-%d")}.
+    """
+    
+    # instructions = f"""
+    # You are a search assistant of a fact checker. Your task is to help the user with complex search queries by breaking the down into smaller steps.
+
+    # This is what you need to search for, 
+    # please come up with a good search query,
+    # generate a list of 3-5 specific and distinct search queries that cover the key aspects of the task.
+    # Aim for queries that are likely to yield focused results and avoid significant overlap. 
+    # The goal is to gather comprehensive information through multiple targeted searches rather than one broad search.
+
+    # These steps are then executed serially. In the end, a final answer is produced in markdown format.
+
+    # The current date is {datetime.now().strftime("%Y-%m-%d")}.
+    # """
 
     response = await get_model(state).bind_tools(
         [SearchTool],

@@ -73,8 +73,8 @@ async def download_node(state: AgentState, config: RunnableConfig):
     
     current_step["result"] = response.content
     current_step["search_result"] = None
-    current_step["status"] = "decomposing"
-    current_step["updates"] = [*current_step["updates"], "Downloading information"]
+    current_step["status"] = "complete"
+    current_step["updates"] = [*current_step["updates"], "Done"]
 
     next_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
     if next_step:

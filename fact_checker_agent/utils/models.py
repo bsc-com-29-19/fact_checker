@@ -19,8 +19,11 @@ def get_model(state:AgentState):
     if model_name == "gpt-3.5-turbo":
         model = ChatOpenAI(temperature=0,model_name=model_name)
     elif model_name == "gpt-4o":
-        model = ChatOpenAI(temperature=0,model_name=model_name,max_tokens=None,
-    timeout=None)
+        model = ChatOpenAI(temperature=0,model_name=model_name,max_tokens=None,timeout=None)
+    elif model_name == "gpt-4o-mini":
+        model = ChatOpenAI(temperature=0,model_name=model_name)
+    elif model_name == "gpt-4o-32k":
+        model = ChatOpenAI(temperature=0,model_name=model_name)
     elif model_name == "llama3.5":
         model = ChatOllama(temperature=0,model_name=model_name)
     elif model_name == "claude-3-sonnet-20240229":
