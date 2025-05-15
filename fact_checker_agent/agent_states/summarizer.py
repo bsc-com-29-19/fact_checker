@@ -95,7 +95,7 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
 
     You will then format your findings as arguments for a tool called 'SummarizeTool'. This tool expects a 'markdown' argument.
     The entire content you generate for this 'markdown' argument *must* be structured *exactly* as follows, with no deviations, no introductory or concluding remarks outside this structure:
-   
+    
 
     classification: <classification_value= true | false | opinionated>
     whole truth: <detailed_assessment>

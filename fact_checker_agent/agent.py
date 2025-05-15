@@ -59,4 +59,4 @@ workflow.add_edge("summarizer_node", END)
 memory = MemorySaver()
 
 
-graph = workflow.compile()
+graph = workflow.compile(checkpointer=memory)
