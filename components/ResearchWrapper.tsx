@@ -1,14 +1,13 @@
-import { AnimatePresence } from "framer-motion"; 
-import { useResearchContext } from "@/lib/research-provider"; 
-import HomeView from "./HomeView"; 
-import { ResultsView } from "./ResultsView"; 
-import { CopilotSidebar } from "@copilotkit/react-ui"; 
-import SideHeader from "./chatsidebarcomponents/SideHeader"; 
-import Link from "next/link"; 
+import { AnimatePresence } from "framer-motion";
+import { useResearchContext } from "@/lib/research-provider";
+import HomeView from "./HomeView";
+import { ResultsView } from "./ResultsView";
+import { CopilotSidebar } from "@copilotkit/react-ui";
+import SideHeader from "./chatsidebarcomponents/SideHeader";
+import Link from "next/link";
 
 export function ResearchWrapper() {
-  
-  const { researchQuery, setResearchInput } = useResearchContext(); 
+  const { researchQuery, setResearchInput } = useResearchContext();
 
   return (
     <>
@@ -33,7 +32,7 @@ export function ResearchWrapper() {
         </div>
 
         <div className="hidden md:flex md:w-64 lg:w-80 xl:w-96 p-4 border-l">
-          <div className="h-[calc(100vh-4rem)] w-full flex flex-col overflow-hidden">
+          <div className="h-[80vh] w-full flex flex-col overflow-hidden">
             <CopilotSidebar
               className="w-full h-full flex flex-col"
               Header={SideHeader}

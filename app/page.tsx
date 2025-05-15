@@ -86,7 +86,7 @@ export default function ModelSelectorWrapper() {
 
             {/* Research interface for authenticated users */}
             <SignedIn>
-              <div className="flex items-center justify-between w-full px-4 py-2 bg-white border-b border-gray-200">
+              <div className="flex items-center justify-between w-full px-4 py-2 bg-white ">
                 <div className="flex-1">
                   <Header />
                 </div>
