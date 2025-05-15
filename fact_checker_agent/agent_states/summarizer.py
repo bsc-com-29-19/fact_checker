@@ -31,8 +31,10 @@ class SummarizerInput(BaseModel):
 @tool(args_schema=SummarizerInput)
 def SummarizeTool(summary:str,sources:list[Source]):
     """
-    Summarize the final result. Ensure that the summary is complete and
-    includes all relevant information and source links.
+    Summarize the final result. Ensure that the summary (provided as the 'markdown' argument)
+    is complete, includes all relevant information, source links, and strictly follows the
+    'classification: ...\nwhole truth: ...' format.
+    The 'sources' argument will be populated by the system.
     """
 
 
@@ -89,7 +91,14 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     system_message = f"""
     You are an AI fact-checker. Your task is to evaluate the user's original claim based *only* on the provided search results information.
 
-    Original Claim: "{state['messages'][0]}
+   
+
+    You will then format your findings as arguments for a tool called 'SummarizeTool'. This tool expects a 'markdown' argument.
+    The entire content you generate for this 'markdown' argument *must* be structured *exactly* as follows, with no deviations, no introductory or concluding remarks outside this structure:
+   
+
+    classification: <classification_value= true | false | opinionated>
+    whole truth: <detailed_assessment>
 
     Based *strictly* on the provided "Relevant Information Gathered": {json.dumps(state["steps"])}
 

@@ -27,9 +27,9 @@ def get_model(state:AgentState):
     elif model_name == "llama3.5":
         model = ChatOllama(temperature=0,model_name=model_name)
     elif model_name == "claude-3-sonnet-20240229":
-        model = ChatAnthropic(temperature=0.1,model_name=model_name)
+        model = ChatAnthropic(temperature=0,model_name=model_name)
     elif model_name == "deepseek-r1:latest":
-        model = ChatDeepSeek(temperature=0.1,model_name=model_name)
+        model = ChatDeepSeek(temperature=0,model_name=model_name)
     else:
         raise ValueError(f"Invalid model name: {model_name}")
         
