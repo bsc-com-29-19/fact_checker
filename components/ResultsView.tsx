@@ -469,6 +469,7 @@ import { Button } from "@/components/ui/button";
 interface Reference {
   title: string;
   url: string;
+  score?: number;
 }
 
 export function ResultsView() {
@@ -498,8 +499,6 @@ export function ResultsView() {
       let trueStatement = "";
       let falseStatement = "";
       let wholeTruth = "";
-      const references: Reference[] = [];
-
       let currentSection: string | null = null;
 
       for (const line of lines) {
@@ -512,16 +511,6 @@ export function ResultsView() {
         } else if (line.toLowerCase().startsWith("whole truth:")) {
           currentSection = "wholeTruth";
           wholeTruth = line.substring("whole truth:".length).trim();
-        } else if (/^\[\d+\]:/.test(line)) {
-          currentSection = "references";
-          const match = line.match(
-            /^\[\d+\]:\s+(https?:\/\/[^\s]+)\s+"([^"]+)"/
-          );
-          if (match) {
-            const url = match[1];
-            const title = match[2];
-            references.push({ url, title });
-          }
         } else {
           if (currentSection === "true" && line) {
             trueStatement += (trueStatement ? "\n" : "") + line;
@@ -533,6 +522,15 @@ export function ResultsView() {
         }
       }
 
+      // Use either ranked_sources or answer.sources if available
+      const references: Reference[] = (agentState?.ranked_sources || []).map(
+        (source: any) => ({
+          title: source.title,
+          url: source.url,
+          score: source.score || 0,
+        })
+      );
+      console.log(agentState.ranked_sources);
       setParsedResults({
         trueStatement,
         falseStatement,
@@ -540,7 +538,7 @@ export function ResultsView() {
         references,
       });
     }
-  }, [agentState?.answer?.markdown]);
+  }, [agentState?.answer, agentState?.ranked_sources]);
 
   const steps =
     agentState?.steps?.map((step: any) => ({
@@ -554,7 +552,7 @@ export function ResultsView() {
     [agentState]
   );
 
-  const isLoading = !agentState?.answer?.markdown;
+  const isLoading = !agentState?.answer;
 
   const tabs = [
     { name: "Results", value: "results" },
@@ -666,7 +664,7 @@ export function ResultsView() {
             </div>
           </TabsContent>
 
-          <TabsContent value="sources" className="mt-6">
+          {/* <TabsContent value="sources" className="mt-6">
             {isLoading ? (
               <div className="text-center py-8">Loading sources...</div>
             ) : (
@@ -683,6 +681,11 @@ export function ResultsView() {
                             className="hover:underline text-blue-600"
                           >
                             {reference.title || `Reference ${index + 1}`}
+                            {reference.score !== undefined && (
+                              <span className="ml-2 text-xs text-gray-500">
+                                (Score: {reference.score})
+                              </span>
+                            )}
                           </a>
                         </CardTitle>
                       </CardHeader>
@@ -700,6 +703,116 @@ export function ResultsView() {
                       </CardContent>
                     </Card>
                   ))
+                ) : (
+                  <div className="text-center py-8">No sources available</div>
+                )}
+              </div>
+            )}
+          </TabsContent> */}
+          <TabsContent value="sources" className="mt-6">
+            {isLoading ? (
+              <div className="text-center py-8">Loading sources...</div>
+            ) : (
+              <div className="space-y-4">
+                {parsedResults.references.length ? (
+                  parsedResults.references.map((reference, index) => {
+                    // const credibility =
+                    //   reference.score >= 75
+                    //     ? "High"
+                    //     : reference.score >= 50
+                    //     ? "Medium"
+                    //     : "Low";
+                    // const bias =
+                    //   reference.score >= 75
+                    //     ? "Low"
+                    //     : reference.score >= 50
+                    //     ? "Medium"
+                    //     : "High";
+                    // First check if score exists
+                    const safeScore = reference?.score ?? 0;
+
+                    const credibility =
+                      safeScore >= 75
+                        ? "High"
+                        : safeScore >= 50
+                        ? "Medium"
+                        : "Low";
+
+                    const bias =
+                      safeScore >= 75
+                        ? "Low"
+                        : safeScore >= 25
+                        ? "Medium"
+                        : "High";
+
+                    return (
+                      <Card
+                        key={index}
+                        className="group hover:border-[#6766FC]/30 transition-colors"
+                      >
+                        <CardHeader className="flex flex-row justify-between items-start pb-2">
+                          <div className="space-y-2 flex-1">
+                            <CardTitle className="text-base font-semibold">
+                              <a
+                                href={reference.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-black hover:text-[#6766FC] transition-colors"
+                              >
+                                {reference.title || `Reference ${index + 1}`}
+                              </a>
+                            </CardTitle>
+                            <div className="text-sm">
+                              <a
+                                href={reference.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-600 hover:text-[#6766FC] break-all transition-colors"
+                              >
+                                {reference.url}
+                              </a>
+                            </div>
+                          </div>
+
+                          {/* Right-aligned metrics column */}
+                          <div className="flex flex-col items-end space-y-2 ml-4">
+                            {reference.score !== undefined && (
+                              <div className="text-right flex items-center gap-2">
+                                <div className="text-md text-gray-500">
+                                  Score :
+                                </div>
+                                <div className="text-black font-medium">
+                                  {reference.score}
+                                </div>
+                              </div>
+                            )}
+                            <div
+                              className={`text-xs px-2 py-1 rounded-full ${
+                                credibility === "High"
+                                  ? "bg-green-100 text-green-800"
+                                  : credibility === "Medium"
+                                  ? "bg-yellow-100 text-yellow-800"
+                                  : "bg-red-100 text-red-800"
+                              }`}
+                            >
+                              Credibility: {credibility}
+                            </div>
+                            <div
+                              className={`text-xs px-2 py-1 rounded-full ${
+                                bias === "Low"
+                                  ? "bg-blue-100 text-blue-800"
+                                  : bias === "Medium"
+                                  ? "bg-purple-100 text-yellow-800"
+                                  : "bg-pink-100 text-pink-800"
+                              }`}
+                            >
+                              Bias: {bias}
+                            </div>
+                          </div>
+                        </CardHeader>
+                      </Card>
+                    );
+                  })
                 ) : (
                   <div className="text-center py-8">No sources available</div>
                 )}
