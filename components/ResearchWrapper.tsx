@@ -14,7 +14,7 @@ export function ResearchWrapper() {
       <div className="flex flex-col md:flex-row w-full">
         <div className="flex-1 flex flex-col">
           <div className="flex-1">
-            {researchQuery && (
+            {researchQuery ? (
               <AnimatePresence
                 key="results"
                 onExitComplete={() => {
@@ -24,10 +24,11 @@ export function ResearchWrapper() {
               >
                 <ResultsView key="results" />
               </AnimatePresence>
+            ) : (
+              <AnimatePresence key="home" mode="wait">
+                <HomeView key="home" />
+              </AnimatePresence>
             )}
-            <AnimatePresence key="home" mode="wait">
-              <HomeView key="home" />
-            </AnimatePresence>
           </div>
         </div>
 
@@ -45,7 +46,7 @@ export function ResearchWrapper() {
         </div>
       </div>
 
-      <footer className="text-xs flex mx-auto py-4">
+      <footer className="text-xs flex mx-auto">
         {" "}
         <Link
           href="https://copilotkit.ai"

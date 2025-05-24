@@ -168,12 +168,12 @@ export function ResultsView() {
           onValueChange={setActiveTab}
           className="w-full max-w-4xl mx-auto"
         >
-          <TabsList className="w-full p-0 bg-background flex justify-center border-b rounded-none">
+          <TabsList className="w-full p-0  flex justify-center border-b rounded-none">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="rounded-none flex bg-background h-full data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-[#6766FC] mb-4"
+                className="rounded-none flex h-full data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-[#6766FC] mb-4"
               >
                 <code className="text-[20px] flex gap-4">
                   {isLoading && activeTab === tab.value ? (
