@@ -27,8 +27,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/searchWindowCopilot.tsx",
-    "components/button.jsx"
-, "components/agentState.tsx", "components/Progress.tsx", "components/agentSelector.tsx", "app/example.tsx"  ],
+     ],
   "exclude": ["node_modules"]
 }

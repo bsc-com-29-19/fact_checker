@@ -1,16 +1,18 @@
 //components/ui/ThemeButton.tsx
-import React, { useContext } from 'react';
-import ThemeContext from '@/contexts/ThemeContext';
+
+import React, { useContext } from "react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const ThemedButton: React.FC = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  // const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <button
       onClick={toggleTheme}
       style={{
-        background: theme === 'light' ? '#fff' : '#333',
-        color: theme === 'light' ? '#333' : '#fff',
+        background: theme === "light" ? "#fff" : "#333",
+        color: theme === "light" ? "#333" : "#fff",
       }}
     >
       Toggle Theme
