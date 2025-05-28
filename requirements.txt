@@ -16,7 +16,7 @@ youtube_search
 uvicorn[standard]
 fastapi
 python-dotenv
-copilotkit
+copilotkit==0.1.41
 python-whois
 requests
 tldextract
