@@ -98,7 +98,6 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     You will then format your findings as arguments for a tool called 'SummarizeTool'. This tool expects a 'markdown' argument.
     The entire content you generate for this 'markdown' argument *must* be structured *exactly* as follows, with no deviations, no introductory or concluding remarks outside this structure:
     
-
     classification: <classification_value= true | false | opinionated>
     whole truth: <detailed_assessment>
 
@@ -140,14 +139,12 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     (Assuming search results state they were in Paris)
     classification: false
     whole truth: The 2024 Summer Olympics were held in Paris, France [Official Olympics Site][1]. Berlin previously hosted the Summer Olympics in 1936 [Historical Archive][2].
-    
 
     Example 2 (Opinionated Claim):
     Claim: "Generative AI is the most important technological advancement ever."
     (Assuming search results discuss its impact, capabilities, and also other major advancements like printing press, internet)
     classification: opinionated
     whole truth: Generative AI refers to artificial intelligence models capable of creating new content, such as text, images, or code [Tech Journal][1]. It has seen rapid development and adoption, impacting various industries [Industry Report][2]. Evaluating its importance relative to all other historical technological advancements (like the printing press or the internet, also mentioned as highly impactful [History of Tech Site][3]) is subjective and depends on the criteria used.
-    
 
     Example 3 (True Claim - Current Affairs):
     Claim: "The UK held a general election in July 2024."
@@ -160,7 +157,6 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     (Assuming search results explain caffeine's mild diuretic effect but emphasize that the water in coffee typically offsets this for moderate consumption)
     classification: false
     whole truth: Coffee contains caffeine, which has a mild diuretic effect, meaning it can increase urine production slightly [Health Study Journal][1]. However, coffee also contributes to daily fluid intake. For moderate consumption levels, coffee is unlikely to cause dehydration in healthy adults, and its fluid content generally compensates for the diuretic effect [Nutrition Review][2][Mayo Clinic Health][3]. The idea that coffee *always* causes dehydration is not supported by current evidence for typical consumption patterns.
-   
 
     Example 5 (Insufficient Evidence):
     Claim: "My local bakery uses only organic flour."
