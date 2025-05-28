@@ -16,10 +16,12 @@ import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
 
 export default function HomeView() {
-  const { setResearchQuery, researchInput, setResearchInput } = useResearchContext();
+  const { setResearchQuery, researchInput, setResearchInput, researchQuery } =
+    useResearchContext();
   const [isInputFocused, setIsInputFocused] = useState(false);
   const { model } = useModel();
   const { agent } = useAgent();
+  // const [result, setResult] = useState<{ status: string; message?: string } | null>(null);
 
   const MAX_INPUT_LENGTH = 500;
 
@@ -30,9 +32,12 @@ export default function HomeView() {
     },
   });
 
-  const handleResearch = (query: string) => {
+  const handleResearch = async (query: string) => {
+    if (!query.trim()) return; // Prevent empty submissions
     setResearchQuery(query);
-    runResearchAgent(() => {
+    // setResult({ status: "loading", message: "Loading results..." });
+    setResearchInput(""); // Reset the textarea for a new claim
+    await runResearchAgent(() => {
       return new TextMessage({
         role: MessageRole.User,
         content: query,
@@ -41,70 +46,63 @@ export default function HomeView() {
   };
 
   return (
-    <div className="h-full">
-      <div>
-        <main className="bg-white dark:bg-gray-700 min-h-[calc(80vh-64px)]">
-          <div className="max-w-4xl mx-auto p-6 space-y-6">
-            <div className="flex space-x-2"></div>
-
-            <h1 className="text-3xl font-bold text-center">
-              What do you want to fact check?
+    <div className="flex flex-col min-h-[calc(100vh-20vh)] justify-center">
+      <main className="bg-white dark:bg-[#212121] ">
+        <div className="max-w-4xl mx-auto p-4 space-y-4 ">
+          {!researchQuery && (
+            <h1 className="text-3xl font-bold text-center mb-6">
+              What do you want to fact check ?
             </h1>
+          )}
 
-            <div
-              className={cn(
-                "w-full bg-slate-100/50 border shadow-sm rounded-md transition-all border-gray-300",
-                {
-                  "ring-1 ring-slate-300": isInputFocused,
+          {/* Input Area (Always Visible) */}
+          <div
+            className={cn(
+              "w-full bg-slate-100/50 dark:bg-[#303030] dark:border-none border shadow-sm rounded-md transition-all border-gray-300",
+              { "ring-1 ring-slate-300": isInputFocused }
+            )}
+          >
+            <Textarea
+              placeholder="Enter your claim here..."
+              className="bg-transparent p-4 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 border-0 w-full"
+              onFocus={() => setIsInputFocused(true)}
+              onBlur={() => setIsInputFocused(false)}
+              value={researchInput}
+              onChange={(e) => setResearchInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleResearch(researchInput);
                 }
-              )}
-            >
-              <Textarea
-                placeholder="Enter your claim here..."
-                className="bg-transparent p-4 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 border-0 w-full"
-                onFocus={() => setIsInputFocused(true)}
-                onBlur={() => setIsInputFocused(false)}
-                value={researchInput}
-                onChange={(e) => setResearchInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    handleResearch(researchInput);
+              }}
+              maxLength={MAX_INPUT_LENGTH}
+            />
+
+            <div className="grid grid-cols-3 gap-4 p-4 items-center">
+              <div className="col-span-1 flex items-center gap-4">
+                <span className="text-xs text-slate-500">
+                  {researchInput.length} / {MAX_INPUT_LENGTH}
+                </span>
+                <AgentSelector />
+              </div>
+              <div className="col-span-1 flex justify-center">
+                <ModelSelector />
+              </div>
+              <div className="col-span-1 flex justify-end items-center gap-4">
+                <RecordingView
+                  onTranscriptChange={(transcript) =>
+                    setResearchInput(transcript)
                   }
-                }}
-                maxLength={MAX_INPUT_LENGTH}
-              />
-
-              <div className="grid grid-cols-3 gap-4 p-4 items-center">
-                {/* Left Section - Character count and Agent Selector */}
-                <div className="col-span-1 flex items-center gap-4">
-                  <span className="text-xs text-slate-500">
-                    {researchInput.length} / {MAX_INPUT_LENGTH}
-                  </span>
-                  <AgentSelector />
-                </div>
-
-                {/* Center Section - Model Selector */}
-                <div className="col-span-1 flex justify-center">
-                  <ModelSelector />
-                </div>
-
-                {/* Right Section - Recording and Submit Button */}
-                <div className="col-span-1 flex justify-end items-center gap-4">
-                  <RecordingView
-                    onTranscriptChange={(transcript) => setResearchInput(transcript)}
-                  />
-                  <Button onClick={() => handleResearch(researchInput)}>
-
-                    Check
-                    <CornerDownLeftIcon className="w-4 h-4 ml-2" />
-                  </Button>
-                </div>
+                />
+                <Button onClick={() => handleResearch(researchInput)}>
+                  Check
+                  <CornerDownLeftIcon className="w-4 h-4 ml-2" />
+                </Button>
               </div>
             </div>
           </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }

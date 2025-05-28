@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useAgent } from "@/contexts/agentContext"; 
+import { useAgent } from "@/contexts/agentContext";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
 
@@ -22,11 +22,13 @@ export function AgentSelector() {
         value={agent}
         onValueChange={(v: "fact_checker_agent" | "youtube") => setAgent(v)}
       >
-        <SelectTrigger className="w-[180px]"     data-tooltip-id="my-tooltip"
+        <SelectTrigger
+          className="w-[180px] dark:bg-transparent"
+          data-tooltip-id="my-tooltip"
           data-tooltip-content="Select an agent"
-          data-tooltip-place="top">
+          data-tooltip-place="top"
+        >
           <SelectValue placeholder="Select agent" />
-      
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="fact_checker_agent">Fact Check Agent</SelectItem>

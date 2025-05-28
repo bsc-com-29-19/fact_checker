@@ -1,4 +1,3 @@
-//page.tsx
 "use client";
 
 import { ResearchProvider } from "@/lib/research-provider";
@@ -7,32 +6,104 @@ import { ResearchWrapper } from "@/components/ResearchWrapper";
 import { ModelProvider } from "@/contexts/modelContext";
 import { AgentProvider } from "@/contexts/agentContext";
 import { LanguageProvider } from "@/contexts/languageContext";
+// import { Header } from "@/components/Header";
+import { NavHeader } from "@/components/NavHeader";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 import { Header } from "@/components/Header";
-// import ThemeProvider from "@/components/ThemeProvider";
-
 
 export default function ModelSelectorWrapper() {
   return (
-    <main>
-      
-        <ModelProvider>
-          <LanguageProvider>
-            <Header />
-            <Home />
-          </LanguageProvider>
-        </ModelProvider>
-   
+    <main className="min-h-screen bg-gray-50 dark:bg-[#212121] dark:text-gray">
+      <ModelProvider>
+        <LanguageProvider>
+          <CopilotKit runtimeUrl={"/api/copilotkit"} agent="fact_checker_agent">
+            {/* Header for all users */}
+            {/* <NavHeader /> */}
+
+            {/* Landing page for unauthenticated users */}
+            <SignedOut>
+              <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-8">
+                <div className="w-full max-w-4xl text-center">
+                  <h1 className="text-4xl text-black font-bold mb-4">
+                    AI-Powered Fact-Checking System
+                  </h1>
+                  <p className="text-lg text-gray-600 mb-8">
+                    Verify claims, explore sources, and ensure accuracy with our
+                    advanced AI tools.
+                  </p>
+
+                  {/* Call-to-Action Buttons */}
+                  <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+                    <Link href="/sign-in">
+                      <button className="w-full sm:w-auto rounded-md bg-blue-600 px-6 py-3 text-white font-semibold hover:bg-blue-700">
+                        Sign In
+                      </button>
+                    </Link>
+                    <Link href="/sign-up">
+                      <button className="w-full sm:w-auto rounded-md bg-green-600 px-6 py-3 text-white font-semibold hover:bg-green-700">
+                        Sign Up
+                      </button>
+                    </Link>
+                  </div>
+
+                  {/* Feature Cards */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-white p-6 rounded-lg shadow-md">
+                      <div className="text-3xl mb-4">🧠</div>
+                      <h3 className="text-xl text-black font-semibold mb-2">
+                        AI-Powered Fact-Checking
+                      </h3>
+                      <p className="text-gray-600">
+                        Our advanced AI analyzes claims in real-time,
+                        cross-referencing trusted sources to ensure accuracy.
+                      </p>
+                    </div>
+                    <div className="bg-white p-6 rounded-lg shadow-md">
+                      <div className="text-3xl mb-4">🔍</div>
+                      <h3 className="text-xl text-black font-semibold mb-2">
+                        Research Support
+                      </h3>
+                      <p className="text-gray-600">
+                        Dive deep into sources with tools designed to help you
+                        validate information efficiently.
+                      </p>
+                    </div>
+                    <div className="bg-white p-6 rounded-lg shadow-md">
+                      <div className="text-3xl mb-4">🌐</div>
+                      <h3 className="text-xl text-black font-semibold mb-2">
+                        User-Friendly Interface
+                      </h3>
+                      <p className="text-gray-600">
+                        Intuitive design makes fact-checking accessible to
+                        everyone, from beginners to experts.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </SignedOut>
+
+            {/* Research interface for authenticated users */}
+            <SignedIn>
+              <div className="flex items-center justify-between w-full px-4 py-2 bg-white dark:bg-[#212121]">
+                <div className="flex-1">
+                  <Header />
+                </div>
+                <div className="ml-4">
+                  <UserButton afterSignOutUrl="/" />
+                </div>
+              </div>
+
+              <AgentProvider>
+                <ResearchProvider>
+                  <ResearchWrapper />
+                </ResearchProvider>
+              </AgentProvider>
+            </SignedIn>
+          </CopilotKit>
+        </LanguageProvider>
+      </ModelProvider>
     </main>
-  );
-}
-function Home() {
-  return (
-    <CopilotKit runtimeUrl={"/api/copilotkit"} agent="fact_checker_agent">
-      <AgentProvider>
-        <ResearchProvider>
-          <ResearchWrapper />
-        </ResearchProvider>
-      </AgentProvider>
-    </CopilotKit>
   );
 }
