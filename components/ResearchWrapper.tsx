@@ -46,7 +46,7 @@ export function ResearchWrapper() {
         </div>
       </div>
 
-      <footer className="text-xs flex mx-auto">
+      <footer className="text-xs flex items-center max-w-[70%] ">
         {" "}
         <Link
           href="https://copilotkit.ai"
