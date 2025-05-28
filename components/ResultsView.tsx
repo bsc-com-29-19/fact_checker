@@ -11,6 +11,7 @@ import { AgentState } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { Progress1 } from "./progress1";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { formatDate } from "@/lib/date-formatter";
 
 interface Reference {
   title: string;
@@ -34,6 +35,8 @@ export function ResultsView() {
     name: agent,
     initialState: { model },
   });
+
+  const today = new Date();
 
   useEffect(() => {
     if (agentState?.answer?.markdown) {
@@ -370,6 +373,11 @@ export function ResultsView() {
                               >
                                 {reference.url}
                               </a>
+                            </div>
+                            <div className="text-sm text-gray-500 font-normal dark:text-white">
+                              <span className="text-gray-500 font-normal dark:text-white">
+                                {formatDate(today)}
+                              </span>
                             </div>
                           </div>
 
