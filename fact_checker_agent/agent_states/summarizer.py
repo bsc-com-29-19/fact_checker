@@ -118,7 +118,7 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     Return your output *exactly* in the following format (no introductory text, no explanations, no apologies):
 
     classification: <true | false | opinionated>
-    whole truth: <Synthesized factual assessment based *only* on provided info, using markdown, with inline references like [Source Title][1]. List full references at the end.>
+    whole truth: <Synthesized factual assessment based *only* on provided info, using markdown, with inline references like [1]. List full references at the end.>
 
     Use temperature=0
 
@@ -128,7 +128,7 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     - If the provided information is insufficient to make a classification or construct a meaningful 'whole truth', state this clearly. Example:
         classification: inconclusive
         whole truth: The provided search results are insufficient to evaluate the claim.
-    - Adhere strictly to the markdown format for the `whole truth`, including inline citations `[Title][1]` and a reference list `[1]: URL "Title"` at the very end of the `whole truth` section, using *only* the URLs and titles present in the search results. If titles are missing in the results, use the URL or a placeholder like "[Source 1]".
+    - Adhere strictly to the markdown format for the `whole truth`, including inline citations `[1]`.
 
     *Examples of Desired Output Format:*
 
@@ -136,31 +136,31 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     Claim: "The 2024 Olympics were held in Berlin."
     (Assuming search results state they were in Paris)
     classification: false
-    whole truth: The 2024 Summer Olympics were held in Paris, France [Official Olympics Site][1]. Berlin previously hosted the Summer Olympics in 1936 [Historical Archive][2].
+    whole truth: The 2024 Summer Olympics were held in Paris, France [1]. Berlin previously hosted the Summer Olympics in 1936 [2].
 
     Example 2 (Opinionated Claim):
     Claim: "Generative AI is the most important technological advancement ever."
     (Assuming search results discuss its impact, capabilities, and also other major advancements like printing press, internet)
     classification: opinionated
-    whole truth: Generative AI refers to artificial intelligence models capable of creating new content, such as text, images, or code [Tech Journal][1]. It has seen rapid development and adoption, impacting various industries [Industry Report][2]. Evaluating its importance relative to all other historical technological advancements (like the printing press or the internet, also mentioned as highly impactful [History of Tech Site][3]) is subjective and depends on the criteria used.
+    whole truth: Generative AI refers to artificial intelligence models capable of creating new content, such as text, images, or code [1]. It has seen rapid development and adoption, impacting various industries [2]. Evaluating its importance relative to all other historical technological advancements (like the printing press or the internet, also mentioned as highly impactful [3]) is subjective and depends on the criteria used.
 
     Example 3 (True Claim - Current Affairs):
     Claim: "The UK held a general election in July 2024."
     (Assuming search results confirm this)
     classification: true
-    whole truth: The United Kingdom held a general election on July 4, 2024 [BBC News][1]. The Labour Party won a majority of seats, ending 14 years of Conservative government [Reuters][2]. Keir Starmer became the new Prime Minister [Official Gov UK Site][3].
+    whole truth: The United Kingdom held a general election on July 4, 2024 [1]. The Labour Party won a majority of seats, ending 14 years of Conservative government [2]. Keir Starmer became the new Prime Minister [3].
    
     Example 4 (Nuanced/False Claim - Domain Specific):
     Claim: "Drinking coffee always causes dehydration."
     (Assuming search results explain caffeine's mild diuretic effect but emphasize that the water in coffee typically offsets this for moderate consumption)
     classification: false
-    whole truth: Coffee contains caffeine, which has a mild diuretic effect, meaning it can increase urine production slightly [Health Study Journal][1]. However, coffee also contributes to daily fluid intake. For moderate consumption levels, coffee is unlikely to cause dehydration in healthy adults, and its fluid content generally compensates for the diuretic effect [Nutrition Review][2][Mayo Clinic Health][3]. The idea that coffee *always* causes dehydration is not supported by current evidence for typical consumption patterns.
+    whole truth: Coffee contains caffeine, which has a mild diuretic effect, meaning it can increase urine production slightly [1]. However, coffee also contributes to daily fluid intake. For moderate consumption levels, coffee is unlikely to cause dehydration in healthy adults, and its fluid content generally compensates for the diuretic effect [2][3]. The idea that coffee *always* causes dehydration is not supported by current evidence for typical consumption patterns.
 
     Example 5 (Insufficient Evidence):
     Claim: "My local bakery uses only organic flour."
     (Assuming search results are generic articles about organic flour or the bakery's opening hours, but nothing about their specific flour sourcing)
     classification: inconclusive
-    whole truth: The provided search results discuss the general benefits of organic flour [Organic Food Mag][1] and list the opening hours for "Local Bakery" [Bakery Website][2], but contain no specific information regarding the type of flour used by this particular bakery. Therefore, the claim cannot be verified based on the information provided.
+    whole truth: The provided search results discuss the general benefits of organic flour [1] and list the opening hours for "Local Bakery" [2], but contain no specific information regarding the type of flour used by this particular bakery. Therefore, the claim cannot be verified based on the information provided.
     
     """
     # thread_id = config.get("configurable", {}).get("thread_id", "")
