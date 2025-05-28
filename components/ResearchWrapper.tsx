@@ -46,13 +46,13 @@ export function ResearchWrapper() {
         </div>
       </div>
 
-      <footer className="text-xs flex items-center max-w-[70%] ">
+      <footer className="text-xs flex items-center max-w-[70%] dark:bg-[#212121]">
         {" "}
         <Link
           href="https://copilotkit.ai"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-slate-600 font-medium hover:underline mx-auto"
+          className="text-slate-700 font-bold hover:underline mx-auto dark:text-white"
         >
           Powered by Fact Checker MW
         </Link>

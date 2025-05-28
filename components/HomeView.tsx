@@ -47,7 +47,7 @@ export default function HomeView() {
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-20vh)] justify-center">
-      <main className="bg-white dark:bg-gray-700 ">
+      <main className="bg-white dark:bg-[#212121] ">
         <div className="max-w-4xl mx-auto p-4 space-y-4 ">
           {!researchQuery && (
             <h1 className="text-3xl font-bold text-center mb-6">
@@ -58,7 +58,7 @@ export default function HomeView() {
           {/* Input Area (Always Visible) */}
           <div
             className={cn(
-              "w-full bg-slate-100/50 border shadow-sm rounded-md transition-all border-gray-300",
+              "w-full bg-slate-100/50 dark:bg-[#303030] dark:border-none border shadow-sm rounded-md transition-all border-gray-300",
               { "ring-1 ring-slate-300": isInputFocused }
             )}
           >

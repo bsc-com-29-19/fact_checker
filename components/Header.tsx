@@ -22,7 +22,7 @@ export function Header() {
   // };
 
   return (
-    <header className="sticky top-0 z-10 bg-background border-b">
+    <header className="sticky top-0 z-10 bg-white border-b dark:bg-[#212121]">
       <div className="flex justify-between items-center p-4">
         <div className="flex items-center space-x-4">
           <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />

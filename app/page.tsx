@@ -14,7 +14,7 @@ import { Header } from "@/components/Header";
 
 export default function ModelSelectorWrapper() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gray-50 dark:bg-[#212121] dark:text-gray">
       <ModelProvider>
         <LanguageProvider>
           <CopilotKit runtimeUrl={"/api/copilotkit"} agent="fact_checker_agent">
@@ -86,7 +86,7 @@ export default function ModelSelectorWrapper() {
 
             {/* Research interface for authenticated users */}
             <SignedIn>
-              <div className="flex items-center justify-between w-full px-4 py-2 bg-white ">
+              <div className="flex items-center justify-between w-full px-4 py-2 bg-white dark:bg-[#212121]">
                 <div className="flex-1">
                   <Header />
                 </div>
