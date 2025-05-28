@@ -29,9 +29,9 @@ const ModelContext = createContext<ModelContextType | undefined>(undefined);
 export const ModelProvider = ({ children }: { children: ReactNode }) => {
   const model =
     globalThis.window === undefined
-      ? "gpt-3.5-turbo"
+      ? "gemini-2.0-flash"
       : new URL(window.location.href).searchParams.get("coAgentsModel") ??
-        "gpt-3.5-turbo";
+        "gemini-2.0-flash";
   // const [hidden, setHidden] = useState<boolean>(false);
 
   const setModel = (model: string) => {
