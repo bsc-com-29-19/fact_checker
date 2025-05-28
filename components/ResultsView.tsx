@@ -25,8 +25,7 @@ export function ResultsView() {
 
   const [activeTab, setActiveTab] = useState("results");
   const [parsedResults, setParsedResults] = useState({
-    trueStatement: "",
-    falseStatement: "",
+    classification: "",
     wholeTruth: "",
     references: [] as Reference[],
   });
@@ -42,19 +41,28 @@ export function ResultsView() {
 
       const lines = markdown.split("\n").map((line) => line.trim());
 
+      let classification = "";
       let trueStatement = "";
       let falseStatement = "";
       let wholeTruth = "";
       let currentSection: string | null = null;
 
       for (const line of lines) {
-        if (line.toLowerCase().startsWith("true:")) {
-          currentSection = "true";
-          trueStatement = line.substring("true:".length).trim();
-        } else if (line.toLowerCase().startsWith("false:")) {
-          currentSection = "false";
-          falseStatement = line.substring("false:".length).trim();
-        } else if (line.toLowerCase().startsWith("whole truth:")) {
+        if (line.toLowerCase().startsWith("classification:")) {
+          classification = line
+            .substring("classification:".length)
+            .trim()
+            .toLowerCase();
+          continue;
+        }
+        // if (line.toLowerCase().startsWith("true:")) {
+        //   currentSection = "true";
+        //   trueStatement = line.substring("true:".length).trim();
+        // } else if (line.toLowerCase().startsWith("false:")) {
+        //   currentSection = "false";
+        //   falseStatement = line.substring("false:".length).trim();
+        // } else
+        if (line.toLowerCase().startsWith("whole truth:")) {
           currentSection = "wholeTruth";
           wholeTruth = line.substring("whole truth:".length).trim();
         } else {
@@ -78,8 +86,7 @@ export function ResultsView() {
       );
       console.log(agentState.ranked_sources);
       setParsedResults({
-        trueStatement,
-        falseStatement,
+        classification,
         wholeTruth,
         references,
       });
@@ -99,6 +106,40 @@ export function ResultsView() {
   );
 
   const isLoading = !agentState?.answer;
+  const classificationColors = () => {
+    switch (parsedResults.classification) {
+      case "true":
+        return {
+          border: "border-green-200",
+          bg: "bg-green-50",
+          text: "text-green-700",
+          label: "True Claim",
+        };
+      case "false":
+        return {
+          border: "border-red-200",
+          bg: "bg-red-50",
+          text: "text-red-700",
+          label: "False Claim",
+        };
+      case "opinionated":
+        return {
+          border: "border-yellow-200",
+          bg: "bg-yellow-50",
+          text: "text-yellow-700",
+          label: "Opinionated Claim",
+        };
+      default:
+        return {
+          border: "border-blue-200",
+          bg: "bg-blue-50",
+          text: "text-blue-700",
+          label: "Claim Assessment",
+        };
+    }
+  };
+
+  const colors = classificationColors();
 
   const tabs = [
     { name: "Results", value: "results" },
@@ -127,12 +168,12 @@ export function ResultsView() {
           onValueChange={setActiveTab}
           className="w-full max-w-4xl mx-auto"
         >
-          <TabsList className="w-full p-0 bg-background flex justify-center border-b rounded-none">
+          <TabsList className="w-full p-0  flex justify-center border-b rounded-none">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="rounded-none flex bg-background h-full data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-[#6766FC] mb-4"
+                className="rounded-none flex h-full data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-[#6766FC] mb-4"
               >
                 <code className="text-[20px] flex gap-4">
                   {isLoading && activeTab === tab.value ? (
@@ -152,10 +193,8 @@ export function ResultsView() {
                 <div className="text-center py-8">Loading results...</div>
               ) : (
                 <>
-                  <h1 className="font-bold text-3xl">
-                    {`User's Claim Decomposition`}
-                  </h1>
-                  <Card className="border-green-200 bg-green-50">
+                  <h1 className="font-bold text-3xl">Claim Analysis</h1>
+                  {/* <Card className="border-green-200 bg-green-50">
                     <CardHeader>
                       <CardTitle className="text-green-700">
                         True Statement
@@ -167,9 +206,9 @@ export function ResultsView() {
                           "No true statements found"}
                       </div>
                     </CardContent>
-                  </Card>
+                  </Card> */}
 
-                  <Card className="border-red-200 bg-red-50">
+                  {/* <Card className="border-red-200 bg-red-50">
                     <CardHeader>
                       <CardTitle className="text-red-700">
                         False Statement
@@ -181,6 +220,29 @@ export function ResultsView() {
                           "No false statements found"}
                       </div>
                     </CardContent>
+                  </Card> */}
+                  {/* <Card className={`${colors.border} ${colors.bg}`}>
+                    <CardHeader>
+                      <CardTitle className={colors.text}>
+                        {parsedResults.classification === "opinionated"
+                          ? "Opinionated Statement"
+                          : "Whole Truth"}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="prose max-w-none">
+                        {parsedResults.wholeTruth ||
+                          "No overall assessment available"}
+                      </div>
+                    </CardContent>
+                  </Card> */}
+                  {/* Classification Card */}
+                  <Card className={`${colors.border} ${colors.bg}`}>
+                    <CardHeader>
+                      <CardTitle className={colors.text}>
+                        {colors.label}
+                      </CardTitle>
+                    </CardHeader>
                   </Card>
 
                   <Card className="border-blue-200 bg-blue-50">
