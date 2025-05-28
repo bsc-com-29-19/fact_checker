@@ -7,50 +7,45 @@ import { createContext, useContext, useState, ReactNode } from "react";
 export type Model =
   | "gpt-3.5-turbo"
   | "llama3.5"
-   | "gpt-4o"
+  | "gpt-4o"
   | "claude-3-sonnet-20240229"
-  | "deepseek-r1:latest";
+  | "deepseek-r1:latest"
+  | "gemini-2.0-flash"
+  | "gemini-2.5-flash-preview-04-17"; // Add any other models you want to support;
 
-type ModelContextType ={
+type ModelContextType = {
   model: string;
   setModel: (model: string) => void;
-}
+};
 
 const ModelContext = createContext<ModelContextType | undefined>(undefined);
 
 // export function ModelProvider({ children }: { children: ReactNode }) {
 //   const [model, setModel] = useState<Model>("gpt-3.5-turbo"); // Default model
 
+// export function ModelProvider({ children }: { children: ReactNode }) {
+//   const [model, setModel] = useState<Model>(String); // Default model
 
-  // export function ModelProvider({ children }: { children: ReactNode }) {
-  //   const [model, setModel] = useState<Model>(String); // Default model
-  
+export const ModelProvider = ({ children }: { children: ReactNode }) => {
+  const model =
+    globalThis.window === undefined
+      ? "gpt-3.5-turbo"
+      : new URL(window.location.href).searchParams.get("coAgentsModel") ??
+        "gpt-3.5-turbo";
+  // const [hidden, setHidden] = useState<boolean>(false);
 
+  const setModel = (model: string) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("coAgentsModel", model);
+    window.location.href = url.toString();
+  };
 
-    export const ModelProvider = ({
-      children,
-    }: {
-      children: ReactNode;
-    }) => {
-      const model =
-        globalThis.window === undefined
-          ? "gpt-3.5-turbo"
-          : new URL(window.location.href).searchParams.get("coAgentsModel") ??
-            "gpt-3.5-turbo";
-      // const [hidden, setHidden] = useState<boolean>(false);
-    
-      const setModel = (model: string) => {
-        const url = new URL(window.location.href);
-        url.searchParams.set("coAgentsModel", model);
-        window.location.href = url.toString();
-      };
-    
   return (
     <ModelContext.Provider value={{ model, setModel }}>
       {children}
     </ModelContext.Provider>
   );
-}
+};
 
 export function useModel() {
   const context = useContext(ModelContext);
