@@ -13,7 +13,6 @@ import { useModel } from "@/contexts/modelContext"; // Update the import path
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
 
-
 export function ModelSelector() {
   const { model, setModel } = useModel(); // Use the useModel hook
 
@@ -29,17 +28,26 @@ export function ModelSelector() {
             | "gpt-4o"
             | "claude-3-sonnet-20240229"
             | "deepseek-r1:latest"
-        ) => setModel(v)}
+            | "gemini-2.0-flash"
+            | "gemini-2.5-flash-preview-04-17" // Add any other models you want to support
+        ) => {
+          console.log("selected model: ",v)
+          setModel(v)}}
       >
-        <SelectTrigger className="w-[180px]"  data-tooltip-id="my-tooltip"
+        <SelectTrigger
+          className="w-[180px]"
+          data-tooltip-id="my-tooltip"
           data-tooltip-content="Select a model"
-          data-tooltip-place="top">
+          data-tooltip-place="top"
+        >
           <SelectValue placeholder="Select model" />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="gpt-3.5-turbo">GPT-3.5 Turbo</SelectItem>
           <SelectItem value="llama3.5">Llama 3.5</SelectItem>
           <SelectItem value="gpt-4o">gpt-4o</SelectItem>
+          <SelectItem value="gemini-2.0-flash">Gemini 2.0 Flash</SelectItem>
+          <SelectItem value="gemini-2.5-flash-preview-04-17">Gemini 2.5 Pro</SelectItem>
 
           <SelectItem value="claude-3-sonnet-20240229">
             Claude 3 Sonnet
@@ -47,8 +55,7 @@ export function ModelSelector() {
           <SelectItem value="deepseek-r1:latest">DeepSeek R1</SelectItem>
         </SelectContent>
       </Select>
-              <Tooltip id="my-tooltip" />
-      
+      <Tooltip id="my-tooltip" />
     </div>
   );
 }

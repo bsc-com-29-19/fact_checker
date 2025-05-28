@@ -1,50 +1,20 @@
 // contexts/ModelContext.tsx
 "use client";
+import { createContext, useContext, useState } from "react";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+type Model = "gemini-2.0-flash" | "youtube";
 
-// Define your available models
-export type Model =
-  | "gpt-3.5-turbo"
-  | "llama3.5"
-   | "gpt-4o"
-  | "claude-3-sonnet-20240229"
-  | "deepseek-r1:latest";
+const ModelContext = createContext<{
+  model: Model;
+  setModel: (model: Model) => void;
+}>({
+  model: "gemini-2.0-flash",
+  setModel: () => {},
+});
 
-type ModelContextType ={
-  model: string;
-  setModel: (model: string) => void;
-}
+export function ModelProvider({ children }: { children: React.ReactNode }) {
+  const [model, setModel] = useState<Model>("gemini-2.0-flash");
 
-const ModelContext = createContext<ModelContextType | undefined>(undefined);
-
-// export function ModelProvider({ children }: { children: ReactNode }) {
-//   const [model, setModel] = useState<Model>("gpt-3.5-turbo"); // Default model
-
-
-  // export function ModelProvider({ children }: { children: ReactNode }) {
-  //   const [model, setModel] = useState<Model>(String); // Default model
-  
-
-
-    export const ModelProvider = ({
-      children,
-    }: {
-      children: ReactNode;
-    }) => {
-      const model =
-        globalThis.window === undefined
-          ? "gpt-3.5-turbo"
-          : new URL(window.location.href).searchParams.get("coAgentsModel") ??
-            "gpt-3.5-turbo";
-      // const [hidden, setHidden] = useState<boolean>(false);
-    
-      const setModel = (model: string) => {
-        const url = new URL(window.location.href);
-        url.searchParams.set("coAgentsModel", model);
-        window.location.href = url.toString();
-      };
-    
   return (
     <ModelContext.Provider value={{ model, setModel }}>
       {children}
@@ -53,9 +23,6 @@ const ModelContext = createContext<ModelContextType | undefined>(undefined);
 }
 
 export function useModel() {
-  const context = useContext(ModelContext);
-  if (context === undefined) {
-    throw new Error("useModel must be used within a ModelProvider");
-  }
-  return context;
+  return useContext(ModelContext);
 }
+

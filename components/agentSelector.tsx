@@ -16,11 +16,14 @@ import { Tooltip } from "react-tooltip";
 export function AgentSelector() {
   const { agent, setAgent } = useAgent(); // Use the useAgent hook
 
+
   return (
     <div className="">
       <Select
         value={agent}
-        onValueChange={(v: "fact_checker_agent" | "youtube") => setAgent(v)}
+        onValueChange={(v: "fact_checker_agent" | "youtube") => { 
+          setAgent(v);
+        }}
       >
         <SelectTrigger className="w-[180px]"     data-tooltip-id="my-tooltip"
           data-tooltip-content="Select an agent"
