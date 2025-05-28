@@ -25,10 +25,10 @@ export default function ModelSelectorWrapper() {
             <SignedOut>
               <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-8">
                 <div className="w-full max-w-4xl text-center">
-                  <h1 className="text-4xl text-black font-bold mb-4">
+                  <h1 className="text-4xl text-black dark:text-white font-bold mb-4">
                     AI-Powered Fact-Checking System
                   </h1>
-                  <p className="text-lg text-gray-600 mb-8">
+                  <p className="text-lg text-gray-600 dark:text-white/70 mb-8">
                     Verify claims, explore sources, and ensure accuracy with our
                     advanced AI tools.
                   </p>
@@ -49,32 +49,32 @@ export default function ModelSelectorWrapper() {
 
                   {/* Feature Cards */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-white dark:bg-[#404040] p-6 rounded-lg shadow-md">
                       <div className="text-3xl mb-4">🧠</div>
-                      <h3 className="text-xl text-black font-semibold mb-2">
+                      <h3 className="text-xl text-black dark:text-white font-semibold mb-2">
                         AI-Powered Fact-Checking
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 dark:text-white/80">
                         Our advanced AI analyzes claims in real-time,
                         cross-referencing trusted sources to ensure accuracy.
                       </p>
                     </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-white dark:bg-[#404040] p-6 rounded-lg shadow-md">
                       <div className="text-3xl mb-4">🔍</div>
-                      <h3 className="text-xl text-black font-semibold mb-2">
+                      <h3 className="text-xl text-black dark:text-white font-semibold mb-2">
                         Research Support
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 dark:text-white/80">
                         Dive deep into sources with tools designed to help you
                         validate information efficiently.
                       </p>
                     </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-white dark:bg-[#404040] p-6 rounded-lg shadow-md">
                       <div className="text-3xl mb-4">🌐</div>
-                      <h3 className="text-xl text-black font-semibold mb-2">
+                      <h3 className="text-xl text-black dark:text-white font-semibold mb-2">
                         User-Friendly Interface
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 dark:text-white/80">
                         Intuitive design makes fact-checking accessible to
                         everyone, from beginners to experts.
                       </p>
