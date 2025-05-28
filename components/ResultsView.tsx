@@ -11,6 +11,7 @@ import { AgentState } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { Progress1 } from "./progress1";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { formatDate } from "@/lib/date-formatter";
 
 interface Reference {
   title: string;
@@ -34,6 +35,8 @@ export function ResultsView() {
     name: agent,
     initialState: { model },
   });
+
+  const today = new Date();
 
   useEffect(() => {
     if (agentState?.answer?.markdown) {
@@ -111,28 +114,28 @@ export function ResultsView() {
       case "true":
         return {
           border: "border-green-200",
-          bg: "bg-green-50",
+          bg: "bg-green-50 dark:bg-green-50/5",
           text: "text-green-700",
           label: "True Claim",
         };
       case "false":
         return {
           border: "border-red-200",
-          bg: "bg-red-50",
+          bg: "bg-red-50 dark:bg-red-50/5",
           text: "text-red-700",
           label: "False Claim",
         };
       case "opinionated":
         return {
           border: "border-yellow-200",
-          bg: "bg-yellow-50",
+          bg: "bg-yellow-50 dark:bg-yellow-50/5",
           text: "text-yellow-700",
           label: "Opinionated Claim",
         };
       default:
         return {
           border: "border-blue-200",
-          bg: "bg-blue-50",
+          bg: "bg-blue-50 dark:bg-blue-50/5",
           text: "text-blue-700",
           label: "Claim Assessment",
         };
@@ -166,14 +169,14 @@ export function ResultsView() {
         <Tabs
           value={activeTab}
           onValueChange={setActiveTab}
-          className="w-full max-w-4xl mx-auto"
+          className="w-full max-w-4xl mx-auto "
         >
           <TabsList className="w-full p-0  flex justify-center border-b rounded-none">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="rounded-none flex h-full data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-[#6766FC] mb-4"
+                className="rounded-none dark:bg-transparent flex h-full data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-[#6766FC] mb-4"
               >
                 <code className="text-[20px] flex gap-4">
                   {isLoading && activeTab === tab.value ? (
@@ -245,7 +248,7 @@ export function ResultsView() {
                     </CardHeader>
                   </Card>
 
-                  <Card className="border-blue-200 bg-blue-50">
+                  <Card className="border-blue-200 bg-blue-50 dark:bg-blue-400/5  dark:text-white">
                     <CardHeader>
                       <CardTitle className="text-blue-700">
                         Whole Truth
@@ -347,16 +350,16 @@ export function ResultsView() {
                     return (
                       <Card
                         key={index}
-                        className="group hover:border-[#6766FC]/30 transition-colors"
+                        className="group hover:border-[#6766FC]/30 dark:border-transparent transition-colors hover:bg-[#6766FC]/5 dark:hover:bg-[#303030]"
                       >
                         <CardHeader className="flex flex-row justify-between items-start pb-2">
                           <div className="space-y-2 flex-1">
-                            <CardTitle className="text-base font-semibold">
+                            <CardTitle className="text-base font-semibold ">
                               <a
                                 href={reference.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-black hover:text-[#6766FC] transition-colors"
+                                className="text-black dark:text-white hover:text-[#6766FC] transition-colors"
                               >
                                 {reference.title || `Reference ${index + 1}`}
                               </a>
@@ -366,10 +369,15 @@ export function ResultsView() {
                                 href={reference.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-600 hover:text-[#6766FC] break-all transition-colors"
+                                className="text-gray-600 dark:text-white/80 hover:text-[#6766FC] break-all transition-colors"
                               >
                                 {reference.url}
                               </a>
+                            </div>
+                            <div className="text-sm text-gray-500 font-normal dark:text-white">
+                              <span className="text-gray-500 font-normal dark:text-white">
+                                {formatDate(today)}
+                              </span>
                             </div>
                           </div>
 
@@ -377,32 +385,32 @@ export function ResultsView() {
                           <div className="flex flex-col items-end space-y-2 ml-4">
                             {reference.score !== undefined && (
                               <div className="text-right flex items-center gap-2">
-                                <div className="text-md text-gray-500">
+                                <div className="text-md text-gray-500 dark:text-white/50">
                                   Score :
                                 </div>
-                                <div className="text-black font-medium">
+                                <div className="text-black dark:text-white font-medium">
                                   {reference.score}
                                 </div>
                               </div>
                             )}
                             <div
-                              className={`text-xs px-2 py-1 rounded-full ${
+                              className={`text-xs px-2 py-1 rounded-md ${
                                 credibility === "High"
-                                  ? "bg-green-100 text-green-800"
+                                  ? "bg-green-100 text-green-800 font-bold"
                                   : credibility === "Medium"
-                                  ? "bg-yellow-100 text-yellow-800"
-                                  : "bg-red-100 text-red-800"
+                                  ? "bg-yellow-100 text-yellow-800 font-bold"
+                                  : "bg-red-100 text-red-800 font-bold"
                               }`}
                             >
                               Credibility: {credibility}
                             </div>
                             <div
-                              className={`text-xs px-2 py-1 rounded-full ${
+                              className={`text-xs px-2 py-1 rounded-md ${
                                 bias === "Low"
-                                  ? "bg-blue-100 text-blue-800"
+                                  ? "bg-blue-100 text-blue-800 font-bold"
                                   : bias === "Medium"
-                                  ? "bg-purple-100 text-yellow-800"
-                                  : "bg-pink-100 text-pink-800"
+                                  ? "bg-purple-100 text-yellow-800 font-bold"
+                                  : "bg-pink-100 text-pink-800 font-bold"
                               }`}
                             >
                               Bias: {bias}

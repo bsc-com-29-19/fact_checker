@@ -33,7 +33,7 @@ export function ModelSelector() {
         ) => setModel(v)}
       >
         <SelectTrigger
-          className="w-[180px]"
+          className="w-[180px] dark:bg-transparent"
           data-tooltip-id="my-tooltip"
           data-tooltip-content="Select a model"
           data-tooltip-place="top"
@@ -45,7 +45,9 @@ export function ModelSelector() {
           <SelectItem value="llama3.5">Llama 3.5</SelectItem>
           <SelectItem value="gpt-4o">gpt-4o</SelectItem>
           <SelectItem value="gemini-2.0-flash">Gemini 2.0 Flash</SelectItem>
-          <SelectItem value="gemini-2.5-flash-preview-04-17">Gemini 2.5 Pro</SelectItem>
+          <SelectItem value="gemini-2.5-flash-preview-04-17">
+            Gemini 2.5 Pro
+          </SelectItem>
 
           <SelectItem value="claude-3-sonnet-20240229">
             Claude 3 Sonnet
