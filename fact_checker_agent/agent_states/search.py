@@ -118,7 +118,7 @@ async def run_search(state: AgentState, config: RunnableConfig, tool, step_type:
 async def web_search_node(state: AgentState,config: RunnableConfig):
     """Search the web for information using Tavily API."""
     tavily_search_tool = TavilySearchResults(
-        max_results = 3,
+        max_results = 5,
         search_depth="advanced",
         include_raw_content=True,
        
@@ -128,68 +128,3 @@ async def web_search_node(state: AgentState,config: RunnableConfig):
     
     return await run_search(state,config,tavily_search_tool,"search")
     
-
-# async def wikipedia_search_node(state: AgentState):
-#     """Search Wikipedia for relevant information from the user's question."""
-    
-#     current_step = next((step for step in state["steps"] if step["status"] == "pending"), None)
-    
-#     if current_step is None:
-#         current_step = {
-#             "type": "search",
-#             "status": "pending",
-#             "description": "Find relevant facts from Wikipedia.",
-#             "search_result": [],     
-#             "updates": [],        
-#             "result": None       
-#         }
-#         state["steps"].append(current_step)
-        
-#         # model = get_model(state).bind_tools([WikipediaLoader], tool_choice="WikipediaLoader")
-#         # state["model"] = model
-        
-#         # response = await model.ainvoke([
-#         #     HumanMessage(
-#         #         content= f"""
-#         #         This is a step in a sequence of steps being executed to answer the user's question.
-#         #         These are all the steps: {json.dumps(state["steps"], indent=2)}
-                
-#         #         You are responsible for executing the step: {json.dumps(current_step)}
-                
-#         #         The current date is {datetime.now().strftime("%Y-%m-%d")}.
-                
-#         #         This is what you need to search for: {current_step['description']}
-#         #         """
-#         #     )
-#         # ])
-        
-#         # LOGGER.info(f"Showwing Wikipedia tools\n\n{response.tool_calls[0]}" )
-        
-    
-    
-#     wikipedia_answer = []
-    
-#     try:
-#         response = WikipediaLoader(query=current_step['description'], 
-#                                 load_max_docs=10).load()
-        
-        
-#         for doc in response:
-#            # LOGGER.info(f"WIKIPEDIA RESULTS \n\n {doc}")
-#             wikipedia_answer.append({"url":doc.metadata.get("source"),"content":doc.page_content})
-            
-#         current_step["search_result"] = wikipedia_answer 
-    
-    
-#         #LOGGER.info(f"Current step details: {json.dumps(current_step, indent=2)}")
-#             #current_step["search_result"].append({"url":doc.metadata.get("source"),"content":doc.page_content})
-    
-#         current_step["updates"].append("Wikipedia search completed successfully.")
-#         #current_step["status"] = "completed"
-        
-        
-#     except Exception as e:
-#         current_step["updates"].append(f"Wikipedia search failed: {str(e)}")
-#         current_step["status"] = "failed"
-    
-#     return {"search_result": wikipedia_answer}

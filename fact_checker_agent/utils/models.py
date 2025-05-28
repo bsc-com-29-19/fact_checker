@@ -3,6 +3,7 @@ from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_deepseek import ChatDeepSeek
 from langchain_ollama import ChatOllama
+from langchain_google_genai import ChatGoogleGenerativeAI
 from fact_checker_agent.agent_states.state import AgentState
 # from fact_checker_agent.utils.prompts import fact_checker_summarizer
 # from fact_checker_agent.agent_states.search import tavily_tools
@@ -22,6 +23,10 @@ def get_model(state:AgentState):
         model = ChatOpenAI(temperature=0,model_name=model_name,max_tokens=None,timeout=None)
     elif model_name == "gpt-4o-mini":
         model = ChatOpenAI(temperature=0,model_name=model_name)
+    elif model_name == "gemini-2.0-flash":
+        model = ChatGoogleGenerativeAI(temperature=0,model=model_name,max_tokens=None,timeout=None,max_retries=3)
+    elif model_name == "gemini-2.5-flash-preview-04-17":
+        model = ChatGoogleGenerativeAI(temperature=0,model=model_name,max_tokens=None,timeout=None,max_retries=3)
     elif model_name == "gpt-4o-32k":
         model = ChatOpenAI(temperature=0,model_name=model_name)
     elif model_name == "llama3.5":

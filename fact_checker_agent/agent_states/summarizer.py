@@ -91,7 +91,9 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     system_message = f"""
     You are an AI fact-checker. Your task is to evaluate the user's original claim based *only* on the provided search results information.
 
-   
+    The user's original claim is: "{state['messages'][0].content}"
+
+    Your task is to evaluate this original claim based *only* on the "Relevant Information Gathered" provided below.
 
     You will then format your findings as arguments for a tool called 'SummarizeTool'. This tool expects a 'markdown' argument.
     The entire content you generate for this 'markdown' argument *must* be structured *exactly* as follows, with no deviations, no introductory or concluding remarks outside this structure:
@@ -102,12 +104,14 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
 
     Based *strictly* on the provided "Relevant Information Gathered": {json.dumps(state["steps"])}
 
-    1.  **Classify** if the original claim is `true`, `false`, or `opinionated`.
+    1.  **Carefully compare** the "user's original claim": "{state['messages'][0].content}" against the "Relevant Information Gathered".
+
+    2.  **Classify** if the original claim is `true`, `false`, or `opinionated`.
         *   `true`: The claim is factually accurate and directly supported by the provided information.
         *   `false`: The claim is factually inaccurate and contradicted by the provided information.
         *   `opinionated`: The claim expresses a subjective belief, judgment, or feeling that cannot be definitively proven true or false with the objective information provided, even if it relates to factual topics.
 
-    2.  **Synthesize** the relevant findings from the search results into a final assessment labeled as `whole truth`. This should be a comprehensive, neutral summary of the verified facts related to the claim's subject matter *as presented in the search results*. Clearly distinguish between past and present events if the information allows. Ensure all factual statements are directly traceable to the provided information and include inline references.
+    3.  **Synthesize** the relevant findings from the search results into a final assessment labeled as `whole truth`. This should be a comprehensive, neutral summary of the verified facts related to the claim's subject matter *as presented in the search results*. Clearly distinguish between past and present events if the information allows. Ensure all factual statements are directly traceable to the provided information and include inline references.
 
     **Bias Mitigation Measures:**
     - Evaluate the provided information critically. If sources seem biased or contradictory (based *only* on the text given to you), note this implicitly through careful wording in the 'whole truth'. (You cannot access external tools like Media Bias Chart).
@@ -136,43 +140,34 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
     (Assuming search results state they were in Paris)
     classification: false
     whole truth: The 2024 Summer Olympics were held in Paris, France [Official Olympics Site][1]. Berlin previously hosted the Summer Olympics in 1936 [Historical Archive][2].
-    [1]: https://olympics.com/en/paris-2024 "Paris 2024 Olympics Official Website"
-    [2]: http://example.com/berlin1936 "Berlin 1936 Olympics - Historical Archive"
+    
 
     Example 2 (Opinionated Claim):
     Claim: "Generative AI is the most important technological advancement ever."
     (Assuming search results discuss its impact, capabilities, and also other major advancements like printing press, internet)
     classification: opinionated
     whole truth: Generative AI refers to artificial intelligence models capable of creating new content, such as text, images, or code [Tech Journal][1]. It has seen rapid development and adoption, impacting various industries [Industry Report][2]. Evaluating its importance relative to all other historical technological advancements (like the printing press or the internet, also mentioned as highly impactful [History of Tech Site][3]) is subjective and depends on the criteria used.
-    [1]: http://example.com/genai_def "What is Generative AI? - Tech Journal"
-    [2]: http://example.com/genai_impact "Impact of Generative AI - Industry Report"
-    [3]: http://example.com/hist_tech "Major Technological Advancements - History of Tech Site"
+    
 
     Example 3 (True Claim - Current Affairs):
     Claim: "The UK held a general election in July 2024."
     (Assuming search results confirm this)
     classification: true
     whole truth: The United Kingdom held a general election on July 4, 2024 [BBC News][1]. The Labour Party won a majority of seats, ending 14 years of Conservative government [Reuters][2]. Keir Starmer became the new Prime Minister [Official Gov UK Site][3].
-    [1]: http://news.bbc.co.uk/election2024summary "UK General Election Results 2024 - BBC News"
-    [2]: http://reuters.com/ukelection/labourwins "Labour Wins UK Election - Reuters"
-    [3]: http://gov.uk/primeminister "Prime Minister's Office - Gov.uk"
-
+   
     Example 4 (Nuanced/False Claim - Domain Specific):
     Claim: "Drinking coffee always causes dehydration."
     (Assuming search results explain caffeine's mild diuretic effect but emphasize that the water in coffee typically offsets this for moderate consumption)
     classification: false
     whole truth: Coffee contains caffeine, which has a mild diuretic effect, meaning it can increase urine production slightly [Health Study Journal][1]. However, coffee also contributes to daily fluid intake. For moderate consumption levels, coffee is unlikely to cause dehydration in healthy adults, and its fluid content generally compensates for the diuretic effect [Nutrition Review][2][Mayo Clinic Health][3]. The idea that coffee *always* causes dehydration is not supported by current evidence for typical consumption patterns.
-    [1]: http://example.com/caffeine_diuretic "Caffeine as a Diuretic - Health Study Journal"
-    [2]: http://example.com/coffee_hydration_review "Coffee and Hydration: A Review - Nutrition Review"
-    [3]: http://mayoclinic.org/coffee_hydration "Does coffee dehydrate you? - Mayo Clinic Health"
+   
 
     Example 5 (Insufficient Evidence):
     Claim: "My local bakery uses only organic flour."
     (Assuming search results are generic articles about organic flour or the bakery's opening hours, but nothing about their specific flour sourcing)
     classification: inconclusive
     whole truth: The provided search results discuss the general benefits of organic flour [Organic Food Mag][1] and list the opening hours for "Local Bakery" [Bakery Website][2], but contain no specific information regarding the type of flour used by this particular bakery. Therefore, the claim cannot be verified based on the information provided.
-    [1]: http://example.com/organicflour "Benefits of Organic Flour - Organic Food Mag"
-    [2]: http://example.com/localbakery "Local Bakery Hours and Location"
+    
     """
     # thread_id = config.get("configurable", {}).get("thread_id", "")
     sources = []
@@ -184,6 +179,7 @@ async def summarize_node(state: AgentState, config: RunnableConfig):
                 "title": source["title"],
                 "url": source['url'],
                 "Score": source.get('score', 0),
+                "date": source.get('date', 'Unknown'),
             }
             for source in state["ranked_sources"]
         ]

@@ -45,21 +45,50 @@ async def download_node(state: AgentState, config: RunnableConfig):
     #     raise ValueError("Current step is not of type search")
     
   
+    # system_message = f"""
+    #     This step was just executed: {json.dumps(current_step)}
+
+    #     This is the result of the search:
+
+    #     Please extract ALL the relevant data from the search results, including key facts and all reference links.
+    #     DO NOT provide a summary or answer the user's query yet.
+    #     Instead, extract the raw data in a markdown format with inline references and list the full links at the end.
+        
+    #     Your output should be formatted as follows:
+        
+    #     - List each key fact along with its corresponding inline reference.
+    #     - At the end, provide the reference links formatted like:
+    #       [1]: http://example.com/source1 "Title of Source 1"
+    #       [2]: http://example.com/source2 "Title of Source 2"
+          
+    #     Do not include any extra commentary or analysis.
+    #     """
+    # system_message = f"""
+    #     This step was just executed: {json.dumps(current_step)}
+
+    #     This is the result of the search:
+
+    #     Please extract ALL the relevant data from the search results, including key facts and all reference links.
+    #     DO NOT provide a summary or answer the user's query yet.
+    #     Instead, extract the raw data in a markdown format with inline references and list the full links at the end.
+        
+    #     Your output should be formatted as follows:
+        
+          
+    #     Do not include any extra commentary or analysis.
+    #     """
+    
     system_message = f"""
         This step was just executed: {json.dumps(current_step)}
 
         This is the result of the search:
 
-        Please extract ALL the relevant data from the search results, including key facts and all reference links.
-        DO NOT provide a summary or answer the user's query yet.
-        Instead, extract the raw data in a markdown format with inline references and list the full links at the end.
+        Please summarize ONLY the result of the search and include all relevant information from the search and reference links.
+        DO NOT INCLUDE ANY EXTRA INFORMATION. ALL OF THE INFORMATION YOU ARE LOOKING FOR IS IN THE SEARCH RESULTS.
         
+        DO NOT answer the user's query yet. Just summarize the search results.
+
         Your output should be formatted as follows:
-        
-        - List each key fact along with its corresponding inline reference.
-        - At the end, provide the reference links formatted like:
-          [1]: http://example.com/source1 "Title of Source 1"
-          [2]: http://example.com/source2 "Title of Source 2"
           
         Do not include any extra commentary or analysis.
         """
