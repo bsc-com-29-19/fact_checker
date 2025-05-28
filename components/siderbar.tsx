@@ -6,18 +6,11 @@ import { useClickAway } from "react-use";
 import { AiOutlineRollback } from "react-icons/ai";
 import { Plus } from "lucide-react";
 
-export const Sidebar = ({isOpen,onClose}) => {
-   const ref = useRef(null);
-   useClickAway(ref, onClose);
+export const Sidebar = ({ isOpen, onClose }) => {
+  const ref = useRef(null);
+  useClickAway(ref, onClose);
   return (
     <>
-      <button
-        onClick={onClose}
-        className="p-2 border-2 border-zinc-800 rounded-xl"
-        aria-label="toggle sidebar"
-      >
-        <GiHamburgerMenu />
-      </button>
       <AnimatePresence mode="wait" initial={false}>
         {isOpen && (
           <>

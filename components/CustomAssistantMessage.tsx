@@ -41,4 +41,3 @@ export const CustomAssistantMessage = (props: AssistantMessageProps) => {
     </div>
   );
 };
-

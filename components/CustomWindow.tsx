@@ -26,5 +26,3 @@ export default function CustomWindow({ children }: WindowProps) {
     </div>
   );
 }
-
-

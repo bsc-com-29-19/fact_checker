@@ -1,7 +1,4 @@
 // components/main.tsx
-
-'use client'
-
 import React, { useEffect } from "react";
 import Button  from "@/components/button";
 import { useModel } from "@/contexts/modelContext";

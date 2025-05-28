@@ -1,5 +1,4 @@
 // Header.tsx
-'use client'
 import React, { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { LanguageSelector } from "@/components/languageSelector";
@@ -10,7 +9,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 export function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  //const [showSources, setShowSources] = useState(false);
+  const [showSources, setShowSources] = useState(false);
   // const { theme, toggleTheme } = useTheme();
 
   const toggleSidebar = () => {
@@ -31,29 +30,13 @@ export function Header() {
               onClick={toggleSidebar}
               className="p-2 rounded hover:bg-accent"
             >
-
               <GiHamburgerMenu />
             </button>
           )}
         </div>
         <div className="flex items-center space-x-4">
           <LanguageSelector />
-          {/* <button
-            onClick={toggleTheme}
-            className="p-2 rounded hover:bg-accent"
-            aria-label={`Toggle ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          >
-            {theme === 'dark' ? (
-              <Sun size={24} className="text-primary" />
-            ) : (
-              <Moon size={24} className="text-primary" />
-            )}
-
-          </button> */}
           <ModeToggle />
-          <button className="p-2 rounded-full bg-primary text-primary-foreground">
-            MK
-          </button>
         </div>
       </div>
     </header>

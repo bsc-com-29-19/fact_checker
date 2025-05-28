@@ -23,4 +23,3 @@ export const CustomUserMessage = (props: UserMessageProps) => {
     </div>
   );
 };
-
