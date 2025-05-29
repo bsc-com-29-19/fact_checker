@@ -14,25 +14,12 @@ load_dotenv()
 
 from fastapi import FastAPI, Query
 import uvicorn
-from copilotkit.integrations.fastapi import  add_fastapi_endpoint
+from copilotkit.integrations.fastapi import add_fastapi_endpoint
 from copilotkit import LangGraphAgent,CopilotKitRemoteEndpoint
 
 # from fact_checker_agent.agent import fack_check, graph
-from fact_checker_agent.agent import  graph
+from fact_checker_agent.agent import graph
 
-# --- BEGIN DEBUGGING ---
-print(f"DEBUG: Initial graph object: {graph}")
-if hasattr(graph, 'config'):
-    print(f"DEBUG: graph.config before modification: {graph.config}")
-    print(f"DEBUG: type(graph.config): {type(graph.config)}")
-    if graph.config is None:
-        print("DEBUG: graph.config is None, setting to {}")
-        graph.config = {}
-else:
-    print("DEBUG: graph does not have a .config attribute, creating and setting to {}")
-    graph.config = {}
-print(f"DEBUG: graph.config after modification: {graph.config}")
-# --- END DEBUGGING ---
 
 app = FastAPI()
 sdk = CopilotKitRemoteEndpoint(

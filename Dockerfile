@@ -11,11 +11,11 @@ RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt
 ADD . /deps/__outer_fact_checker/fact_checker
 RUN set -ex && \
     for line in '[project]' \
-                'name = "fact_checker"' \
-                'version = "0.1"' \
-                '[tool.setuptools.package-data]' \
-                '"*" = ["**/*"]'; do \
-        echo "$line" >> /deps/__outer_fact_checker/pyproject.toml; \
+    'name = "fact_checker"' \
+    'version = "0.1"' \
+    '[tool.setuptools.package-data]' \
+    '"*" = ["**/*"]'; do \
+    echo "$line" >> /deps/__outer_fact_checker/pyproject.toml; \
     done
 # -- End of non-package dependency fact_checker --
 
@@ -35,3 +35,8 @@ RUN pip uninstall -y pip setuptools wheel &&     rm -rf /usr/local/lib/python*/s
 # -- End of pip removal --
 
 WORKDIR /deps/__outer_fact_checker/fact_checker
+
+# 6) Expose port and override entrypoint
+EXPOSE 8000
+ENV UVICORN_APP="fact_checker_agent.api:app"
+CMD ["uvicorn", "fact_checker_agent.api:app", "--host", "0.0.0.0", "--port", "8000"]
