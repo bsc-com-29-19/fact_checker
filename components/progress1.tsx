@@ -105,9 +105,9 @@ export function Progress1({
                   }
                 >
                   {done ? (
-                    <CheckIcon className="w-3 h-3 text-[var(--primary)]" />
+                    <CheckIcon className="w-3 h-3 text-[var(--primary)] dark:text-black" />
                   ) : (
-                    <LoaderCircle className="w-3 h-3 text-[var(--primary)] animate-spin" />
+                    <LoaderCircle className="w-3 h-3 text-[var(--primary)] dark:text-black animate-spin" />
                   )}
                 </div>
                 {index < steps.length - 1 && (
