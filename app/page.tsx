@@ -3,7 +3,7 @@
 import { ResearchProvider } from "@/lib/research-provider";
 import { CopilotKit } from "@copilotkit/react-core";
 import { ResearchWrapper } from "@/components/ResearchWrapper";
-import { ModelProvider } from "@/contexts/modelContext";
+import { ModelProvider, useModel } from "@/contexts/modelContext";
 import { AgentProvider } from "@/contexts/agentContext";
 import { LanguageProvider } from "@/contexts/languageContext";
 // import { Header } from "@/components/Header";
@@ -13,11 +13,21 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 
 export default function ModelSelectorWrapper() {
+  // const { useLgc } = useModel();
+  const useLgc =
+    globalThis.window === undefined
+      ? false
+      : !!new URL(window.location.href).searchParams.get("lgc") ||
+        process.env.NEXT_PUBLIC_FORCE_LGC === "true";
+
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-[#212121] dark:text-gray">
       <ModelProvider>
         <LanguageProvider>
-          <CopilotKit runtimeUrl={"/api/copilotkit"} agent="fact_checker_agent">
+          <CopilotKit
+            runtimeUrl={useLgc ? "/api/copilotkit-lgc" : "/api/copilotkit"}
+            agent="fact_checker_agent"
+          >
             {/* Header for all users */}
             {/* <NavHeader /> */}
 
