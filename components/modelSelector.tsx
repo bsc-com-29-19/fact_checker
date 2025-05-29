@@ -33,7 +33,7 @@ export function ModelSelector() {
         ) => setModel(v)}
       >
         <SelectTrigger
-          className="w-[180px] dark:bg-transparent"
+          className="w-[180px] dark:bg-transparent hidden"
           data-tooltip-id="my-tooltip"
           data-tooltip-content="Select a model"
           data-tooltip-place="top"
