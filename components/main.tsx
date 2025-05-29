@@ -1,11 +1,11 @@
 // components/main.tsx
 import React, { useEffect } from "react";
-import Button  from "@/components/button";
+import Button from "@/components/button";
 import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
 import { useLanguage } from "@/contexts/languageContext";
 import { useCoAgent } from "@copilotkit/react-core";
-import {AgentState} from "@/lib/types";
+import { AgentState } from "@/lib/types";
 import { AnswerMarkdown } from "./AnswerMarkdown";
 
 const FactCheckComponent = ({
@@ -13,42 +13,37 @@ const FactCheckComponent = ({
   trueStatement,
   falseStatement,
   wholeTruth,
-}:{claim:string,trueStatement:string,falseStatement:string,wholeTruth:string}) => {
-  const {model} = useModel();
-  const {agent} = useAgent();
-  const {language} = useLanguage();
+}: {
+  claim: string;
+  trueStatement: string;
+  falseStatement: string;
+  wholeTruth: string;
+}) => {
+  const { model } = useModel();
+  const { agent } = useAgent();
+  const { language } = useLanguage();
 
-  console.log("extracted agent",agent)
-  console.log("extract model",model)
-  console.log("extracted lang",language)
+  const { state: agentState } = useCoAgent<AgentState>({
+    name: agent,
+    initialState: {
+      model,
+    },
+  });
 
-  const {state:agentState} = useCoAgent<AgentState> (
-    {
-      name:agent,
-      initialState:{
-        model,
-      }
-    }
-  );
+  const steps =
+    agentState?.steps?.map((step: any) => {
+      return {
+        description: step.description || "",
+        status: step.status || "pending",
+        updates: step.updates || [],
+      };
+    }) || [];
 
-  const steps = agentState?.steps?.map((step: any) => {
-    return {
-      description: step.description || "" ,
-      status: step.status || "pending" ,
-      updates: step.updates || [],
-    };
-  }) || [];
+  const isLoading = !agentState?.answer?.markdown;
 
-const isLoading = !agentState?.answer?.markdown;
-
-useEffect(() => {
-  console.log("Current agent state:", agentState);
-}, [agentState]);
-
-console.log("steps :::",steps)
-console.log("agentState :::::::::::::::::::: ",agentState)
-console.log("agentState Answer -----------------------",agentState?.answer)
-console.log("Agent markdown ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",agentState?.answer?.markdown)
+  useEffect(() => {
+    console.log("Current agent state:", agentState);
+  }, [agentState]);
 
   return (
     <div
@@ -82,11 +77,11 @@ console.log("Agent markdown ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",agentState?.answe
         <Button variant="primary">View Sources</Button>
       </div> */}
       <div className="flex items-center justify-center">
-{isLoading ? (null):(<div>{agentState?.answer?.markdown}</div>)}
-
+        {isLoading ? null : <div>{agentState?.answer?.markdown}</div>}
       </div>
-      {isLoading ? (null):(<AnswerMarkdown markdown={agentState?.answer?.markdown}/>)}
-
+      {isLoading ? null : (
+        <AnswerMarkdown markdown={agentState?.answer?.markdown} />
+      )}
     </div>
   );
 };
