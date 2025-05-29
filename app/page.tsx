@@ -25,6 +25,10 @@ export default function ModelSelectorWrapper() {
             <SignedOut>
               <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-8">
                 <div className="w-full max-w-4xl text-center">
+                  <h1 className="text-5xl font-bold text-[#6766FC] mb-4">
+                    Zoona
+                  </h1>
+
                   <h1 className="text-4xl text-black dark:text-white font-bold mb-4">
                     AI-Powered Fact-Checking System
                   </h1>
