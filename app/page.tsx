@@ -14,19 +14,23 @@ import { Header } from "@/components/Header";
 
 export default function ModelSelectorWrapper() {
   // const { useLgc } = useModel();
-  const useLgc =
-    globalThis.window === undefined
-      ? false
-      : !!new URL(window.location.href).searchParams.get("lgc") ||
-        process.env.NEXT_PUBLIC_FORCE_LGC === "true";
+  // const useLgc =
+  //   globalThis.window === undefined
+  //     ? false
+  //     : !!new URL(window.location.href).searchParams.get("lgc") ||
+  //       process.env.NEXT_PUBLIC_FORCE_LGC === "true";
+  const useLgc = true;
+
+  const currentRuntimeUrl = useLgc ? "/api/copilotkit-lgc" : "/api/copilotkit";
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-[#212121] dark:text-gray">
       <ModelProvider>
         <LanguageProvider>
           <CopilotKit
-            runtimeUrl={useLgc ? "/api/copilotkit-lgc" : "/api/copilotkit"}
+            runtimeUrl={currentRuntimeUrl}
             agent="fact_checker_agent"
+            showDevConsole={false}
           >
             {/* Header for all users */}
             {/* <NavHeader /> */}
