@@ -35,7 +35,8 @@ export default function ModelSelectorWrapper() {
             <SignedOut>
               <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-8">
                 <div className="w-full max-w-4xl text-center">
-                  <h1 className="text-4xl text-black dark:text-white font-bold mb-4">
+                  <h1 className="text-5xl text-[#6766FC] font-bold">Ngamo</h1>
+                  <h1 className="text-3xl text-black dark:text-white font-bold mb-4">
                     AI-Powered Fact-Checking System
                   </h1>
                   <p className="text-lg text-gray-600 dark:text-white/70 mb-8">

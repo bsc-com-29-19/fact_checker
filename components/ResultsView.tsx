@@ -87,7 +87,7 @@ export function ResultsView() {
           score: source.score || 0,
         })
       );
-      console.log(agentState.ranked_sources);
+      // console.log(agentState.ranked_sources);
       setParsedResults({
         classification,
         wholeTruth,
@@ -251,7 +251,9 @@ export function ResultsView() {
                   <Card className="border-blue-200 bg-blue-50 dark:bg-blue-400/5  dark:text-white">
                     <CardHeader>
                       <CardTitle className="text-blue-700">
-                        Whole Truth
+                        {parsedResults.classification === "opinionated"
+                          ? "Supporting Arguements"
+                          : "Whole Truth"}
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
