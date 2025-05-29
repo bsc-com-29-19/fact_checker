@@ -16,6 +16,7 @@ export type Model =
 type ModelContextType = {
   model: string;
   setModel: (model: string) => void;
+  useLgc: boolean;
 };
 
 const ModelContext = createContext<ModelContextType | undefined>(undefined);
@@ -40,8 +41,14 @@ export const ModelProvider = ({ children }: { children: ReactNode }) => {
     window.location.href = url.toString();
   };
 
+  const useLgc =
+    globalThis.window === undefined
+      ? false
+      : !!new URL(window.location.href).searchParams.get("lgc") ||
+        process.env.NEXT_PUBLIC_FORCE_LGC === "true";
+
   return (
-    <ModelContext.Provider value={{ model, setModel }}>
+    <ModelContext.Provider value={{ model, setModel, useLgc }}>
       {children}
     </ModelContext.Provider>
   );

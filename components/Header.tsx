@@ -35,7 +35,7 @@ export function Header() {
             </button>
           )}
           <div className="flex items-center gap-1">
-            <h1 className="text-3xl font-semibold text-[#6766FC]">Zoona</h1>
+            <h1 className="text-3xl font-semibold text-[#6766FC]">Ngamo</h1>
             {/* <span className="flex text-3xl font-extrabold">
               <Image
                 src="/zoona_logo.png"
