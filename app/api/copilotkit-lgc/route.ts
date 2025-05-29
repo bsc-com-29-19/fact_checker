@@ -24,6 +24,7 @@ const runtime = new CopilotRuntime({
           description:
             "A LangGraph AI agent that provides fact checking capabilities using the CoPilotKit packages.",
           assistantId: "fe096781-5601-53d2-b2f6-0d3403f7e9ca",
+          //   assistantId: "47cee9d-9eeb-44ed-a5c5-678c30072b74",
         },
       ],
     }),
