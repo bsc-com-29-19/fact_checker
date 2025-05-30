@@ -36,7 +36,7 @@ sdk = CopilotKitRemoteEndpoint(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=["*","https://ngamo.netlify.app/","https://fact-checker-xi-brown.vercel.app/"],  # Allows all origins
     allow_credentials=False,
     allow_methods=["*"],  # Allows all methods (GET, POST, etc.)
     allow_headers=["*"],  # Allows all headers
