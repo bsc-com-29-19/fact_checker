@@ -13,6 +13,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 load_dotenv()
 
 from fastapi import FastAPI, Query
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from copilotkit.integrations.fastapi import add_fastapi_endpoint
 from copilotkit import LangGraphAgent,CopilotKitRemoteEndpoint
@@ -31,6 +32,14 @@ sdk = CopilotKitRemoteEndpoint(
             config={}
         )
     ]
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=False,
+    allow_methods=["*"],  # Allows all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allows all headers
 )
 
 add_fastapi_endpoint(app, sdk,"/copilotkit")
