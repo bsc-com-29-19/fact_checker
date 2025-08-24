@@ -1,9 +1,9 @@
 // components/main.tsx
 import React, { useEffect } from "react";
-import Button from "@/components/button";
+// import Button from "@/components/button";
 import { useModel } from "@/contexts/modelContext";
 import { useAgent } from "@/contexts/agentContext";
-import { useLanguage } from "@/contexts/languageContext";
+// import { useLanguage } from "@/contexts/languageContext";
 import { useCoAgent } from "@copilotkit/react-core";
 import { AgentState } from "@/lib/types";
 import { AnswerMarkdown } from "./AnswerMarkdown";
@@ -21,7 +21,7 @@ const FactCheckComponent = ({
 }) => {
   const { model } = useModel();
   const { agent } = useAgent();
-  const { language } = useLanguage();
+  // const { language } = useLanguage();
 
   const { state: agentState } = useCoAgent<AgentState>({
     name: agent,

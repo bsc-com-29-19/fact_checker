@@ -7,7 +7,7 @@ import { ModelProvider, useModel } from "@/contexts/modelContext";
 import { AgentProvider } from "@/contexts/agentContext";
 import { LanguageProvider } from "@/contexts/languageContext";
 // import { Header } from "@/components/Header";
-import { NavHeader } from "@/components/NavHeader";
+// import { NavHeader } from "@/components/NavHeader";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { Header } from "@/components/Header";

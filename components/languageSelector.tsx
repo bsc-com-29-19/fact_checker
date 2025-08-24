@@ -21,9 +21,11 @@ export function LanguageSelector() {
         value={language}
         onValueChange={(v: "en" | "es" | "fr" | "de" | "ch") => setLanguage(v)}
       >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-full md:w-[180px] justify-start md:justify-center gap-2">
           <Globe size={16} />
-          <SelectValue placeholder={languageName} />
+          <div className="hidden md:block">
+            <SelectValue placeholder={languageName} />
+          </div>
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="en">English</SelectItem>
