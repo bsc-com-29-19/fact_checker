@@ -1,4 +1,4 @@
-//modelSelector.tsx
+// modelSelector.tsx
 "use client";
 
 import React from "react";
@@ -9,36 +9,42 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useModel } from "@/contexts/modelContext"; // Update the import path
+import { useModel } from "@/contexts/modelContext";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
+import { BrainCircuit } from "lucide-react"; // Import a suitable icon
+
+// Define a type for model values for better readability
+type ModelType =
+  | "gpt-3.5-turbo"
+  | "llama3.5"
+  | "gpt-4o"
+  | "claude-3-sonnet-20240229"
+  | "deepseek-r1:latest"
+  | "gemini-2.0-flash"
+  | "gemini-2.5-flash-preview-04-17";
 
 export function ModelSelector() {
-  const { model, setModel } = useModel(); // Use the useModel hook
+  const { model, setModel } = useModel();
 
   return (
     <div>
       <Select
         value={model}
-        // value="gpt-3.5-turbo"
-        onValueChange={(
-          v:
-            | "gpt-3.5-turbo"
-            | "llama3.5"
-            | "gpt-4o"
-            | "claude-3-sonnet-20240229"
-            | "deepseek-r1:latest"
-            | "gemini-2.0-flash"
-            | "gemini-2.5-flash-preview-04-17" // Add any other models you want to support
-        ) => setModel(v)}
+        onValueChange={(v: string) => setModel(v as ModelType)}
       >
         <SelectTrigger
-          className="w-[180px] dark:bg-transparent hidden"
-          data-tooltip-id="my-tooltip"
+          // REMOVED the 'hidden' class and added responsive classes
+          className="w-auto md:w-[180px] dark:bg-transparent flex items-center gap-2"
+          data-tooltip-id="model-tooltip" // Unique ID for the tooltip
           data-tooltip-content="Select a model"
           data-tooltip-place="top"
         >
-          <SelectValue placeholder="Select model" />
+          <BrainCircuit size={16} /> {/* Icon is always visible */}
+          {/* Text is hidden on mobile, visible on medium screens and up */}
+          <div className="hidden md:block">
+            <SelectValue placeholder="Select model" />
+          </div>
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="gpt-3.5-turbo">GPT-3.5 Turbo</SelectItem>
@@ -48,14 +54,13 @@ export function ModelSelector() {
           <SelectItem value="gemini-2.5-flash-preview-04-17">
             Gemini 2.5 Pro
           </SelectItem>
-
           <SelectItem value="claude-3-sonnet-20240229">
             Claude 3 Sonnet
           </SelectItem>
           <SelectItem value="deepseek-r1:latest">DeepSeek R1</SelectItem>
         </SelectContent>
+        <Tooltip id="model-tooltip" />
       </Select>
-      <Tooltip id="my-tooltip" />
     </div>
   );
 }

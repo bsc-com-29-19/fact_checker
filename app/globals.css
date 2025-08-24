@@ -22,3 +22,16 @@
 body {
   @apply bg-background text-foreground;
 }
+
+@layer base {
+  /* ... your other base styles ... */
+
+  html {
+    /* This is the magic property.
+       'stable' reserves space for the scrollbar, preventing layout shift.
+       'both-edges' can be used if you also want to reserve space on the left.
+       'stable' is usually what you want. */
+ overflow-y: scroll;
+
+  }
+}

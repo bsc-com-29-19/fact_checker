@@ -1,5 +1,5 @@
 // components/Header.tsx
-import {  SignedOut } from "@clerk/nextjs";
+import { SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 
 export function NavHeader() {
@@ -18,7 +18,6 @@ export function NavHeader() {
               Sign Up
             </Link>
           </SignedOut>
-    
         </div>
       </nav>
     </header>

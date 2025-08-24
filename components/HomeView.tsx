@@ -1,10 +1,11 @@
+// HomeView.tsx
 import { useCoAgent } from "@copilotkit/react-core";
 import { useState } from "react";
 import { CornerDownLeftIcon } from "lucide-react";
 
 import RecordingView from "@/components/RecordView";
 import { AgentSelector } from "@/components/agentSelector";
-import { ModelSelector } from "@/components/modelSelector";
+// import { ModelSelector } from "@/components/modelSelector";
 import Button from "@/components/button";
 
 import { cn } from "@/lib/utils";
@@ -21,7 +22,6 @@ export default function HomeView() {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const { model } = useModel();
   const { agent } = useAgent();
-  // const [result, setResult] = useState<{ status: string; message?: string } | null>(null);
 
   const MAX_INPUT_LENGTH = 500;
 
@@ -33,10 +33,9 @@ export default function HomeView() {
   });
 
   const handleResearch = async (query: string) => {
-    if (!query.trim()) return; // Prevent empty submissions
+    if (!query.trim()) return;
     setResearchQuery(query);
-    // setResult({ status: "loading", message: "Loading results..." });
-    setResearchInput(""); // Reset the textarea for a new claim
+    setResearchInput("");
     await runResearchAgent(() => {
       return new TextMessage({
         role: MessageRole.User,
@@ -47,15 +46,14 @@ export default function HomeView() {
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-20vh)] justify-center">
-      <main className="bg-white dark:bg-[#212121] ">
-        <div className="max-w-4xl mx-auto p-4 space-y-4 ">
+      <main className="bg-white dark:bg-[#212121]">
+        <div className="max-w-4xl mx-auto p-4 space-y-4">
           {!researchQuery && (
-            <h1 className="text-3xl font-bold text-center mb-6">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6">
               What do you want to fact check ?
             </h1>
           )}
 
-          {/* Input Area (Always Visible) */}
           <div
             className={cn(
               "w-full bg-slate-100/50 dark:bg-[#303030] dark:border-none border shadow-sm rounded-md transition-all border-gray-300",
@@ -64,7 +62,7 @@ export default function HomeView() {
           >
             <Textarea
               placeholder="Enter your claim here..."
-              className="bg-transparent p-4 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 border-0 w-full"
+              className="bg-transparent p-8 md:p-10 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 border-0 w-full"
               onFocus={() => setIsInputFocused(true)}
               onBlur={() => setIsInputFocused(false)}
               value={researchInput}
@@ -78,25 +76,29 @@ export default function HomeView() {
               maxLength={MAX_INPUT_LENGTH}
             />
 
-            <div className="grid grid-cols-3 gap-4 p-4 items-center">
-              <div className="col-span-1 flex items-center gap-4">
-                <span className="text-xs text-slate-500">
+            {/* --- NEW RESPONSIVE FOOTER --- */}
+            <div className="flex items-center justify-between gap-4 p-4">
+              {/* Left Group: Agent & Model Selectors */}
+              <div className="flex items-center gap-2 md:gap-4">
+                <AgentSelector />
+                {/* <ModelSelector /> */}
+              </div>
+
+              {/* Right Group: Actions & Info */}
+              <div className="flex items-center gap-2 md:gap-4">
+                {/* Character count is hidden on the very smallest screens */}
+                <span className="hidden sm:inline text-xs text-slate-500">
                   {researchInput.length} / {MAX_INPUT_LENGTH}
                 </span>
-                <AgentSelector />
-              </div>
-              <div className="col-span-1 flex justify-center">
-                <ModelSelector />
-              </div>
-              <div className="col-span-1 flex justify-end items-center gap-4">
                 <RecordingView
                   onTranscriptChange={(transcript) =>
                     setResearchInput(transcript)
                   }
                 />
                 <Button onClick={() => handleResearch(researchInput)}>
-                  Check
-                  <CornerDownLeftIcon className="w-4 h-4 ml-2" />
+                  {/* Text "Check" is hidden on mobile */}
+                  <span className="hidden md:inline text-sm px-2">Check</span>
+                  <CornerDownLeftIcon className="w-4 h-4 md:h-3 md:ml-2" />
                 </Button>
               </div>
             </div>
