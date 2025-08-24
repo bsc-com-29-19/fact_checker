@@ -39,7 +39,9 @@ export default function ModelSelectorWrapper() {
             <SignedOut>
               <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-8">
                 <div className="w-full max-w-4xl text-center">
-                  <h1 className="text-5xl text-[#6766FC] font-bold">Ngamo</h1>
+                  <h1 className="text-5xl text-[#6766FC] font-bold mb-8">
+                    Ngamo
+                  </h1>
                   <h1 className="text-3xl text-black dark:text-white font-bold mb-4">
                     AI-Powered Fact-Checking System
                   </h1>
@@ -51,12 +53,12 @@ export default function ModelSelectorWrapper() {
                   {/* Call-to-Action Buttons */}
                   <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
                     <Link href="/sign-in">
-                      <button className="w-full sm:w-auto rounded-md bg-blue-600 px-6 py-3 text-white font-semibold hover:bg-blue-700">
+                      <button className="w-full sm:w-auto rounded-md border-2 border-transparent bg-[#6766FC] px-10 py-3 text-white font-semibold hover:bg-transparent hover:text-[#6766FC] hover:border-[#6766FC]">
                         Sign In
                       </button>
                     </Link>
                     <Link href="/sign-up">
-                      <button className="w-full sm:w-auto rounded-md bg-green-600 px-6 py-3 text-white font-semibold hover:bg-green-700">
+                      <button className="w-full sm:w-auto rounded-md bg-transparent border-2 text-[#6766FC] border-[#6766FC] px-10 py-3 font-semibold hover:bg-[#6766FC] hover:text-white hover:border-[#6766FC]">
                         Sign Up
                       </button>
                     </Link>

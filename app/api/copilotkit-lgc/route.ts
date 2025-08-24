@@ -1,3 +1,5 @@
+export const runtime = "nodejs";
+
 import {
   CopilotRuntime,
   OpenAIAdapter,
@@ -13,7 +15,7 @@ const serviceAdapter = new OpenAIAdapter({ openai } as any);
 const deploymentUrl = process.env.LGC_DEPLOYMENT_URL as string;
 const langsmithApiKey = process.env.LANGSMITH_API_KEY as string;
 
-const runtime = new CopilotRuntime({
+const runtimeInstance = new CopilotRuntime({
   remoteEndpoints: [
     langGraphPlatformEndpoint({
       deploymentUrl,
@@ -33,7 +35,7 @@ const runtime = new CopilotRuntime({
 
 export const POST = async (req: NextRequest) => {
   const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
-    runtime,
+    runtime: runtimeInstance,
     serviceAdapter,
     endpoint: "/api/copilotkit-lgc",
   });
