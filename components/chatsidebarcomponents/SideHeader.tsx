@@ -6,7 +6,7 @@ const SideHeader = () => {
     //   Fact Checker
     // </div>
     <div className="flex justify-center items-center w-full h-16 bg-[#6766FC] text-white font-semibold sticky top-0">
-      <span className="text-lg">Fact Checker Steps</span>
+      <span className="text-lg">Fact Checker Progress</span>
     </div>
   );
 };

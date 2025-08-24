@@ -4,7 +4,7 @@ import { ModeToggle } from "./ui/modeToggle";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-10 bg-white border-b dark:bg-[#212121]">
+    <header className="sticky top-0 z-10 bg-white dark:bg-[#212121]">
       <div className="flex justify-between items-center p-4">
         {/* Left Side: Brand Name - adjusts font size responsively */}
         <div className="flex items-center gap-1">
