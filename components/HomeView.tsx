@@ -98,7 +98,7 @@ export default function HomeView() {
                 <Button onClick={() => handleResearch(researchInput)}>
                   {/* Text "Check" is hidden on mobile */}
                   <span className="hidden md:inline text-sm px-2">Check</span>
-                  <CornerDownLeftIcon className="w-4 h-3 md:ml-2" />
+                  <CornerDownLeftIcon className="w-4 h-4 md:h-3 md:ml-2" />
                 </Button>
               </div>
             </div>

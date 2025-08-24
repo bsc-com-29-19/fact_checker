@@ -1,3 +1,5 @@
+// ResearchWrapper.tsx
+
 import { AnimatePresence } from "framer-motion";
 import { useResearchContext } from "@/lib/research-provider";
 import HomeView from "./HomeView";
@@ -5,35 +7,38 @@ import { ResultsView } from "./ResultsView";
 import { CopilotSidebar } from "@copilotkit/react-ui";
 import SideHeader from "./chatsidebarcomponents/SideHeader";
 import Link from "next/link";
+import { useMediaQuery } from "@/hooks/use-media-query"; // 1. Import the new hook
 
 export function ResearchWrapper() {
   const { researchQuery, setResearchInput } = useResearchContext();
 
-  return (
-    <>
-      <div className="flex flex-col md:flex-row w-full">
-        <div className="flex-1 flex flex-col">
-          <div className="flex-1">
-            {researchQuery ? (
-              <AnimatePresence
-                key="results"
-                onExitComplete={() => {
-                  setResearchInput("");
-                }}
-                mode="wait"
-              >
-                <ResultsView key="results" />
-              </AnimatePresence>
-            ) : (
-              <AnimatePresence key="home" mode="wait">
-                <HomeView key="home" />
-              </AnimatePresence>
-            )}
-          </div>
-        </div>
+  // 2. Use the hook to check if we're on a "desktop" screen size.
+  // 'md' is typically 768px.
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
-        <div className="hidden md:flex md:w-64 lg:w-80 xl:w-96 p-4 border-l">
-          <div className="h-[80vh] w-full flex flex-col overflow-hidden">
+  return (
+    <div className="flex w-full h-full">
+      {/* The main content pane no longer needs any complex layout classes */}
+      <main className="flex-1">
+        <div className="w-full max-w-4xl mx-auto p-4">
+          {researchQuery ? (
+            <AnimatePresence /* ... */>
+              <ResultsView key="results" />
+            </AnimatePresence>
+          ) : (
+            <AnimatePresence /* ... */>
+              <HomeView key="home" />
+            </AnimatePresence>
+          )}
+        </div>
+      </main>
+
+      {/* --- THIS IS THE CRITICAL CHANGE --- */}
+      {/* 3. Conditionally render the entire sidebar based on the screen size. */}
+      {/* If isDesktop is false, this ENTIRE block (and the overlay) will not exist. */}
+      {isDesktop && (
+        <aside className="md:w-64 lg:w-80 xl:w-96 p-4 border-l">
+          <div className="w-full h-full flex flex-col">
             <CopilotSidebar
               className="w-full h-full flex flex-col"
               Header={SideHeader}
@@ -43,20 +48,10 @@ export function ResearchWrapper() {
               RenderResultMessage={() => null}
             />
           </div>
-        </div>
-      </div>
+        </aside>
+      )}
 
-      <footer className="text-xs flex items-center max-w-[70%] dark:bg-[#212121]">
-        {" "}
-        <Link
-          href="https://copilotkit.ai"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-slate-700 font-bold hover:underline mx-auto dark:text-white"
-        >
-          Powered by Fact Checker MW
-        </Link>
-      </footer>
-    </>
+      {/* The footer is also REMOVED from here, as it's handled by the parent */}
+    </div>
   );
 }
