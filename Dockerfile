@@ -44,8 +44,12 @@ RUN npm run build
 # Prune devDependencies to keep the final image smaller
 RUN npm prune --production
 
+
 # Expose Next.js port
 EXPOSE 3000
 
+ENV PORT=3000
+
 # Start app
+ENV HOSTNAME="0.0.0.0"
 CMD ["npm", "start"]
