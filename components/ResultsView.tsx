@@ -58,13 +58,7 @@ export function ResultsView() {
             .toLowerCase();
           continue;
         }
-        // if (line.toLowerCase().startsWith("true:")) {
-        //   currentSection = "true";
-        //   trueStatement = line.substring("true:".length).trim();
-        // } else if (line.toLowerCase().startsWith("false:")) {
-        //   currentSection = "false";
-        //   falseStatement = line.substring("false:".length).trim();
-        // } else
+
         if (line.toLowerCase().startsWith("whole truth:")) {
           currentSection = "wholeTruth";
           wholeTruth = line.substring("whole truth:".length).trim();
@@ -197,49 +191,7 @@ export function ResultsView() {
               ) : (
                 <>
                   <h1 className="font-bold text-3xl">Claim Analysis</h1>
-                  {/* <Card className="border-green-200 bg-green-50">
-                    <CardHeader>
-                      <CardTitle className="text-green-700">
-                        True Statement
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="prose max-w-none">
-                        {parsedResults.trueStatement ||
-                          "No true statements found"}
-                      </div>
-                    </CardContent>
-                  </Card> */}
 
-                  {/* <Card className="border-red-200 bg-red-50">
-                    <CardHeader>
-                      <CardTitle className="text-red-700">
-                        False Statement
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="prose max-w-none">
-                        {parsedResults.falseStatement ||
-                          "No false statements found"}
-                      </div>
-                    </CardContent>
-                  </Card> */}
-                  {/* <Card className={`${colors.border} ${colors.bg}`}>
-                    <CardHeader>
-                      <CardTitle className={colors.text}>
-                        {parsedResults.classification === "opinionated"
-                          ? "Opinionated Statement"
-                          : "Whole Truth"}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="prose max-w-none">
-                        {parsedResults.wholeTruth ||
-                          "No overall assessment available"}
-                      </div>
-                    </CardContent>
-                  </Card> */}
-                  {/* Classification Card */}
                   <Card className={`${colors.border} ${colors.bg}`}>
                     <CardHeader>
                       <CardTitle className={colors.text}>
@@ -268,51 +220,6 @@ export function ResultsView() {
             </div>
           </TabsContent>
 
-          {/* <TabsContent value="sources" className="mt-6">
-            {isLoading ? (
-              <div className="text-center py-8">Loading sources...</div>
-            ) : (
-              <div className="space-y-4">
-                {parsedResults.references.length ? (
-                  parsedResults.references.map((reference, index) => (
-                    <Card key={index}>
-                      <CardHeader>
-                        <CardTitle className="text-sm font-medium">
-                          <a
-                            href={reference.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:underline text-blue-600"
-                          >
-                            {reference.title || `Reference ${index + 1}`}
-                            {reference.score !== undefined && (
-                              <span className="ml-2 text-xs text-gray-500">
-                                (Score: {reference.score})
-                              </span>
-                            )}
-                          </a>
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="text-sm text-gray-600">
-                          <a
-                            href={reference.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-500 hover:underline break-all"
-                          >
-                            {reference.url}
-                          </a>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))
-                ) : (
-                  <div className="text-center py-8">No sources available</div>
-                )}
-              </div>
-            )}
-          </TabsContent> */}
           <TabsContent value="sources" className="mt-6">
             {isLoading ? (
               <div className="text-center py-8">Loading sources...</div>
@@ -320,19 +227,6 @@ export function ResultsView() {
               <div className="space-y-4">
                 {parsedResults.references.length ? (
                   parsedResults.references.map((reference, index) => {
-                    // const credibility =
-                    //   reference.score >= 75
-                    //     ? "High"
-                    //     : reference.score >= 50
-                    //     ? "Medium"
-                    //     : "Low";
-                    // const bias =
-                    //   reference.score >= 75
-                    //     ? "Low"
-                    //     : reference.score >= 50
-                    //     ? "Medium"
-                    //     : "High";
-                    // First check if score exists
                     const safeScore = reference?.score ?? 0;
 
                     const credibility =

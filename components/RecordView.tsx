@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
+import { cn } from "@/lib/utils";
 
 declare global {
   interface Window {
@@ -32,7 +33,7 @@ export default function RecordingView({
     recognitionRef.current.onresult = (event: any) => {
       const { transcript } = event.results[event.results.length - 1][0];
       // setTranscript(transcript);
-        onTranscriptChange(transcript);
+      onTranscriptChange(transcript);
     };
     recognitionRef.current.start();
   };
@@ -43,7 +44,7 @@ export default function RecordingView({
         recognitionRef.current.stop();
       }
     };
-  });
+  }, []);
   const stopRecording = () => {
     if (recognitionRef.current) {
       recognitionRef.current.stop();
@@ -61,44 +62,36 @@ export default function RecordingView({
   };
 
   return (
-    <div className="flex items-center justify-center h-full w-full ">
-      {/* {transcript session } */}
-      <div className="w-full">
-        {(isRecording || transcript) && (
-          <div className="w-1/4 m-auto  bg-white">
-            {transcript && (
-              <div className="rounded-md mt-4">
-                <p className="mb-0">{transcript}</p>
-              </div>
-            )}
-          </div>
-        )}
-        {/* {button to do the recording } */}
-        <div className="flex items-center w-full">
-          {isRecording ? (
-            <button
-              className="rounded-full w-22h-22 mt-10 m-auto flex items-center justify-center bg-red-400 hover:bg-red-500"
-              onClick={handleToggleRecording}
-            >
-              {isRecording ? (
-                <FaMicrophoneSlash size={24} className="animate-pulse" />
-              ) : (
-                <FaMicrophone size={24} />
-              )}
-            </button>
-          ) : (
-            <button
-              className="rounded-full w-22 h-22 mt-10 m-auto flex items-center justify-center bg-blue-400 hover:bg-blue-500"
-              onClick={handleToggleRecording}
-            >
-              {isRecording ? (
-                <FaMicrophoneSlash size={24} />
-              ) : (
-                <FaMicrophone size={24} />
-              )}
-            </button>
-          )}
+    <div className="flex flex-col items-center justify-center">
+      {/* Transcript Session (Responsive Width) */}
+      {(isRecording || transcript) && (
+        <div className="w-full max-w-md mx-auto rounded-md bg-white dark:bg-gray-800 p-2 text-center shadow-sm mb-4">
+          <p className="mb-0 text-gray-700 dark:text-gray-300">
+            {transcript || "Listening..."}
+          </p>
         </div>
+      )}
+
+      {/* Refactored & Responsive Button */}
+      <div className="flex items-center w-full justify-center">
+        <button
+          className={cn(
+            "rounded-full flex items-center justify-center transition-colors",
+            "w-10 h-10 md:w-12 md:h-12", // Responsive size
+            {
+              "bg-red-500 hover:bg-red-600": isRecording,
+              "bg-[#6766FC] hover:bg-[#6766FC]": !isRecording,
+            }
+          )}
+          onClick={handleToggleRecording}
+          aria-label={isRecording ? "Stop recording" : "Start recording"}
+        >
+          {isRecording ? (
+            <FaMicrophoneSlash size={24} className="text-white animate-pulse" />
+          ) : (
+            <FaMicrophone size={24} className="text-white" />
+          )}
+        </button>
       </div>
     </div>
   );
