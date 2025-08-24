@@ -1,3 +1,5 @@
+export const runtime = "nodejs";
+
 //app/api/copilotkit/route.ts
 import { NextRequest } from "next/server";
 import {
@@ -12,7 +14,7 @@ const openai = new OpenAI();
 const serviceAdapter = new OpenAIAdapter({ openai } as any);
 
 //👇🏻 connects the CopilotKit runtime to the CoAgent
-const runtime = new CopilotRuntime({
+const runtimeInstance = new CopilotRuntime({
   remoteEndpoints: [
     {
       url: process.env.REMOTE_ACTION_URL || "http://localhost:8000/copilotkit",
@@ -22,7 +24,7 @@ const runtime = new CopilotRuntime({
 
 export const POST = async (req: NextRequest) => {
   const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
-    runtime,
+    runtime: runtimeInstance,
     serviceAdapter,
     endpoint: "/api/copilotkit",
   });
