@@ -27,7 +27,7 @@ export function LanguageSelector() {
             <SelectValue placeholder={languageName} />
           </div>
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-white">
           <SelectItem value="en">English</SelectItem>
           <SelectItem value="es">Español</SelectItem>
           <SelectItem value="fr">Français</SelectItem>
